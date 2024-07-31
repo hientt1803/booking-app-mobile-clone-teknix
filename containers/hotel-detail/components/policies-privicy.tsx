@@ -14,7 +14,7 @@ import React from "react";
 export const PoliciesPrivicy = () => {
   return (
     <React.Fragment>
-      <Accordion variant="contained">
+      <Accordion variant="default">
         <Accordion.Item value="children">
           <Accordion.Control>
             <Text size="xs" fw={650}>

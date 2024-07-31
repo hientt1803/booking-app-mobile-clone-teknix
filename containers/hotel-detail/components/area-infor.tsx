@@ -1,14 +1,16 @@
 "use client";
 
 import { PrimaryButton } from "@/components/button";
-import { Box, Flex, Stack, Tabs, Text } from "@mantine/core";
+import { Box, Flex, Stack, Tabs, Text, Title } from "@mantine/core";
 import { FerrisWheel, FootprintsIcon, PersonStanding } from "lucide-react";
 import React from "react";
 
 export const AreaInfor = () => {
   return (
     <React.Fragment>
-      <Tabs defaultValue="attractions">
+      <Title order={5}>Area info</Title>
+      <Text size="xs" fw={600} className="text-blue-800">Exellent Location</Text>
+      <Tabs defaultValue="attractions" mt={5}>
         <Tabs.List>
           <Tabs.Tab value="attractions">Attractions</Tabs.Tab>
           <Tabs.Tab value="eatAndDrink">Eat and drink</Tabs.Tab>

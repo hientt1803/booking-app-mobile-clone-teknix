@@ -48,7 +48,7 @@ export const MobileNavbar = () => {
           <Link href={"/"}>
             <Title order={3}>Booking.com</Title>
           </Link>
-          <Flex justify={"flex-end"} align={"center"} gap={5} mr={15}>
+          <Flex justify={"flex-end"} align={"center"} gap={5}>
             <MobileDropdown />
             <div onClick={open} className="cursor-pointer">
               <MenuIcon className="text-neutral-300" />

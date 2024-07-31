@@ -12,7 +12,7 @@ export const FoodAndDrink = () => {
   return (
     <React.Fragment>
       <Flex justify={"space-between"} align={"center"} mb={5}>
-        <Title order={4}>Food & Drink</Title>
+        <Title order={5}>Food & Drink</Title>
         <SoupIcon />
       </Flex>
 

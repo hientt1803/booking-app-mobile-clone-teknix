@@ -17,7 +17,7 @@ import { NavFilter } from "./components/nav-filter";
 
 export const SearchPageContainer = () => {
   return (
-    <Box>
+    <Box bg='#fff'>
       <Box bg="#1e3a8a" py={30} style={{ position: "relative" }}>
         <Box
           bg={"#fcc419"}

@@ -1,7 +1,7 @@
-import React from "react";
+"use client";
 
-import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 interface IImage {
   original: string;
@@ -9,5 +9,15 @@ interface IImage {
 }
 
 export const CaroucelImage = ({ images }: { images: IImage[] }) => {
-  return <ImageGallery items={images} lazyLoad />;
+  return (
+    <ImageGallery
+      items={images}
+      lazyLoad
+      showBullets={false}
+      showPlayButton={false}
+      showThumbnails={false}
+      showFullscreenButton={false}
+      showIndex
+    />
+  );
 };

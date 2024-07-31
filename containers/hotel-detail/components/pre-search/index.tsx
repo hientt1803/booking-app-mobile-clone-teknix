@@ -16,7 +16,7 @@ import React from "react";
 export const PreSearchContainerr = () => {
   return (
     <React.Fragment>
-      <Box mt={50} className="shadow-md rounded-md p-3">
+      <Box className="rounded-md p-3">
         <Stack>
           <Flex justify={"space-between"} align={"center"}>
             <Text size="xs" fw={500}>
@@ -49,7 +49,7 @@ export const PreSearchContainerr = () => {
           </Grid>
         </Stack>
       </Box>
-      <Box mt={50}>
+      <Box mt={10}>
         <Stack>
           <Text size="sm" fw={500}>
             Set your filters

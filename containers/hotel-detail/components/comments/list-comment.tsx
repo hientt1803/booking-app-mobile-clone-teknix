@@ -14,7 +14,7 @@ import { CommentDrawer } from "./comment-drawer";
 export const ListComment = () => {
   return (
     <Box>
-      <Title order={3} mt={30}>
+      <Title order={3} mt={30} mb={10}>
         What guest loved the most:
       </Title>
       <ScrollArea className="w-full" type="never">

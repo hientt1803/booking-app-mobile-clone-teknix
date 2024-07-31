@@ -16,6 +16,10 @@ import { ReviewContainer } from "./components/comments";
 import { HeaderInformation } from "./components/header-information";
 import { ListBookingCard } from "./components/list-booking-card";
 import { PreSearchContainerr } from "./components/pre-search";
+import { Navigation } from "./components/navigation";
+import React from "react";
+import { PrimaryButton } from "@/components/button";
+import { BoxWrap } from "@/components/box-wrap";
 
 const ListService = dynamic(() =>
   import("./components/list-service").then((mob) => mob.ListService)
@@ -43,27 +47,27 @@ const BestOfBeyond = dynamic(() =>
 
 export const HotelDetailContainer = () => {
   return (
-    <Container>
+    <React.Fragment>
       {/* main information */}
-      <HeaderInformation />
-      <HotelDetailCaroucel />
+      <BoxWrap>
+        <HeaderInformation />
+        <HotelDetailCaroucel />
 
-      <Box mt={15}>
-        <ListService />
-      </Box>
+        <Box mt={15}>
+          <ListService />
+        </Box>
+      </BoxWrap>
 
       {/* Reserve and description */}
-      <Box mt={25}>
-        <Stack justify="center" align="center">
+      <BoxWrap>
+        <Stack justify="center" align="center" gap={5} p={10}>
           <Text size="xs">Jul 31 - Aug 15</Text>
-          <Button variant="filled" fullWidth>
-            Reserve for tomorrow
-          </Button>
+          <PrimaryButton fullWidth>Reserve for tomorrow</PrimaryButton>
         </Stack>
-      </Box>
+      </BoxWrap>
 
-      <Box mt={25}>
-        <Title order={3}>Property Description</Title>
+      <BoxWrap>
+        <Title order={5}>Property Description</Title>
         <Spoiler
           maxHeight={100}
           showLabel="Show more"
@@ -82,12 +86,12 @@ export const HotelDetailContainer = () => {
           quis, ducimus reprehenderit exercitationem culpa molestiae officia!
           Ab, fugiat?
         </Spoiler>
-      </Box>
+      </BoxWrap>
 
       {/* Facilities */}
-      <Box mt={50}>
+      <BoxWrap>
         <Title order={3}>Facilities</Title>
-        <Flex gap={30} justify={"start"} mt={20} className="flex-wrap">
+        <Flex gap={20} justify={"start"} mt={20} className="flex-wrap">
           <Flex gap={8} align={"center"}>
             <WavesIcon className="w-6 h-6" />
             <Text size="xs">Outdoor swimming pool</Text>
@@ -105,46 +109,59 @@ export const HotelDetailContainer = () => {
             <Text size="xs">Free Wifi</Text>
           </Flex>
         </Flex>
-      </Box>
+      </BoxWrap>
 
       {/* Review container */}
-      <ReviewContainer />
+      <BoxWrap>
+        <ReviewContainer />
+      </BoxWrap>
 
       {/* Pre search */}
-      <PreSearchContainerr />
+      <Container>
+        <BoxWrap>
+          <PreSearchContainerr />
+        </BoxWrap>
+      </Container>
 
       {/* Booking Card */}
-      <ListBookingCard />
+      <Container>
+        <ListBookingCard />
+      </Container>
 
       {/* Perperty pratices */}
-      <Box mt={30}>
+      <BoxWrap>
         <PropertiesPratices />
-      </Box>
+      </BoxWrap>
 
       {/* Food and Drink */}
-      <Box mt={30}>
+      <BoxWrap>
         <FoodAndDrink />
-      </Box>
+      </BoxWrap>
 
       {/* Questions and answers */}
-      <Box mt={30}>
+      <BoxWrap>
         <QuestionAndAnswers />
-      </Box>
+      </BoxWrap>
 
       {/* Area infor */}
-      <Box mt={30}>
+      <BoxWrap>
         <AreaInfor />
-      </Box>
+      </BoxWrap>
 
       {/* Policies & privicy */}
-      <Box mt={30}>
+      <BoxWrap>
         <PoliciesPrivicy />
-      </Box>
+      </BoxWrap>
 
       {/* BestOfBeyond */}
-      <Box mt={30}>
+      <BoxWrap>
         <BestOfBeyond />
-      </Box>
-    </Container>
+      </BoxWrap>
+
+      {/* Navigation */}
+      <BoxWrap>
+        <Navigation />
+      </BoxWrap>
+    </React.Fragment>
   );
 };
