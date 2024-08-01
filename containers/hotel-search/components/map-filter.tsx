@@ -23,7 +23,7 @@ export const MapFilter = () => {
         </Group>
       </Drawer>
 
-      <Button onClick={open} variant="subtle">
+      <Button onClick={open} variant="subtle" size="xs">
         <Map style={{ width: "20px", height: "20px" }} /> Map
       </Button>
     </Box>

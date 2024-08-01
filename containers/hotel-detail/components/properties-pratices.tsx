@@ -20,7 +20,7 @@ export const PropertiesPratices = () => {
 
   return (
     <React.Fragment>
-      <Title order={4}>Property pratices</Title>
+      <Title order={5}>Property pratices</Title>
 
       {/* Drawer */}
       <Drawer

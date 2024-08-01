@@ -1,6 +1,8 @@
 import "@/styles/globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css'; 
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";

@@ -190,7 +190,7 @@ export const Filter = () => {
         </Box>
       </Drawer>
 
-      <Button onClick={open} variant="subtle">
+      <Button onClick={open} variant="subtle" size="xs">
         <ListFilterIcon style={{ width: "20px", height: "20px" }} /> Filter
       </Button>
     </Box>

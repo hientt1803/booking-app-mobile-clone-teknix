@@ -56,9 +56,7 @@ export const ReviewOverview = () => {
               <Slider value={91} color="indigo" />
             </Stack>
           </Spoiler>
-        </Stack>
-
-        
+        </Stack>    
       </Stack>
     </Box>
   );
