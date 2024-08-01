@@ -20,6 +20,7 @@ import { Navigation } from "./components/navigation";
 import React from "react";
 import { PrimaryButton } from "@/components/button";
 import { BoxWrap } from "@/components/box-wrap";
+import Link from "next/link";
 
 const ListService = dynamic(() =>
   import("./components/list-service").then((mob) => mob.ListService)
@@ -62,7 +63,9 @@ export const HotelDetailContainer = () => {
       <BoxWrap>
         <Stack justify="center" align="center" gap={5} p={10}>
           <Text size="xs">Jul 31 - Aug 15</Text>
-          <PrimaryButton fullWidth>Reserve for tomorrow</PrimaryButton>
+          <Link href={"/reserve"} className="w-full">
+            <PrimaryButton fullWidth>Reserve for tomorrow</PrimaryButton>
+          </Link>
         </Stack>
       </BoxWrap>
 

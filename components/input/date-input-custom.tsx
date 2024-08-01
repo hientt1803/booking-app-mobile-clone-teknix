@@ -1,6 +1,14 @@
 "use client";
 
-import { Box, Drawer, Grid, GridCol, Stack, Text } from "@mantine/core";
+import {
+  Box,
+  Divider,
+  Drawer,
+  Grid,
+  GridCol,
+  Stack,
+  Text,
+} from "@mantine/core";
 import React, { Dispatch } from "react";
 
 import { fortmateDate } from "@/utils";
@@ -19,22 +27,27 @@ export const DateInputCustom = ({ dateRange, setDateRange }: IDateInput) => {
   return (
     <React.Fragment>
       <Box p={6}>
-        <Grid onClick={open}>
-          <GridCol span={6} bg={"#fff"} className="rounded-sm">
-            <Stack>
-              <Text size="xs">Check-in date</Text>
-              <Text size="sm" fw={600}>
-                {fortmateDate(dateRange[0].startDate)}
-              </Text>
-            </Stack>
+        <Grid gutter={"xs"} onClick={open}>
+          <GridCol span={6} className="rounded-sm">
+            <Box bg={"#fff"} p={3} className="rounded-sm">
+              <Stack>
+                <Text size="xs">Check-in date</Text>
+                <Text size="sm" fw={600}>
+                  {fortmateDate(dateRange[0].startDate)}
+                </Text>
+              </Stack>
+            </Box>
           </GridCol>
-          <GridCol span={6} bg={"#fff"} className="rounded-sm">
-            <Stack>
-              <Text size="xs">Check-out date</Text>
-              <Text size="sm" fw={600}>
-                {fortmateDate(dateRange[0].endDate)}
-              </Text>
-            </Stack>
+          <GridCol span={6} pl={5} className="rounded-sm">
+            <Box bg={"#fff"} p={3} className="rounded-sm">
+              <Divider orientation="vertical" />
+              <Stack>
+                <Text size="xs">Check-out date</Text>
+                <Text size="sm" fw={600}>
+                  {fortmateDate(dateRange[0].endDate)}
+                </Text>
+              </Stack>
+            </Box>
           </GridCol>
         </Grid>
         <Drawer opened={opened} onClose={close} position="bottom" size={"lg"}>

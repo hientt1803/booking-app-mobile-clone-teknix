@@ -20,7 +20,7 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
-    <Box>
+    <Box p={6}>
       <Grid onClick={open} bg={"#fff"} className="rounded-sm px-2">
         <Grid.Col span={4}>
           <Stack>

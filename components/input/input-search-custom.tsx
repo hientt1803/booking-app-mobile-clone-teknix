@@ -17,10 +17,11 @@ export const InputSearchCustom = ({
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
-    <React.Fragment>
+    <Box p={6}>
       <Input
         placeholder="Search for your location"
         value={inputSearchValue}
+        onChange={(e) => setInputSearchValue(e.target.value)}
         leftSection={<SearchIcon size={16} />}
         onClick={open}
         className="font-semibold"
@@ -66,7 +67,7 @@ export const InputSearchCustom = ({
           city="Can Tho"
         />
       </Drawer>
-    </React.Fragment>
+    </Box>
   );
 };
 

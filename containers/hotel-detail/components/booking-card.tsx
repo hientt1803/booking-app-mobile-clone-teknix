@@ -49,28 +49,28 @@ export const BookingCard = () => {
         <Flex gap={3} justify={"flex-start"} align={"center"} wrap={"wrap"}>
           <OutlineBadge
             title="15 m2"
-            icon={<House />}
-            className="px-2 py-4 w-fit"
+            icon={<House className="w-3 h-3" />}
+            className="px-1 py-2 w-fit"
           />
           <OutlineBadge
             title="View"
-            icon={<MountainSnow />}
-            className="px-2 py-4 w-fit"
+            icon={<MountainSnow className="w-3 h-3" />}
+            className="px-1 py-2 w-fit"
           />
           <OutlineBadge
             title="Bathtub"
-            icon={<BathIcon />}
-            className="px-2 py-4 w-fit"
+            icon={<BathIcon className="w-3 h-3" />}
+            className="px-1 py-2 w-fit"
           />
           <OutlineBadge
             title="Air condition"
-            icon={<SnowflakeIcon />}
-            className="px-2 py-4 w-fit"
+            icon={<SnowflakeIcon className="w-3 h-3" />}
+            className="px-1 py-2 w-fit"
           />
           <OutlineBadge
             title="Flat-screen TV"
-            icon={<Tv2 />}
-            className="px-2 py-4 w-fit"
+            icon={<Tv2 className="w-3 h-3" />}
+            className="px-1 py-2 w-fit"
           />
         </Flex>
         <Flex align={"center"} gap={3}>
@@ -95,7 +95,7 @@ export const BookingCard = () => {
         <Text size="xs" c={"red"} className="line-through">
           VND 22,350,000
         </Text>
-        <Flex gap={4} align={'center'}>
+        <Flex gap={4} align={"center"}>
           <Text size="md" c={"dark"} fw={700}>
             VND 13,410,000
           </Text>
