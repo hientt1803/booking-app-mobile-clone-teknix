@@ -4,6 +4,7 @@ import { Box, Divider, Drawer, Flex, Input, Stack, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { MapPin, MousePointer2, SearchIcon } from "lucide-react";
 import React from "react";
+import { PrimaryButton } from "../button";
 
 interface IInputSearch {
   inputSearchValue: string;
@@ -66,6 +67,12 @@ export const InputSearchCustom = ({
           country="Vietnam"
           city="Can Tho"
         />
+
+        <Box bg={"#fff"} p={5} className="sticky bottom-0 left-0 right-0">
+          <PrimaryButton fullWidth onClick={close}>
+            Done
+          </PrimaryButton>
+        </Box>
       </Drawer>
     </Box>
   );

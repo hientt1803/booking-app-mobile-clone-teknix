@@ -45,7 +45,7 @@ export const LeafletComponent = (props: ILeafletProps) => {
       <MapContainer
         center={destination}
         zoom={13}
-        className="min-h-[90vh]"
+        className="min-h-[85vh]"
         placeholder={<MapPlaceholder />}
       >
         <TileLayer

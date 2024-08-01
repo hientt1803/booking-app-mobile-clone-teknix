@@ -56,7 +56,18 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
         </Grid.Col>
       </Grid>
 
-      <Drawer opened={opened} onClose={close} position="bottom" size={"lg"}>
+      <Drawer
+        opened={opened}
+        onClose={close}
+        position="bottom"
+        size={"lg"}
+        title=""
+        styles={{
+          title: {
+            fontWeight: 700,
+          },
+        }}
+      >
         <Stack className="min-h-screen">
           <Flex justify={"space-between"} align="center" mb={10}>
             <Text size="xs" fw={600}>

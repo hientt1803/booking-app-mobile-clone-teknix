@@ -50,7 +50,18 @@ export const DateInputCustom = ({ dateRange, setDateRange }: IDateInput) => {
             </Box>
           </GridCol>
         </Grid>
-        <Drawer opened={opened} onClose={close} position="bottom" size={"lg"}>
+        <Drawer
+          opened={opened}
+          onClose={close}
+          position="bottom"
+          size={"lg"}
+          title="Choose your start date & end Date"
+          styles={{
+            title: {
+              fontWeight: 700,
+            },
+          }}
+        >
           <Stack>
             <DateRangePicker
               onChange={(item) => setDateRange([item.selection])}
