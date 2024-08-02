@@ -5,6 +5,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { MapPin, MousePointer2, SearchIcon } from "lucide-react";
 import React from "react";
 import { PrimaryButton } from "../button";
+import { DUMMY_ARRAY } from "@/utils";
 
 interface IInputSearch {
   inputSearchValue: string;
@@ -39,6 +40,8 @@ export const InputSearchCustom = ({
             fontWeight: 700,
           },
         }}
+        radius={0}
+        className="relative"
       >
         <Box>
           <Divider />
@@ -62,13 +65,16 @@ export const InputSearchCustom = ({
           </Flex>
         </Box>
 
-        <DestinationItem
-          icon={<MapPin className="w-6 h-6" />}
-          country="Vietnam"
-          city="Can Tho"
-        />
+        {DUMMY_ARRAY.map((item, index) => (
+          <DestinationItem
+            key={index}
+            icon={<MapPin className="w-6 h-6" />}
+            country="Vietnam"
+            city="Can Tho"
+          />
+        ))}
 
-        <Box bg={"#fff"} p={5} className="sticky bottom-0 left-0 right-0">
+        <Box bg={"#fff"} className="sticky bottom-0 left-0 right-0 p-2">
           <PrimaryButton fullWidth onClick={close}>
             Done
           </PrimaryButton>

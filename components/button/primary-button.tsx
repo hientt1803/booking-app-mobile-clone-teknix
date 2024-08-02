@@ -33,6 +33,7 @@ interface IButton {
   title?: string;
   children?: React.ReactNode;
   onClick?: () => void;
+  type?: "button" | "submit" | "reset";
 }
 
 export const PrimaryButton = ({
@@ -42,7 +43,8 @@ export const PrimaryButton = ({
   className = "",
   title,
   children,
-  onClick
+  onClick,
+  type = "button",
 }: IButton) => {
   return (
     <Button
@@ -51,6 +53,7 @@ export const PrimaryButton = ({
       color={color}
       className={className}
       onClick={onClick}
+      type={type}
     >
       {children}
     </Button>

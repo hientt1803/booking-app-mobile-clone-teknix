@@ -16,7 +16,7 @@ import React from "react";
 export const PreSearchContainerr = () => {
   return (
     <React.Fragment>
-      <Box className="rounded-md p-3">
+      <Box className="rounded-xl p-3">
         <Stack>
           <Flex justify={"space-between"} align={"center"}>
             <Text size="xs" fw={500}>

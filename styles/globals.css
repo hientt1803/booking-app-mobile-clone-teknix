@@ -1,6 +1,7 @@
 @layer tailwind {
   @tailwind base;
 }
+
 @tailwind components;
 @tailwind utilities;
 
@@ -26,7 +27,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-    background: #f1f1f1;
+  background: #f1f1f1;
 }
 
 @layer utilities {

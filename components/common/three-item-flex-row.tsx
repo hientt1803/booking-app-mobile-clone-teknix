@@ -10,7 +10,7 @@ interface IThreeItemFlexRow {
 
 export const ThreeItemFlexRow = (props: IThreeItemFlexRow) => {
   return (
-    <Flex gap={5} mt={10} align={"center"}>
+    <Flex gap={5} mt={10} align={"center"} wrap={"wrap"}>
       <Badge variant="filled" color="#1e3a8a" size="xs">
         {props.point}
       </Badge>

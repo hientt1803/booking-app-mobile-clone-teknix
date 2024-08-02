@@ -22,9 +22,6 @@ import { PrimaryButton } from "@/components/button";
 import { BoxWrap } from "@/components/box-wrap";
 import Link from "next/link";
 
-const ListService = dynamic(() =>
-  import("./components/list-service").then((mob) => mob.ListService)
-);
 const PropertiesPratices = dynamic(() =>
   import("./components/properties-pratices").then(
     (mob) => mob.PropertiesPratices
@@ -50,14 +47,7 @@ export const HotelDetailContainer = () => {
   return (
     <React.Fragment>
       {/* main information */}
-      <BoxWrap>
-        <HeaderInformation />
-        <HotelDetailCaroucel />
-
-        <Box mt={15}>
-          <ListService />
-        </Box>
-      </BoxWrap>
+      <HeaderInformation />
 
       {/* Reserve and description */}
       <BoxWrap>

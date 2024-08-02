@@ -5,8 +5,8 @@ import React from "react";
 
 export const Navigation = () => {
   return (
-    <Stack gap={8}>
-      <Text size="sm" className="text-neutral-800">
+    <Stack gap={15}>
+      <Text size="md" className="text-neutral-800">
         Navigation
       </Text>
       <Box>
@@ -14,7 +14,7 @@ export const Navigation = () => {
         <Flex gap={5} align={"center"}>
           <MapPin className="w-4 h-4" />
           <Link href={"/"}>
-            <Text size="xs">
+            <Text size="sm">
               Salinas natural park Studio
             </Text>
           </Link>
@@ -35,7 +35,7 @@ const NavigationItem = ({ title, link }: { title: string; link: string }) => {
       <Flex gap={5} align={"center"}>
         <ChevronLeftIcon className="w-5 h-5" />
         <Link href={link}>
-          <Text size="xs">
+          <Text size="sm">
             {title}
           </Text>
         </Link>

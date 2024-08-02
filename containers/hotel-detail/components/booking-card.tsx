@@ -1,19 +1,30 @@
+"use client";
+
 import { OutlineBadge } from "@/components/badge";
+import { PrimaryButton } from "@/components/button";
+import { GroupInputQuantity } from "@/components/input";
 import {
   Badge,
+  Box,
   Button,
   Card,
+  Collapse,
+  Divider,
   Flex,
-  Pill,
+  Group,
+  Radio,
   Stack,
   Text,
   Tooltip,
 } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import {
   AlertCircleIcon,
   BathIcon,
   BedIcon,
   CheckIcon,
+  ChevronRightIcon,
+  CreditCardIcon,
   DotIcon,
   House,
   ImageIcon,
@@ -21,12 +32,47 @@ import {
   SnowflakeIcon,
   Tv2,
   UserIcon,
+  XCircleIcon,
 } from "lucide-react";
-import React from "react";
+import React, { useMemo, useState } from "react";
+
+const data = [
+  {
+    name: "No smoking",
+  },
+  {
+    name: "Smoking allowed",
+  },
+];
 
 export const BookingCard = () => {
+  const [opened, { toggle }] = useDisclosure(false);
+
+  //
+  const [bedCount, setBedCount] = useState(0);
+  const [value, setValue] = useState<string | null>(null);
+
+  const totalPrice = useMemo(() => (bedCount * 900).toFixed(2), [bedCount]);
+
+  // Logic
+  const cards = data.map((item) => (
+    <Radio.Card
+      className="p-2 w-fit"
+      radius="md"
+      value={item.name}
+      key={item.name}
+    >
+      <Group wrap="nowrap" align="flex-start">
+        <Radio.Indicator />
+        <div>
+          <Text>{item.name}</Text>
+        </div>
+      </Group>
+    </Radio.Card>
+  ));
+
   return (
-    <Card withBorder>
+    <Card withBorder className={opened ? "border-green-600" : ""}>
       <Stack gap={2}>
         <Flex justify={"space-between"} align={"center"} mb={10}>
           <Text c="indigo" fw={600} className="underline">
@@ -106,9 +152,66 @@ export const BookingCard = () => {
         <Text size="xs" c={"dimmed"}>
           includes taxes and fees
         </Text>
-        <Button variant="outline" color="indigo" fullWidth>
-          Reserve
+        <Button onClick={toggle} variant="outline" color="indigo" fullWidth>
+          {!opened ? (
+            "Reserve"
+          ) : (
+            <React.Fragment>
+              <XCircleIcon className="w-4 h-4" /> Remove
+            </React.Fragment>
+          )}
         </Button>
+        <Box>
+          <Collapse in={opened} mt={20}>
+            <Flex justify={"flex-start"} align={"center"}>
+              <Text size="xs" fw={600}>
+                Bed quanity:
+              </Text>
+              <GroupInputQuantity
+                quantity={bedCount}
+                setQuantity={setBedCount}
+              />
+            </Flex>
+
+            <Stack>
+              <Radio.Group value={value} onChange={setValue}>
+                <Stack pt="md" gap="xs">
+                  <Text size="sm" fw={600}>
+                    Smoking preference (if available)
+                  </Text>
+                  <Flex gap={10}>{cards}</Flex>
+                </Stack>
+              </Radio.Group>
+            </Stack>
+
+            <Divider my={10} />
+
+            <Box>
+              <Text size="sm">
+                <strong>
+                  {bedCount} bed selected: VND {totalPrice}
+                </strong>{" "}
+                includes taxes and fees
+              </Text>
+              <Text size="xs">
+                (10 nights, Web, Aug 14, 2024 - Sat, Aug 24,2024)
+              </Text>
+            </Box>
+
+            <Stack mt={20} gap={5}>
+              <Flex gap={5} align={"center"}>
+                <CreditCardIcon className="text-green-700" />
+                <Text size="xs" className="text-green-700">
+                  No credit card needed
+                </Text>
+              </Flex>
+              <Text size="xs">Confirmation is immediate</Text>
+              <PrimaryButton fullWidth>
+                Next step <ChevronRightIcon className="w-5 h-5" />
+              </PrimaryButton>
+            </Stack>
+          </Collapse>
+        </Box>
       </Stack>
     </Card>
   );

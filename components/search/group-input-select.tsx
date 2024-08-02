@@ -23,7 +23,7 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
     <Box p={6}>
       <Grid onClick={open} bg={"#fff"} className="rounded-sm px-2">
         <Grid.Col span={4}>
-          <Stack>
+          <Stack gap={5}>
             <Text size="xs" fw={550}>
               Adults
             </Text>
@@ -34,7 +34,7 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
         </Grid.Col>
         <Divider orientation="vertical" />
         <Grid.Col span={4}>
-          <Stack>
+          <Stack gap={5}>
             <Text size="xs" fw={550}>
               Children
             </Text>
@@ -45,7 +45,7 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
         </Grid.Col>
         <Divider orientation="vertical" />
         <Grid.Col span={3}>
-          <Stack>
+          <Stack gap={5}>
             <Text size="xs" fw={550}>
               Rooms
             </Text>
@@ -62,6 +62,7 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
         position="bottom"
         size={"lg"}
         title=""
+        radius={"50px 50px 0 0"}
         styles={{
           title: {
             fontWeight: 700,

@@ -1,5 +1,6 @@
 "use client";
 
+import { ThreeItemFlexRow } from "@/components/common";
 import {
   Badge,
   Box,
@@ -11,7 +12,8 @@ import {
   Text,
   Title,
 } from "@mantine/core";
-import { CheckIcon, HeartIcon, MapIcon, ThumbsUp } from "lucide-react";
+import { useMediaQuery } from "@mantine/hooks";
+import { CheckIcon, MapIcon, ThumbsUp } from "lucide-react";
 import Link from "next/link";
 import { Fragment } from "react";
 
@@ -32,21 +34,29 @@ export const BookingCard = (props: IBookingCard) => {
     breakfast = false,
   } = props;
 
+  const matches = useMediaQuery("(max-width: 330px)");
+
   return (
     <Card>
       <Grid>
-        <Grid.Col span={5}>
-          <Link href="/hotel/2">
-            <Image
-              src="/assets/images/booking-banner-home.jpeg"
-              alt="booking card image"
-              h={300}
-            />
-          </Link>
-        </Grid.Col>
-        <Grid.Col span={7}>
+        {!matches && (
+          <Grid.Col span={5}>
+            <Link href="/hotel/2">
+              <Image
+                src="/assets/images/booking-banner-home.jpeg"
+                alt="booking card image"
+                h={300}
+              />
+            </Link>
+          </Grid.Col>
+        )}
+        <Grid.Col span={!matches ? 7 : 12}>
           <Stack gap={2}>
-            <Title order={6}>Asia Hotel Can Tho</Title>
+            <Link href="/hotel/2">
+              <Title order={!matches ? 5 : 4} lineClamp={2}>
+                Asia Hotel Can Tho
+              </Title>
+            </Link>
             {isFeatured && (
               <Flex gap={5}>
                 <Badge variant="default" color="blue" radius="sm" size="xs">
@@ -54,31 +64,20 @@ export const BookingCard = (props: IBookingCard) => {
                 </Badge>
                 <Badge color="#fcc419" size="xs" p={7}>
                   <ThumbsUp
-                    style={{
-                      width: "15px",
-                      height: "15px",
-                    }}
+                    className="w-3 h-3"
                   />
                 </Badge>
               </Flex>
             )}
 
-            <Flex gap={5} mt={10}>
-              <Badge variant="filled" color="#1e3a8a" size="xs">
-                8.1
-              </Badge>
-              <Text size="xs">Very Good</Text> -
-              <Text size="xs" c={"dimmed"}>
-                193 reviews
-              </Text>
-            </Flex>
+            <ThreeItemFlexRow point="8.1" status="Very good" review={193} />
 
             <Flex gap={3} align={"center"} my={0} py={0}>
               <CheckIcon className="h-2 w-2" />
               <Text size="xs">wonderful location</Text>
             </Flex>
 
-            <Flex gap={5} align={"center"}>
+            <Flex gap={5} align={"center"} wrap={"wrap"}>
               <MapIcon className="w-6 h-6" />
               <Text size="xs"> - Can Tho - </Text>
               <Text size="xs">350m from center</Text>
@@ -95,9 +94,11 @@ export const BookingCard = (props: IBookingCard) => {
               <Text c={"red"} fw={600} td={"line-through"} ta={"end"}>
                 VND 14,960,000
               </Text>
-              <Text fw={600} size="xl" ta={"end"}>
-                VND 10,096,000
-              </Text>
+              <Link href="/hotel/2">
+                <Text fw={600} size="xl" ta={"end"}>
+                  VND 10,096,000
+                </Text>
+              </Link>
               <Text size="xs" c="dimmed" ta={"end"}>
                 includes taxes and fees
               </Text>

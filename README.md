@@ -34,3 +34,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+<!-- TODO -->
+Mockup data
+
+<!-- Header -->
+avatar user => lỗi responsive ✅✅✅
+
+<!-- Home page -->
+Search filter => lỗi chọn date chưa responsive ✅✅✅
+Current locaiton => nút done chưa đúng vị trí ✅✅✅
+
+<!-- search page -->
+hotel card => lỗi responsive màn hình nhỏ ✅✅✅
+map filter => mat me cai marker-shadow ✅✅✅
+filter => 2 cái button matme cai responsive ✅✅✅
+
+
+<!-- detail page -->
+cho nó dynamic render
+bị lỗi giao diện khúc trên 
+
+
+

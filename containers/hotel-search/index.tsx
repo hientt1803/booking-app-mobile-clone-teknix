@@ -12,16 +12,17 @@ import { ChevronDown, SearchIcon } from "lucide-react";
 import { ListProduct } from "./components/list-product";
 import { NavFilter } from "./components/nav-filter";
 import Link from "next/link";
+import React from "react";
 
 export const SearchPageContainer = () => {
   return (
     <Box bg="#fff">
-      <Box bg="#1e3a8a" py={5} style={{ position: "relative" }}>
+      <Box bg="#1e3a8a" py={20} style={{ position: "relative" }}>
         <Box
           bg={"#fcc419"}
           p={6}
           mx={10}
-          style={{ position: "absolute", bottom: "-50px", left: 0, right: 0 }}
+          style={{ position: "absolute", bottom: "-30px", left: 0, right: 0 }}
         >
           <Link href="/hotel/search-form">
             <Stack bg={"#fff"} p={6}>
@@ -40,14 +41,11 @@ export const SearchPageContainer = () => {
       </Box>
 
       {/* Filter */}
-      {/* Todo: sticky filter */}
-      {/* <div className="sticky top-[100px] left-0 right-0 bg-white"> */}
-      <Container>
+      <Container className="sticky top-0 left-0 right-0 bg-white">
         <Box mt={50} p={10}>
           <NavFilter />
         </Box>
       </Container>
-      {/* </div> */}
 
       {/* Categories search */}
       <Container>

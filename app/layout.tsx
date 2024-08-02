@@ -1,14 +1,17 @@
 import "@/styles/globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css'; 
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import { GlobalLoading } from "@/components/global";
+import { GeniusModal } from "@/components/modal";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import { MainLayout } from "@/layouts/main-layout";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +32,10 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <MantineProvider>
-          <MainLayout>{children}</MainLayout>
+          {children}
+          <GeniusModal />
+          <ToastContainer />
+          <GlobalLoading />
         </MantineProvider>
       </body>
     </html>

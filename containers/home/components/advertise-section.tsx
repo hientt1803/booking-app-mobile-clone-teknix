@@ -13,7 +13,7 @@ import {
   Text,
   Title,
 } from "@mantine/core";
-import { CarIcon, ChevronRight } from "lucide-react";
+import { CarIcon, CarTaxiFront, ChevronRight, Settings2 } from "lucide-react";
 import React from "react";
 
 export const AdvertiseSection = () => {
@@ -22,37 +22,103 @@ export const AdvertiseSection = () => {
       <BoxWrap>
         <Box>
           <Flex gap={10} align={"center"}>
-            <CheckIcon className="w-3 h-3" />
-            <Text size="xs" fw={600}>
-              Book now, PAY AT THE PROPERTY
-            </Text>
+            <Image
+              src={
+                "https://t-cf.bstatic.com/design-assets/assets/v3.122.0/illustrations-traveller/FreeCancellation.png"
+              }
+              alt=""
+              w={50}
+              h={50}
+            />
+            <Box>
+              <Text size="xs" fw={600}>
+                Book now, PAY AT THE PROPERTY
+              </Text>
+              <Text size="xs" mt={5}>
+                With FREE cancellation on most rooms
+              </Text>
+            </Box>
           </Flex>
-          <Text size="xs" mt={5} ml={22}>
-            With FREE cancellation on most rooms
-          </Text>
         </Box>
         <Divider my={10} />
         <Box>
           <Flex gap={10} align={"center"}>
-            <CheckIcon className="w-3 h-3" />
-            <Text size="xs" fw={600}>
-              2,563,380 properties in 228 countries
-            </Text>
+            <Image
+              src={
+                "https://t-cf.bstatic.com/design-assets/assets/v3.122.0/illustrations-traveller/TripsGlobe.png"
+              }
+              alt=""
+              w={50}
+              h={50}
+            />
+            <Box>
+              <Text size="xs" fw={600}>
+                2,563,380 properties in 228 countries
+              </Text>
+              <Text size="xs" mt={5}>
+                Hotels, guesthouses, motels, and more,...
+              </Text>
+            </Box>
           </Flex>
-          <Text size="xs" mt={5} ml={22}>
-            Hotels, guesthouses, motels, and more,...
-          </Text>
+        </Box>
+        <Divider my={10} />
+        <Box>
+          <Flex gap={10} align={"center"}>
+            <Image
+              src={
+                "https://t-cf.bstatic.com/design-assets/assets/v3.122.0/illustrations-traveller/CustomerSupport.png"
+              }
+              alt=""
+              w={50}
+              h={50}
+            />
+            <Box>
+              <Text size="xs" fw={600}>
+                Trusted 24/7 customer service you can rely on
+              </Text>
+              <Text size="xs" mt={5}>
+                {`We're`} always here to help
+              </Text>
+            </Box>
+          </Flex>
         </Box>
       </BoxWrap>
 
       <BoxWrap>
-        <Flex justify={"space-between"} align={"center"}>
+        <Flex justify={"space-between"} align={"center"} gap={20}>
           <CarIcon className="w-4 h-4 text-blue-600" />
           <Stack gap={5} className="flex-1">
             <Text size="xs" fw={600}>
               Car rental
             </Text>
             <Text size="xs">Hundreds of cars and 24/7 customer service</Text>
+          </Stack>
+          <ChevronRight className="w-4 h-4" />
+        </Flex>
+        <Divider my={5} />
+        <Flex justify={"space-between"} align={"center"} gap={20}>
+          <CarTaxiFront className="w-4 h-4 text-blue-600" />
+          <Stack gap={5} className="flex-1">
+            <Text size="xs" fw={600}>
+              Private airport taxi
+            </Text>
+            <Text size="xs">
+              A driver will be waiting to take you to your stay
+            </Text>
+          </Stack>
+          <ChevronRight className="w-4 h-4" />
+        </Flex>
+        <Divider my={5} />
+        <Flex justify={"space-between"} align={"center"} gap={20}>
+          <Settings2 className="w-4 h-4 text-blue-600" />
+          <Stack gap={5} className="flex-1">
+            <Text size="xs" fw={600}>
+              Things to do
+            </Text>
+            <Text size="xs">
+              Instant confirmation, digital tickets, and vertified customer
+              review
+            </Text>
           </Stack>
           <ChevronRight className="w-4 h-4" />
         </Flex>

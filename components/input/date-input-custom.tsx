@@ -6,6 +6,7 @@ import {
   Drawer,
   Grid,
   GridCol,
+  ScrollArea,
   Stack,
   Text,
 } from "@mantine/core";
@@ -30,7 +31,7 @@ export const DateInputCustom = ({ dateRange, setDateRange }: IDateInput) => {
         <Grid gutter={"xs"} onClick={open}>
           <GridCol span={6} className="rounded-sm">
             <Box bg={"#fff"} p={3} className="rounded-sm">
-              <Stack>
+              <Stack gap={3}>
                 <Text size="xs">Check-in date</Text>
                 <Text size="sm" fw={600}>
                   {fortmateDate(dateRange[0].startDate)}
@@ -41,7 +42,7 @@ export const DateInputCustom = ({ dateRange, setDateRange }: IDateInput) => {
           <GridCol span={6} pl={5} className="rounded-sm">
             <Box bg={"#fff"} p={3} className="rounded-sm">
               <Divider orientation="vertical" />
-              <Stack>
+              <Stack gap={3}>
                 <Text size="xs">Check-out date</Text>
                 <Text size="sm" fw={600}>
                   {fortmateDate(dateRange[0].endDate)}
@@ -62,18 +63,20 @@ export const DateInputCustom = ({ dateRange, setDateRange }: IDateInput) => {
             },
           }}
         >
-          <Stack>
-            <DateRangePicker
-              onChange={(item) => setDateRange([item.selection])}
-              showPreview
-              moveRangeOnFirstSelection={false}
-              months={12}
-              ranges={dateRange}
-              direction="vertical"
-            />
-          </Stack>
+          <ScrollArea className="w-full">
+            <Box className="w-full pr-2">
+              <DateRangePicker
+                onChange={(item) => setDateRange([item.selection])}
+                showPreview
+                moveRangeOnFirstSelection={false}
+                months={12}
+                ranges={dateRange}
+                direction="vertical"
+              />
+            </Box>
+          </ScrollArea>
 
-          <Box bg={"#fff"} p={5} className="sticky bottom-0 left-0 right-0">
+          <Box bg={"#fff"} p={5} className="sticky bottom-0 left-0 right-0 w-full p-2">
             <PrimaryButton fullWidth onClick={close}>
               Done
             </PrimaryButton>

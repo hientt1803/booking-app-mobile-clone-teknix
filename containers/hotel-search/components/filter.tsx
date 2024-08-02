@@ -8,7 +8,6 @@ import {
   Divider,
   Drawer,
   Flex,
-  NumberInput,
   RangeSlider,
   Stack,
   Text,
@@ -25,11 +24,7 @@ export const Filter = () => {
   return (
     <Box>
       <Drawer opened={opened} onClose={close} title="Filters" position="left">
-        <Box
-          style={{
-            position: "relative",
-          }}
-        >
+        <Box className="relative">
           <Box>
             <Stack>
               <Title order={4}>Your previous filters</Title>
@@ -175,15 +170,18 @@ export const Filter = () => {
 
           <Flex
             bg={"#fff"}
-            py={10}
-            gap={15}
             align={"center"}
-            style={{ position: "sticky", bottom: 0, left: 0, right: 0 }}
+            className="sticky bottom-0 left-0 right-0 py-2 gap-2 w-full border-none outline-none"
           >
-            <Button variant="filled" color="blue" fullWidth>
+            <Button
+              variant="filled"
+              color="blue"
+              className="flex-1"
+              onClick={close}
+            >
               Show 210 result
             </Button>
-            <Button variant="outline" color="dark">
+            <Button variant="outline" color="dark" onClick={close}>
               Clear
             </Button>
           </Flex>

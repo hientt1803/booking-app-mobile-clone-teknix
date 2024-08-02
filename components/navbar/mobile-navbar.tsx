@@ -18,16 +18,22 @@ import { useDisclosure } from "@mantine/hooks";
 import {
   ArrowLeftRight,
   CarTaxiFrontIcon,
+  CreditCardIcon,
   EarthIcon,
   GalleryHorizontal,
   Goal,
   Handshake,
+  HeartIcon,
   HousePlus,
+  LogOutIcon,
   LucideCarTaxiFront,
   MenuIcon,
   PlaneLandingIcon,
   ShieldQuestion,
   TrashIcon,
+  UserIcon,
+  UserSquare,
+  VaultIcon,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -38,17 +44,20 @@ export const MobileNavbar = () => {
     <Flex bg="#1e3a8a" gap="lg" direction={"column"} className="w-full py-5">
       <Container className="w-full overflow-hidden">
         <Flex
-          // gap="lg"
           justify="space-between"
           align="center"
-          // wrap="nowrap"
           className="w-full text-white"
-          mb={4}
+          my={6}
         >
           <Link href={"/"}>
             <Title order={3}>Booking.com</Title>
           </Link>
-          <Flex justify={"flex-end"} align={"center"} gap={5}>
+          <Flex justify={"flex-end"} align={"center"} gap={10}>
+            <Link href={"/auth/sign-in"}>
+              <Button variant="light" color="gray">
+                Sign-in
+              </Button>
+            </Link>
             <MobileDropdown />
             <div onClick={open} className="cursor-pointer">
               <MenuIcon className="text-neutral-300" />
@@ -246,21 +255,59 @@ const MobileDropdown = () => {
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Label>Settings</Menu.Label>
+        <Menu.Item className="text-blue-700 flex gap-2">
+          <Avatar radius="xl">MK</Avatar>
+          <span>Genius level 1</span>
+        </Menu.Item>
+        <Menu.Label>Account</Menu.Label>
+        <Link href={"/account"}>
+          <Menu.Item
+            leftSection={
+              <UserIcon style={{ width: rem(14), height: rem(14) }} />
+            }
+          >
+            Manage account
+          </Menu.Item>
+        </Link>
         <Menu.Item
           leftSection={
-            <ArrowLeftRight style={{ width: rem(14), height: rem(14) }} />
+            <VaultIcon style={{ width: rem(14), height: rem(14) }} />
           }
         >
-          Transfer my data
+          Bookings & Trips
         </Menu.Item>
         <Menu.Item
-          color="red"
+          leftSection={<Goal style={{ width: rem(14), height: rem(14) }} />}
+        >
+          Genius loyatly program
+        </Menu.Item>
+        <Menu.Item
           leftSection={
-            <TrashIcon style={{ width: rem(14), height: rem(14) }} />
+            <CreditCardIcon style={{ width: rem(14), height: rem(14) }} />
           }
         >
-          Delete my account
+          Rewards & Wallet
+        </Menu.Item>
+        <Menu.Item
+          leftSection={
+            <UserSquare style={{ width: rem(14), height: rem(14) }} />
+          }
+        >
+          Reviews
+        </Menu.Item>
+        <Menu.Item
+          leftSection={
+            <HeartIcon style={{ width: rem(14), height: rem(14) }} />
+          }
+        >
+          Saved
+        </Menu.Item>
+        <Menu.Item
+          leftSection={
+            <LogOutIcon style={{ width: rem(14), height: rem(14) }} />
+          }
+        >
+          Sign out
         </Menu.Item>
       </Menu.Dropdown>
     </Menu>
@@ -269,7 +316,7 @@ const MobileDropdown = () => {
 
 const SuggestList = () => {
   return (
-    <ScrollArea maw={450} type="never">
+    <ScrollArea className="w-full" type="never">
       <Box display={"flex"} className="w-full gap-4">
         <Button
           leftSection={<GalleryHorizontal />}

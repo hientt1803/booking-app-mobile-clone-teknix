@@ -18,6 +18,12 @@ export const ListBookingCard = () => {
         <Grid.Col>
           <BookingCard />
         </Grid.Col>
+        <Grid.Col>
+          <BookingCard />
+        </Grid.Col>
+        <Grid.Col>
+          <BookingCard />
+        </Grid.Col>
       </Grid>
     </React.Fragment>
   );

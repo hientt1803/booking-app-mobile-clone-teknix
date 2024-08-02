@@ -1,5 +1,6 @@
 "use client";
 
+import { toastError } from "@/utils/toast";
 import { Box, Button, Drawer, Select } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Map, MapPinnedIcon } from "lucide-react";
@@ -26,11 +27,10 @@ export const MapFilter = () => {
   function success(pos: { coords: any }) {
     const crd = pos.coords;
 
-    console.log("Your current position is:");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-
+    // console.log("Your current position is:");
+    // console.log(`Latitude : ${crd.latitude}`);
+    // console.log(`Longitude: ${crd.longitude}`);
+    // console.log(`More or less ${crd.accuracy} meters.`);
     setGetCurrentUserLocation({
       latitude: crd.latitude,
       longitude: crd.longitude,
@@ -47,14 +47,15 @@ export const MapFilter = () => {
         .query({ name: "geolocation" })
         .then(function (result) {
           if (result.state === "granted") {
-            console.log(result.state);
+            // console.log(result.state);
             navigator.geolocation.getCurrentPosition(success);
-            //If granted then you can directly call your function here
           } else if (result.state === "prompt") {
-            console.log(result.state);
+            // console.log(result.state);
             navigator.geolocation.getCurrentPosition(success, errors, options);
+            // toastSuccess("Location provided");
           } else if (result.state === "denied") {
-            //If denied then you have to show instructions to enable location
+            navigator.geolocation.getCurrentPosition(success, errors, options);
+            toastError("Please provide your location for the best experience");
           }
           result.onchange = function () {
             console.log(result.state);

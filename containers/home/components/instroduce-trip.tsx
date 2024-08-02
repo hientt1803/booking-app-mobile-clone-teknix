@@ -50,11 +50,8 @@ export const InstroduceTrip = () => {
               <SimpleCard
                 key={index}
                 title="Vacation"
-                description="Jul 31, Aug 15, 2 adults"
               >
-                <Text c="dimmed" size="xs">
-                  1 available
-                </Text>
+                <ThreeItemFlexRow point="9.1" status="Wonderful" review={154} />
               </SimpleCard>
             ))}
           </Box>
@@ -160,7 +157,7 @@ export const InstroduceTrip = () => {
                     borderRadius: "50%",
                   }}
                 >
-                  <HeartIcon className="w-3 h-3"/>
+                  <HeartIcon className="w-3 h-3" />
                 </span>
               </SimpleCard>
             ))}
