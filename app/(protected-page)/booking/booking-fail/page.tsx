@@ -1,4 +1,4 @@
-import { BookingFailContainer } from "@/containers/booking/fail";
+import { BookingFailContainer } from "@/containers/protected-page/booking/fail";
 
 const BookingFail = () => {
   return <BookingFailContainer />;

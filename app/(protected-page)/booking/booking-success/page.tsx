@@ -1,4 +1,4 @@
-import { BookingSuccessContainer } from "@/containers/booking/success";
+import { BookingSuccessContainer } from "@/containers/protected-page/booking/success";
 
 const BookingSuccess = () => {
   return <BookingSuccessContainer />;

@@ -80,7 +80,7 @@ export const AdditionInformtaion = () => {
         </Text>
       </BoxWrap>
 
-      <Container mt={20}>
+      <Container my={20}>
         <Link href={"/reserve/complete-step"}>
           <PrimaryButton fullWidth>
             <Flex gap={10} align={"center"}>

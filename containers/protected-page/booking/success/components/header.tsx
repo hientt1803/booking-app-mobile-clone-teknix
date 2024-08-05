@@ -14,13 +14,16 @@ export const BookingSuccessHeader = () => {
             <CheckIcon className="text-green-700 w-6 h-6" />
           </Flex>
 
-          <Text size="xs" maw={300} ta={'center'}>
+          <Text size="xs" maw={300} ta={"center"}>
             {`We're`} sent a booking confirmation and an invoice to
             nguyen@gmail.com
           </Text>
 
           <Text size="xs">
             Order number <strong>#421337</strong>
+          </Text>
+          <Text size="xs">
+            Contact property <strong> Call +84 962 008 853</strong>
           </Text>
         </Stack>
       </Container>

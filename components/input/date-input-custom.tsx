@@ -20,10 +20,24 @@ import { PrimaryButton } from "../button";
 interface IDateInput {
   dateRange: any;
   setDateRange: Dispatch<any>;
+  isChangeDate?: boolean;
+  setIsChangeDate?: any;
 }
 
-export const DateInputCustom = ({ dateRange, setDateRange }: IDateInput) => {
+export const DateInputCustom = ({
+  dateRange,
+  setDateRange,
+  isChangeDate,
+  setIsChangeDate,
+}: IDateInput) => {
   const [opened, { open, close }] = useDisclosure(false);
+
+  const handleOnClick = () => {
+    close();
+    if (isChangeDate !== undefined || isChangeDate !== undefined) {
+      setIsChangeDate(true);
+    }
+  };
 
   return (
     <React.Fragment>
@@ -76,8 +90,12 @@ export const DateInputCustom = ({ dateRange, setDateRange }: IDateInput) => {
             </Box>
           </ScrollArea>
 
-          <Box bg={"#fff"} p={5} className="sticky bottom-0 left-0 right-0 w-full p-2">
-            <PrimaryButton fullWidth onClick={close}>
+          <Box
+            bg={"#fff"}
+            p={5}
+            className="sticky bottom-0 left-0 right-0 w-full p-2"
+          >
+            <PrimaryButton fullWidth onClick={handleOnClick}>
               Done
             </PrimaryButton>
           </Box>

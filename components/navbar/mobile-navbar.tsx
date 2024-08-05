@@ -274,7 +274,7 @@ const MobileDropdown = () => {
             <VaultIcon style={{ width: rem(14), height: rem(14) }} />
           }
         >
-          Bookings & Trips
+          <Link href={"/booking/history"}>Bookings & Trips</Link>
         </Menu.Item>
         <Menu.Item
           leftSection={<Goal style={{ width: rem(14), height: rem(14) }} />}

@@ -6,7 +6,7 @@ import React from "react";
 
 export const CompleteBookingBtn = () => {
   return (
-    <Container mt={20}>
+    <Container my={20}>
       <Link href={"/booking/booking-success"}>
         <PrimaryButton fullWidth>
           <Flex gap={10} align={"center"}>

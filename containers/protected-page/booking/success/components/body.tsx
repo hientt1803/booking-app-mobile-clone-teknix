@@ -143,14 +143,14 @@ export const BookingSuccessBody = () => {
                 Confirm order
               </PrimaryButton>
             </Link>
-            <Link href={"/booking-history"}>
+            <Link href={"/booking/booking-success/detail"}>
               <Button
                 variant="light"
                 color="dark"
                 fullWidth
                 className="uppercase"
               >
-                See your booking here
+                See booking detail
               </Button>
             </Link>
             <Link href={"/booking/booking-fail"}>
