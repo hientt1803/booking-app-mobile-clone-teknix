@@ -12,7 +12,6 @@ export const GeniusModal = () => {
   useEffect(() => {
     if (window) {
       const geniusCount = window.sessionStorage.getItem("geniusModalCount");
-      console.log(geniusCount);
 
       if (geniusCount) {
         toggle();

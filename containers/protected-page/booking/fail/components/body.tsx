@@ -40,7 +40,7 @@ export const BookingFailBody = () => {
                 Try again
               </PrimaryButton>
             </Link>
-            <Link href={"/booking-history"}>
+            <Link href={"/booking/history"}>
               <Button
                 variant="light"
                 color="dark"

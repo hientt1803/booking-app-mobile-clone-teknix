@@ -35,3 +35,31 @@ body {
     text-wrap: balance;
   }
 }
+
+.rdrDefinedRangesWrapper {
+  display: none;
+}
+
+.rdrDateRangePickerWrapper {
+  min-width: 100%;
+}
+
+.rdrCalendarWrapper {
+  min-width: 100%;
+}
+
+.rdrMonthAndYearWrapper {
+  min-width: 100%;
+}
+
+.rdrMonths {
+  min-width: 100%;
+}
+
+.rdrMonthsVertical {
+  min-width: 100%;
+}
+
+.rdrMonth {
+  min-width: 100%;
+}

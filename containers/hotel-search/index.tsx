@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Box,
   Button,
@@ -12,9 +14,42 @@ import { ChevronDown, SearchIcon } from "lucide-react";
 import { ListProduct } from "./components/list-product";
 import { NavFilter } from "./components/nav-filter";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { axiosClient } from "@/utils";
 
 export const SearchPageContainer = () => {
+  const [listHotel, setListHotel] = useState([]);
+
+  useEffect(() => {
+    axiosClient
+      .get("https://booking-com.p.rapidapi.com/v2/hotels/search", {
+        params: {
+          children_number: "2",
+          locale: "en-gb",
+          children_ages: "5,0",
+          filter_by_currency: "AED",
+          checkin_date: "2024-09-14",
+          categories_filter_ids: "class::2,class::4,free_cancellation::1",
+          dest_type: "city",
+          dest_id: "-553173",
+          adults_number: "2",
+          checkout_date: "2024-09-15",
+          order_by: "popularity",
+          include_adjacency: "true",
+          room_number: "1",
+          page_number: "0",
+          units: "metric",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setListHotel(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <Box bg="#fff">
       <Box bg="#1e3a8a" py={20} style={{ position: "relative" }}>

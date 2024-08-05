@@ -21,9 +21,13 @@ if (!ISSERVER) {
 /* Creating a new axios client with the baseURL, headers, and paramsSerializer. */
 export const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
+  // headers: {
+  //   "Content-Type": "application/json",
+  //   Authorization: "Bearer " + accessToken,
+  // },
   headers: {
-    "Content-Type": "application/json",
-    Authorization: "Bearer " + accessToken,
+    "x-rapidapi-key": "09955ffc67mshc0d8c2d698e51bap19c359jsn8cee65389465",
+    "x-rapidapi-host": "booking-com.p.rapidapi.com",
   },
   paramsSerializer: (params) => queryString.stringify(params),
 });
