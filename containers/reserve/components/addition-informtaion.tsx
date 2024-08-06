@@ -1,10 +1,11 @@
 import { BoxWrap } from "@/components/box-wrap";
+import { PrimaryButton } from "@/components/button";
+import { ARRIVAL_TIME } from "@/utils";
 import {
   Checkbox,
   Container,
   Divider,
   Flex,
-  List,
   Select,
   Text,
   Textarea,
@@ -13,10 +14,13 @@ import {
 import { CheckCircle, ChevronRight } from "lucide-react";
 import React from "react";
 import { AdditionInformationReviewHouse } from "./addition-information-review-house";
-import { PrimaryButton } from "@/components/button";
-import Link from "next/link";
+import { UseFormReturnType } from "@mantine/form";
 
-export const AdditionInformtaion = () => {
+export const AdditionInformtaion = ({
+  form,
+}: {
+  form: UseFormReturnType<any>;
+}) => {
   return (
     <React.Fragment>
       <BoxWrap>
@@ -63,8 +67,10 @@ export const AdditionInformtaion = () => {
           label="Add your estimated arrival time (Optional)"
           description="Time is for Phu Quoc time zone"
           placeholder="Please select"
-          data={["React", "Angular", "Vue", "Svelte"]}
+          data={ARRIVAL_TIME}
           searchable
+          key={form.key("arrivalTime")}
+          {...form.getInputProps("arrivalTime")}
         />
       </BoxWrap>
       <BoxWrap>
@@ -79,20 +85,6 @@ export const AdditionInformtaion = () => {
           By continuing to the next step, you agree to these house rules.
         </Text>
       </BoxWrap>
-
-      <Container my={20}>
-        <Link href={"/reserve/complete-step"}>
-          <PrimaryButton fullWidth>
-            <Flex gap={10} align={"center"}>
-              <Text size="sm">Go to final step</Text>
-              <ChevronRight className="w-4 h-4" />
-            </Flex>
-          </PrimaryButton>
-        </Link>
-        <Text fw={600} size="xs" ta={"center"} mt={10}>
-          Review your details and secure your booking.
-        </Text>
-      </Container>
     </React.Fragment>
   );
 };

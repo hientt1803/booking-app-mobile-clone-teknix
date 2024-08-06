@@ -1,22 +1,61 @@
 "use client";
 
 import { PrimaryButton } from "@/components/button";
+import { ARRIVAL_TIME } from "@/utils";
 import {
   Alert,
   Box,
   Drawer,
-  ScrollArea,
   Text,
   TextInput,
-  Title,
+  Title
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { AlertCircleIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+interface IArraivalTime {
+  active: boolean;
+  id: number;
+  label: string;
+  value: string;
+}
+[];
 
 const ModalChangeArrivalTime = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [anotherTime, setAnotherTime] = useState(false);
+  const [selectedArrivalTime, setSelectedArrivalTime] = useState("0");
+  const [arrivalTime, setArrivalTime] = useState<IArraivalTime[]>([]);
+
+  useEffect(() => {
+    const newArrival = ARRIVAL_TIME.map((item) => {
+      return {
+        ...item,
+        active: false,
+      };
+    });
+
+    setArrivalTime(newArrival);
+  }, []);
+
+  const handleSetSelectedArrivalTime = (id: number) => {
+    const newArrival = ARRIVAL_TIME.map((item) => {
+      if (item.id == id) {
+        return {
+          ...item,
+          active: true,
+        };
+      } else {
+        return {
+          ...item,
+          active: false,
+        };
+      }
+    });
+
+    setArrivalTime(newArrival);
+  };
 
   return (
     <div>
@@ -36,62 +75,21 @@ const ModalChangeArrivalTime = () => {
         </Text>
 
         <Box className="flex gap-2 flex-wrap">
-          <PrimaryButton
-            variant="outline"
-            color="dark"
-            className="rounded-sm"
-            onClick={() => setAnotherTime(false)}
-          >
-            12:00 PM
-          </PrimaryButton>
-          <PrimaryButton
-            variant="outline"
-            color="dark"
-            className="rounded-sm"
-            onClick={() => setAnotherTime(false)}
-          >
-            12:00 PM
-          </PrimaryButton>
-          <PrimaryButton
-            variant="outline"
-            color="dark"
-            className="rounded-sm"
-            onClick={() => setAnotherTime(false)}
-          >
-            12:00 PM
-          </PrimaryButton>
-          <PrimaryButton
-            variant="outline"
-            color="dark"
-            className="rounded-sm"
-            onClick={() => setAnotherTime(false)}
-          >
-            12:00 PM
-          </PrimaryButton>
-          <PrimaryButton
-            variant="outline"
-            color="dark"
-            className="rounded-sm"
-            onClick={() => setAnotherTime(false)}
-          >
-            12:00 PM
-          </PrimaryButton>
-          <PrimaryButton
-            variant="outline"
-            color="dark"
-            className="rounded-sm"
-            onClick={() => setAnotherTime(false)}
-          >
-            12:00 PM
-          </PrimaryButton>
-          <PrimaryButton
-            variant="outline"
-            color="dark"
-            className="rounded-sm"
-            onClick={() => setAnotherTime(false)}
-          >
-            12:00 PM
-          </PrimaryButton>
+          {arrivalTime.map((item) => (
+            <PrimaryButton
+              key={item.id}
+              variant={item.active ? "filled" : "outline"}
+              color="dark"
+              className="rounded-sm"
+              onClick={() => {
+                setAnotherTime(false);
+                setSelectedArrivalTime(item.label);
+                handleSetSelectedArrivalTime(item.id);
+              }}
+            >
+              {item.label}
+            </PrimaryButton>
+          ))}
           <PrimaryButton
             variant="outline"
             color="dark"
@@ -107,13 +105,14 @@ const ModalChangeArrivalTime = () => {
             label="Choose the time you arrival"
             placeholder="1:00 PM"
             my={15}
+            onChange={(e) => setSelectedArrivalTime(e.target.value)}
           />
         )}
 
         <Text size="xs" mt={20}>
           Your selected time
         </Text>
-        <Title order={3}>Web, Aug 14, 2024, 3:00 AM - 4:00 AM</Title>
+        <Title order={3}>Web, Aug 14, 2024, {selectedArrivalTime}</Title>
 
         <Alert
           variant="light"

@@ -144,3 +144,141 @@ export const FILTER_DATA = [
     ],
   },
 ];
+
+export const ARRIVAL_TIME = [
+  {
+    id: 1,
+    label: "07:00 PM",
+    value: "19",
+  },
+  {
+    id: 2,
+    label: "08:00 PM",
+    value: "20",
+  },
+  {
+    id: 3,
+    label: "09:00 PM",
+    value: "21",
+  },
+  {
+    id: 4,
+    label: "10:00 PM",
+    value: "22",
+  },
+  {
+    id: 5,
+    label: "11:00 PM",
+    value: "23",
+  },
+  {
+    id: 6,
+    label: "12:00 AM",
+    value: "0",
+  },
+  {
+    id: 7,
+    label: "01:00 AM",
+    value: "1",
+  },
+  {
+    id: 8,
+    label: "02:00 AM",
+    value: "2",
+  },
+  {
+    id: 9,
+    label: "03:00 AM",
+    value: "3",
+  },
+  {
+    id: 10,
+    label: "04:00 AM",
+    value: "4",
+  },
+  {
+    id: 11,
+    label: "05:00 AM",
+    value: "5",
+  },
+  {
+    id: 12,
+    label: "06:00 AM",
+    value: "6",
+  },
+  {
+    id: 13,
+    label: "07:00 AM",
+    value: "7",
+  },
+  {
+    id: 14,
+    label: "08:00 AM",
+    value: "8",
+  },
+  {
+    id: 15,
+    label: "09:00 AM",
+    value: "9",
+  },
+  {
+    id: 16,
+    label: "10:00 AM",
+    value: "10",
+  },
+  {
+    id: 17,
+    label: "11:00 AM",
+    value: "11",
+  },
+  {
+    id: 18,
+    label: "12:00 PM",
+    value: "12",
+  },
+  {
+    id: 19,
+    label: "01:00 PM",
+    value: "13",
+  },
+  {
+    id: 20,
+    label: "02:00 PM",
+    value: "14",
+  },
+  {
+    id: 21,
+    label: "03:00 PM",
+    value: "15",
+  },
+  {
+    id: 22,
+    label: "04:00 PM",
+    value: "16",
+  },
+  {
+    id: 23,
+    label: "05:00 PM",
+    value: "17",
+  },
+  {
+    id: 24,
+    label: "06:00 PM",
+    value: "18",
+  },
+];
+
+export const SORTBY_OPTION = [
+  {
+    title: "Sort by",
+    items: [
+      { label: "Top picks for long stays", value: "topPick" },
+      { label: "Price (Lowest first)", value: "lowPrice" },
+      { label: "Property rating and price", value: "ratingAndPrice" },
+      { label: "Best review & lowest price", value: "reviewAndLowPrice" },
+      { label: "Distance from downtown", value: "Distance" },
+      { label: "Top reviewed", value: "review" },
+      { label: "Homes & apartments first", value: "home" },
+    ],
+  },
+];
