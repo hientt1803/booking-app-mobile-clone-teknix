@@ -1,8 +1,5 @@
-import { BoxWrap } from "@/components/box-wrap";
 import { MobileSearchGroup } from "@/components/search";
-import { Box, Container, Flex, Text } from "@mantine/core";
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
+import { Box, Container } from "@mantine/core";
 import { Fragment } from "react";
 
 const HotelSearchFormPage = () => {
@@ -10,14 +7,6 @@ const HotelSearchFormPage = () => {
     <Fragment>
       <Box bg={"#fff"} py={10}>
         <Container>
-          <Link href="/hotel">
-            <Flex align={"center"}>
-              <ChevronLeft />
-              <Text size="md" my={20}>
-                Get back
-              </Text>
-            </Flex>
-          </Link>
           <MobileSearchGroup />
         </Container>
       </Box>
