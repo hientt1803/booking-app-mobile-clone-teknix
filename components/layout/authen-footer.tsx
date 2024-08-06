@@ -1,18 +1,9 @@
-import {
-  Box,
-  Button,
-  Container,
-  Divider,
-  Flex,
-  Group,
-  Stack,
-  Text,
-} from "@mantine/core";
+import { Box, Container, Stack, Text } from "@mantine/core";
 import Link from "next/link";
 
 export const AuthenFooter = () => {
   return (
-    <Box>
+    <Box py={20}>
       {/* List property */}
       <Box bg={"#f1f1f1"}>
         <Container>

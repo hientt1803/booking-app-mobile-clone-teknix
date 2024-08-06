@@ -1,10 +1,5 @@
-import { MobileSearchGroup } from "@/components/search/mobile-search-group";
-import {
-  Box,
-  Container,
-  Text,
-  Title
-} from "@mantine/core";
+import { MobileSearchGroup } from "@/components/search";
+import { Box, Container, Text, Title } from "@mantine/core";
 import dynamic from "next/dynamic";
 import React from "react";
 import { PresentSearchOffer } from "./components/present-search-offer";

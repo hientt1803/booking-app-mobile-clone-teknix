@@ -63,3 +63,8 @@ body {
 .rdrMonth {
   min-width: 100%;
 }
+
+.rdrMonthName {
+  color: #212121;
+  font-weight: 800;
+}

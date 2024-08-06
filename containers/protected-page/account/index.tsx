@@ -75,7 +75,7 @@ export const AccountContainer = () => {
           </Text>
         </Box>
       </Container>
-      <Stack gap={5}>
+      <Stack gap={5} pb={30}>
         {ACOUNT_DATA.map((item, index) => (
           <AccountItem
             key={index}
@@ -116,7 +116,7 @@ export const AccountItem = (props: {
           </Link>
         </Box>
       </Container>
-      <Divider />
+      <Divider/>
     </Box>
   );
 };

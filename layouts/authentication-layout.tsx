@@ -1,5 +1,4 @@
-import { AuthenHeader } from "@/components/layout";
-import { AuthenFooter } from "@/components/layout/authe.footer";
+import { AuthenFooter, AuthenHeader } from "@/components/layout";
 import { IChildrenProps } from "@/types";
 import React from "react";
 

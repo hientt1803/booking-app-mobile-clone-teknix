@@ -24,13 +24,13 @@ export const MobileSearchGroup = () => {
   ]);
 
   // Group People input state
-  const [adults, setAdults] = useState(0);
+  const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
-  const [rooms, setRooms] = useState(0);
+  const [rooms, setRooms] = useState(1);
 
   return (
     <Box bg={"#f59f00"} p={6} mt={10}>
-      <Stack>
+      <Stack gap={5}>
         <InputSearchCustom
           inputSearchValue={inputSearchValue}
           setInputSearchValue={setinputSearchValue}
@@ -48,11 +48,13 @@ export const MobileSearchGroup = () => {
         />
 
         {/* Button */}
-        <Link href="/hotel">
-          <PrimaryButton fullWidth color="indigo">
-            Search
-          </PrimaryButton>
-        </Link>
+        <Box p={6}>
+          <Link href="/hotel">
+            <PrimaryButton fullWidth color="indigo">
+              Search
+            </PrimaryButton>
+          </Link>
+        </Box>
       </Stack>
     </Box>
   );

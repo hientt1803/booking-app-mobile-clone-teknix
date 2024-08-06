@@ -21,6 +21,7 @@ import React, { useState } from "react";
 
 import { cn } from "@/lib";
 import { daysBetweenUTC, fortmateDate } from "@/utils";
+import { toastError } from "@/utils/toast";
 import { useDisclosure } from "@mantine/hooks";
 import { addDays } from "date-fns";
 import { Calendar, PlusIcon } from "lucide-react";
@@ -121,6 +122,30 @@ const MONTHS_DATA = [
     year: 2025,
     active: false,
   },
+  {
+    id: 7,
+    icon: <Calendar className="w-4 h-4" />,
+    value: 210,
+    title: "Feb",
+    year: 2025,
+    active: false,
+  },
+  {
+    id: 8,
+    icon: <Calendar className="w-4 h-4" />,
+    value: 240,
+    title: "Mar",
+    year: 2025,
+    active: false,
+  },
+  {
+    id: 9,
+    icon: <Calendar className="w-4 h-4" />,
+    value: 270,
+    title: "Jul",
+    year: 2025,
+    active: false,
+  },
 ];
 
 export const DateInputCustom = ({
@@ -132,7 +157,22 @@ export const DateInputCustom = ({
   const [opened, { open, close }] = useDisclosure(false);
   const [datesCalendarChoosen, setDatesDalendarChoosen] = useState(MOCK_DATA);
   const [dateFlexiable, setDateFlexiable] = useState(MONTHS_DATA);
+  const [selectedMonths, setSelectedMonths] = useState<number[]>([]);
   const [isOtherDayStaySelected, setIsOtherDayStaySelected] = useState(false);
+
+  const handleResetData = () => {
+    setDateFlexiable(MONTHS_DATA);
+    setDatesDalendarChoosen(MOCK_DATA);
+    setSelectedMonths([]);
+    setIsOtherDayStaySelected(false);
+    setDateRange([
+      {
+        startDate: new Date(),
+        endDate: new Date(),
+        key: "selection",
+      },
+    ]);
+  };
 
   const handleChoosDateCalendar = (id: number) => {
     const newDateArray = datesCalendarChoosen.map((item) => {
@@ -159,29 +199,40 @@ export const DateInputCustom = ({
   };
 
   const handleChoosDateFlexibleTab = (id: number) => {
-    const newArrays = MONTHS_DATA.map((item) => {
-      if (item.id == id) {
-        setDateRange([
-          {
-            startDate: new Date(),
-            endDate: addDays(new Date(), Number(item.value)),
-            key: "selection",
-          },
-        ]);
-
-        return {
-          ...item,
-          active: true,
-        };
-      }
-
-      return {
-        ...item,
-        active: false,
-      };
-    });
-
-    setDateFlexiable(newArrays);
+    if (selectedMonths.includes(id)) {
+      const newSelectedMonths = selectedMonths.filter(
+        (monthId) => monthId !== id
+      );
+      setSelectedMonths(newSelectedMonths);
+      setDateFlexiable(
+        dateFlexiable.map((item) => {
+          setDateRange([
+            {
+              startDate: new Date(),
+              endDate: addDays(new Date(), Number(item.value)),
+              key: "selection",
+            },
+          ]);
+          return item.id === id ? { ...item, active: false } : item;
+        })
+      );
+    } else if (selectedMonths.length < 3) {
+      setSelectedMonths([...selectedMonths, id]);
+      setDateFlexiable(
+        dateFlexiable.map((item) => {
+          setDateRange([
+            {
+              startDate: new Date(),
+              endDate: addDays(new Date(), Number(item.value)),
+              key: "selection",
+            },
+          ]);
+          return item.id === id ? { ...item, active: true } : item;
+        })
+      );
+    } else {
+      toastError("You can only select up to 3 months.");
+    }
   };
 
   const handleOnChangeDateRangeByRadio = (value: number) => {
@@ -207,7 +258,7 @@ export const DateInputCustom = ({
         <Grid gutter={"xs"} onClick={open}>
           <GridCol span={6} className="rounded-sm">
             <Box bg={"#fff"} p={3} className="rounded-sm">
-              <Stack gap={3}>
+              <Stack gap={0}>
                 <Text size="xs">Check-in date</Text>
                 <Text size="sm" fw={600}>
                   {fortmateDate(dateRange[0].startDate)}
@@ -218,7 +269,7 @@ export const DateInputCustom = ({
           <GridCol span={6} pl={5} className="rounded-sm">
             <Box bg={"#fff"} p={3} className="rounded-sm">
               <Divider orientation="vertical" />
-              <Stack gap={3}>
+              <Stack gap={0}>
                 <Text size="xs">Check-out date</Text>
                 <Text size="sm" fw={600}>
                   {fortmateDate(dateRange[0].endDate)}
@@ -227,7 +278,7 @@ export const DateInputCustom = ({
             </Box>
           </GridCol>
         </Grid>
-        
+
         <Drawer
           opened={opened}
           onClose={close}
@@ -255,8 +306,22 @@ export const DateInputCustom = ({
               }}
             >
               <Tabs.List grow>
-                <Tabs.Tab value="calendar">Calendar</Tabs.Tab>
-                <Tabs.Tab value="flexiable">{`I'm`} flexible</Tabs.Tab>
+                <Tabs.Tab
+                  value="calendar"
+                  onClick={() => {
+                    handleResetData();
+                  }}
+                >
+                  Calendar
+                </Tabs.Tab>
+                <Tabs.Tab
+                  value="flexiable"
+                  onClick={() => {
+                    handleResetData();
+                  }}
+                >
+                  {`I'm`} flexible
+                </Tabs.Tab>
               </Tabs.List>
 
               <Tabs.Panel value="calendar">
@@ -357,10 +422,15 @@ export const DateInputCustom = ({
                       />
                     </Stack>
                   </Radio.Group>
+
                   {isOtherDayStaySelected && (
-                    <Flex justify={"space-between"} align={"center"} gap={15}>
+                    <Flex
+                      justify={"space-between"}
+                      align={"center"}
+                      gap={15}
+                      mt={20}
+                    >
                       <TextInput
-                        mt="md"
                         rightSectionPointerEvents="none"
                         rightSection={"Nights"}
                         placeholder="1"
@@ -369,6 +439,7 @@ export const DateInputCustom = ({
                             width: "70px",
                           },
                         }}
+                        className="flex-1"
                         type="number"
                         onChange={(event) => {
                           setDateRange([
@@ -384,6 +455,8 @@ export const DateInputCustom = ({
                         }}
                       />
                       <Select
+                        label=""
+                        placeholder="From monday"
                         data={[
                           "Monday",
                           "TueDay",
@@ -412,8 +485,12 @@ export const DateInputCustom = ({
                           justify="center"
                           align="center"
                           className={
-                            (cn("border-2 rounded-md"),
-                            month.active ? "border-blue-400 bg-blue-50" : "")
+                            (cn("border-2 border-neutral-200 rounded-md"),
+                            month.active
+                              ? "border-blue-300 rounded-md border-2 bg-blue-50 text-blue-800"
+                              : selectedMonths.length === 3 && !month.active
+                              ? "border-neutral-200 rounded-md border-2 bg-neutral-50"
+                              : "border-2 border-neutral-200 rounded-md")
                           }
                           p={15}
                           gap={5}
@@ -445,6 +522,8 @@ export const DateInputCustom = ({
                   <PrimaryButton
                     fullWidth
                     onClick={handleOnUpdateValueAndCloseModal}
+                    disable={selectedMonths.length === 0}
+                    className="fw-bold"
                   >
                     Done
                   </PrimaryButton>

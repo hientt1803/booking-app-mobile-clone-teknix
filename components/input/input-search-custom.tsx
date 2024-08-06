@@ -1,11 +1,19 @@
 "use client";
 
-import { Box, Divider, Drawer, Flex, Input, Stack, Text } from "@mantine/core";
+import { DUMMY_ARRAY } from "@/utils";
+import {
+  Box,
+  CloseButton,
+  Divider,
+  Drawer,
+  Flex,
+  Input,
+  Stack,
+  Text,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { MapPin, MousePointer2, SearchIcon } from "lucide-react";
-import React from "react";
 import { PrimaryButton } from "../button";
-import { DUMMY_ARRAY } from "@/utils";
 
 interface IInputSearch {
   inputSearchValue: string;
@@ -19,13 +27,22 @@ export const InputSearchCustom = ({
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
-    <Box p={6}>
+    <Box px={6} pt={5}>
       <Input
         placeholder="Search for your location"
         value={inputSearchValue}
         onChange={(e) => setInputSearchValue(e.target.value)}
         leftSection={<SearchIcon size={16} />}
         onClick={open}
+        rightSectionPointerEvents="all"
+        rightSection={
+          <CloseButton
+            aria-label="Clear input"
+            className="cursor-pointer"
+            onClick={() => setInputSearchValue("")}
+            style={{ display: inputSearchValue ? undefined : "none" }}
+          />
+        }
         className="font-semibold"
         size="md"
       />
@@ -52,6 +69,15 @@ export const InputSearchCustom = ({
             onChange={(e) => setInputSearchValue(e.target.value)}
             className="outline-none border-none my-4"
             size="sm"
+            rightSectionPointerEvents="all"
+            rightSection={
+              <CloseButton
+                aria-label="Clear input"
+                className="cursor-pointer"
+                onClick={() => setInputSearchValue("")}
+                style={{ display: inputSearchValue ? undefined : "none" }}
+              />
+            }
           />
           <Divider />
         </Box>
@@ -65,10 +91,13 @@ export const InputSearchCustom = ({
           </Flex>
         </Box>
 
-        {DUMMY_ARRAY.map((item, index) => (
+        <Text size="xs" fw={700} mb={20}>
+          Popular destinations nearby
+        </Text>
+        {DUMMY_ARRAY.map((_, index) => (
           <DestinationItem
             key={index}
-            icon={<MapPin className="w-6 h-6" />}
+            icon={<MapPin className="w-5 h-5" />}
             country="Vietnam"
             city="Can Tho"
           />
@@ -95,9 +124,6 @@ export const DestinationItem = ({
 }) => {
   return (
     <Stack>
-      <Text size="xs" fw={600}>
-        Popular destinations nearby
-      </Text>
       <Stack
         gap={5}
         className="transition hover:bg-neutral-200 py-1 cursor-pointer"
@@ -105,7 +131,7 @@ export const DestinationItem = ({
         <Flex gap={10} align={"center"}>
           {icon}
           <Flex direction={"column"} gap={2}>
-            <Text size="xs" fw={600}>
+            <Text size="xs" fw={700}>
               {city}
             </Text>
             <Text size="xs">{country}</Text>

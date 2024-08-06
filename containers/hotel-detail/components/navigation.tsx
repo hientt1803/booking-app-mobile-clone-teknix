@@ -6,7 +6,7 @@ import React from "react";
 export const Navigation = () => {
   return (
     <Stack gap={15}>
-      <Text size="md" className="text-neutral-800">
+      <Text size="sm" className="text-neutral-800">
         Navigation
       </Text>
       <Box>

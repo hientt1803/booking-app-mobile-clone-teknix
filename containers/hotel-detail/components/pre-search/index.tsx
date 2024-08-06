@@ -1,5 +1,6 @@
 "use client";
 
+import { MobileSearchGroup } from "@/components/search";
 import {
   Box,
   Checkbox,
@@ -8,12 +9,16 @@ import {
   Flex,
   Grid,
   Group,
+  Modal,
   Stack,
   Text,
 } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import React from "react";
 
 export const PreSearchContainerr = () => {
+  const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <React.Fragment>
       <Box className="rounded-xl p-3">
@@ -22,7 +27,13 @@ export const PreSearchContainerr = () => {
             <Text size="xs" fw={500}>
               Your Search: 2 adults, 15 nights
             </Text>
-            <Text size="xs" c={"indigo"} fw={600}>
+            <Text
+              size="xs"
+              c={"indigo"}
+              fw={600}
+              className="cursor-pointer"
+              onClick={open}
+            >
               Edit
             </Text>
           </Flex>
@@ -64,6 +75,32 @@ export const PreSearchContainerr = () => {
           </CheckboxGroup>
         </Stack>
       </Box>
+
+      <PreSearchModal opened={opened} close={close} />
     </React.Fragment>
+  );
+};
+
+export const PreSearchModal = ({
+  opened,
+  close,
+}: {
+  opened: boolean;
+  close: () => void;
+}) => {
+  return (
+    <Modal
+      opened={opened}
+      onClose={close}
+      title="Change your dates"
+      styles={{
+        title: {
+          fontWeight: 700,
+        },
+      }}
+      centered
+    >
+      <MobileSearchGroup />
+    </Modal>
   );
 };

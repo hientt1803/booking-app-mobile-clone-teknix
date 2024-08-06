@@ -39,6 +39,7 @@ export const MapFilter = () => {
 
   function errors(err: { code: any; message: any }) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
+    toastError("Please provide your location for the best experience");
   }
 
   useEffect(() => {
@@ -55,7 +56,6 @@ export const MapFilter = () => {
             // toastSuccess("Location provided");
           } else if (result.state === "denied") {
             navigator.geolocation.getCurrentPosition(success, errors, options);
-            toastError("Please provide your location for the best experience");
           }
           result.onchange = function () {
             console.log(result.state);

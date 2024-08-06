@@ -1,6 +1,15 @@
 "use client";
 
-import { Box, Divider, Drawer, Flex, Grid, Stack, Text } from "@mantine/core";
+import {
+  Box,
+  Divider,
+  Drawer,
+  Flex,
+  Grid,
+  Stack,
+  Switch,
+  Text,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { PrimaryButton } from "../button";
 import { GroupInputQuantity } from "../input";
@@ -62,7 +71,7 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
         position="bottom"
         size={"lg"}
         title=""
-        radius={"50px 50px 0 0"}
+        radius={"25px 25px 0 0"}
         styles={{
           title: {
             fontWeight: 700,
@@ -90,6 +99,12 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
               Rooms
             </Text>
             <GroupInputQuantity quantity={rooms} setQuantity={setRooms} />
+          </Flex>
+          <Flex justify={"space-between"} align="center" mb={10}>
+            <Text size="xs" fw={600}>
+              Traveling with pets?
+            </Text>
+            <Switch mr={20}/>
           </Flex>
         </Stack>
 

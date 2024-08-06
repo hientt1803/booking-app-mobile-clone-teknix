@@ -34,10 +34,12 @@ interface IButton {
   children?: React.ReactNode;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
+  disable?: boolean;
 }
 
 export const PrimaryButton = ({
-  color = "#1e3a8a",
+  // color = "#1e3a8a",
+  color = "#006ce3",
   variant = "filled",
   fullWidth = false,
   className = "",
@@ -45,6 +47,7 @@ export const PrimaryButton = ({
   children,
   onClick,
   type = "button",
+  disable = false,
 }: IButton) => {
   return (
     <Button
@@ -54,6 +57,7 @@ export const PrimaryButton = ({
       className={className}
       onClick={onClick}
       type={type}
+      disabled={disable}
     >
       {children}
     </Button>

@@ -54,7 +54,7 @@ export const CommentDrawer = () => {
         </Stack>
       </Drawer>
 
-      <Text size="sm" c="indigo" className="underline" onClick={open}>
+      <Text size="sm" c="indigo" className="underline cursor-pointer" onClick={open}>
         Read more
       </Text>
     </React.Fragment>

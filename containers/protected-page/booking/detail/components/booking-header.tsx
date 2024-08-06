@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { BoxWrap } from "@/components/box-wrap";
 import {
@@ -138,8 +138,15 @@ export const BookingHeader = () => {
               <Text size="sm" fw={600}>
                 Other options
               </Text>
-              <Text size="sm">Call +84290258923</Text>
-              <Text size="sm">Send email</Text>
+              <Link href={"tel:8420259036"} className="text-blue-600 text-xs">
+                Call +84290258923
+              </Link>
+              <Link
+                href="mailto: teknix@gmail.com"
+                className="text-blue-600 text-xs"
+              >
+                Send email
+              </Link>
             </Stack>
           </Flex>
           <Divider my={10} />

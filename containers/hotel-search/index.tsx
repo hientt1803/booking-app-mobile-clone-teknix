@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Box,
   Button,
@@ -11,116 +9,85 @@ import {
   Text,
 } from "@mantine/core";
 import { ChevronDown, SearchIcon } from "lucide-react";
+import Link from "next/link";
+import React from "react";
 import { ListProduct } from "./components/list-product";
 import { NavFilter } from "./components/nav-filter";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { axiosClient } from "@/utils";
 
 export const SearchPageContainer = () => {
-  const [listHotel, setListHotel] = useState([]);
-
-  useEffect(() => {
-    axiosClient
-      .get("https://booking-com.p.rapidapi.com/v2/hotels/search", {
-        params: {
-          children_number: "2",
-          locale: "en-gb",
-          children_ages: "5,0",
-          filter_by_currency: "AED",
-          checkin_date: "2024-09-14",
-          categories_filter_ids: "class::2,class::4,free_cancellation::1",
-          dest_type: "city",
-          dest_id: "-553173",
-          adults_number: "2",
-          checkout_date: "2024-09-15",
-          order_by: "popularity",
-          include_adjacency: "true",
-          room_number: "1",
-          page_number: "0",
-          units: "metric",
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setListHotel(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   return (
-    <Box bg="#fff">
-      <Box bg="#1e3a8a" py={20} style={{ position: "relative" }}>
-        <Box
-          bg={"#fcc419"}
-          p={6}
-          mx={10}
-          style={{ position: "absolute", bottom: "-30px", left: 0, right: 0 }}
-        >
-          <Link href="/hotel/search-form">
-            <Stack bg={"#fff"} p={6}>
-              <Flex gap={20} align="center">
-                <SearchIcon className="w-5 h-5" />
-                <Stack gap={3}>
-                  <Text size="xs" fw="600">
-                    Phu Quoc
-                  </Text>
-                  <Text size="xs">Aug 1 - Aug 2 (1 night) - 1z</Text>
-                </Stack>
-              </Flex>
-            </Stack>
-          </Link>
+    <React.Fragment>
+      <Box bg="#fff">
+        <Box bg="#1e3a8a" className=" relative z-10" py={20}>
+          <Box
+            bg={"#fcc419"}
+            p={6}
+            mx={10}
+            style={{ position: "absolute", bottom: "-30px", left: 0, right: 0 }}
+          >
+            <Link href="/hotel/search-form">
+              <Stack bg={"#fff"} p={6}>
+                <Flex gap={20} align="center">
+                  <SearchIcon className="w-5 h-5" />
+                  <Stack gap={3}>
+                    <Text size="xs" fw="600">
+                      Phu Quoc
+                    </Text>
+                    <Text size="xs">Aug 1 - Aug 2 (1 night) - 1z</Text>
+                  </Stack>
+                </Flex>
+              </Stack>
+            </Link>
+          </Box>
         </Box>
       </Box>
 
       {/* Filter */}
-      <Container className="sticky top-0 left-0 right-0 bg-white">
-        <Box mt={50} p={10}>
-          <NavFilter />
-        </Box>
-      </Container>
+      <NavFilter />
 
       {/* Categories search */}
-      <Container>
-        <Divider />
-        <ScrollArea className="w-full" type="always" scrollbarSize={2} py={6}>
-          <Box display={"flex"} className="w-full gap-1">
-            <Button variant="default" radius="xl">
-              Hotels (132)
-            </Button>
-            <Button variant="default" radius="xl">
-              Double beb (199)
-            </Button>
-            <Button variant="default" radius="xl">
-              Family rooms (154)
-            </Button>
-            <Button variant="default" radius="xl">
-              Electric kettle (135)
-            </Button>
-            <Button variant="default" radius="xl">
-              Electric kettle (135)
-            </Button>
-            <Button variant="default" radius="xl">
-              Electric kettle (135)
-            </Button>
-            <Button variant="default" radius="xl">
-              Electric kettle (135)
-            </Button>
-          </Box>
-        </ScrollArea>
-      </Container>
+      <Box bg="#fff">
+        <Container>
+          <Divider />
+          <ScrollArea className="w-full" type="always" scrollbarSize={2} py={6}>
+            <Box display={"flex"} className="w-full gap-1">
+              <Button variant="default" radius="xl">
+                Hotels (132)
+              </Button>
+              <Button variant="default" radius="xl">
+                Double beb (199)
+              </Button>
+              <Button variant="default" radius="xl">
+                Family rooms (154)
+              </Button>
+              <Button variant="default" radius="xl">
+                Electric kettle (135)
+              </Button>
+              <Button variant="default" radius="xl">
+                Electric kettle (135)
+              </Button>
+              <Button variant="default" radius="xl">
+                Electric kettle (135)
+              </Button>
+              <Button variant="default" radius="xl">
+                Electric kettle (135)
+              </Button>
+            </Box>
+          </ScrollArea>
+        </Container>
+      </Box>
 
-      <Container>
-        {/* List product */}
-        <ListProduct />
+      <Box bg="#fff" pb={30}>
+        <Container>
+          {/* List product */}
+          <ListProduct />
 
-        {/* Load more button */}
-        <Button variant="outline" fullWidth py={6}>
-          Load more results <ChevronDown />
-        </Button>
-      </Container>
-    </Box>
+          {/* Load more button */}
+          <Button variant="outline" fullWidth py={6}>
+            Load more results <ChevronDown />
+          </Button>
+        </Container>
+      </Box>
+    </React.Fragment>
   );
 };

@@ -9,7 +9,17 @@ export const SortFilter = () => {
 
   return (
     <Box>
-      <Drawer opened={opened} onClose={close} position="bottom">
+      <Drawer
+        opened={opened}
+        onClose={close}
+        position="bottom"
+        radius={"25px 25px 0 0"}
+        styles={{
+          title: {
+            fontWeight: 700,
+          },
+        }}
+      >
         <Title order={2}>Sort by</Title>
 
         <Radio.Group name="sortby">

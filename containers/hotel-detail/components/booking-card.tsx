@@ -34,6 +34,7 @@ import {
   UserIcon,
   XCircleIcon,
 } from "lucide-react";
+import Link from "next/link";
 import React, { useMemo, useState } from "react";
 
 const data = [
@@ -48,7 +49,7 @@ const data = [
 export const BookingCard = () => {
   const [opened, { toggle }] = useDisclosure(false);
 
-  //
+  // state
   const [bedCount, setBedCount] = useState(0);
   const [value, setValue] = useState<string | null>(null);
 
@@ -72,10 +73,10 @@ export const BookingCard = () => {
   ));
 
   return (
-    <Card withBorder className={opened ? "border-green-600" : ""}>
+    <Card withBorder className={opened ? "border-green-600 border-2" : ""}>
       <Stack gap={2}>
         <Flex justify={"space-between"} align={"center"} mb={10}>
-          <Text c="indigo" fw={600} className="underline">
+          <Text c="blue" fw={600} className="underline">
             Deluxe Double Room
           </Text>
           <ImageIcon className="text-blue-600" />
@@ -152,7 +153,7 @@ export const BookingCard = () => {
         <Text size="xs" c={"dimmed"}>
           includes taxes and fees
         </Text>
-        <Button onClick={toggle} variant="outline" color="indigo" fullWidth>
+        <Button onClick={toggle} variant="outline" color="blue" fullWidth>
           {!opened ? (
             "Reserve"
           ) : (
@@ -163,6 +164,9 @@ export const BookingCard = () => {
         </Button>
         <Box>
           <Collapse in={opened} mt={20}>
+            <Text size="xs" fw={700} c="red">
+              You selected the last one!
+            </Text>
             <Flex justify={"flex-start"} align={"center"}>
               <Text size="xs" fw={600}>
                 Bed quanity:
@@ -206,9 +210,11 @@ export const BookingCard = () => {
                 </Text>
               </Flex>
               <Text size="xs">Confirmation is immediate</Text>
-              <PrimaryButton fullWidth>
-                Next step <ChevronRightIcon className="w-5 h-5" />
-              </PrimaryButton>
+              <Link href="/reserve">
+                <PrimaryButton fullWidth>
+                  Next step <ChevronRightIcon className="w-5 h-5" />
+                </PrimaryButton>
+              </Link>
             </Stack>
           </Collapse>
         </Box>
