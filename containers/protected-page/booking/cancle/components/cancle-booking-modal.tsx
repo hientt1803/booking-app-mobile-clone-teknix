@@ -102,7 +102,7 @@ export const CancleBookingModal = () => {
           <PrimaryButton
             onClick={() => {
               close();
-              router.push("/booking/booking-success/detail");
+              router.push("/booking/cancle/detail");
             }}
             color="red"
           >

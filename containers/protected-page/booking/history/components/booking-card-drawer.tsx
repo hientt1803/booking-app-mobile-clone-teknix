@@ -2,14 +2,12 @@
 
 import {
   Box,
-  Button,
   Divider,
   Drawer,
   Flex,
   Image,
   Stack,
-  Text,
-  Title,
+  Text
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {
@@ -39,7 +37,7 @@ export const BookingDetailCardDrawer = () => {
             fontSize: "1.4rem",
           },
           content: {
-            borderRadius: "40px 40px 0 0",
+            borderRadius: "25px 25px 0 0",
           },
         }}
       >

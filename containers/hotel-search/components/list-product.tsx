@@ -1,61 +1,20 @@
-"use client"
+"use client";
 
+import { HOTEL_MOCK_DATA } from "@/utils";
 import { Divider, Grid } from "@mantine/core";
-import React from "react";
 import { BookingCard } from "./booking-card";
 
 export const ListProduct = () => {
+  const listHotel = HOTEL_MOCK_DATA;
+
   return (
     <Grid>
-      <Grid.Col span={12} mb={10}>
-        <BookingCard isFeatured isGenius />
-        <Divider />
-      </Grid.Col>
-      <Grid.Col span={12} mb={10}>
-        <BookingCard
-          isFeatured
-          isGenius
-          roomLeft="Only 1 room left at this price on our site"
-        />
-        <Divider />
-      </Grid.Col>
-      <Grid.Col span={12} mb={10}>
-        <BookingCard discount />
-        <Divider />
-      </Grid.Col>
-      <Grid.Col span={12} mb={10}>
-        <BookingCard
-          discount
-          breakfast
-          roomLeft="Only 4 room left at this price on our site"
-        />
-      </Grid.Col>
-      <Grid.Col span={12} mb={10}>
-        <BookingCard />
-      </Grid.Col>
-      <Grid.Col span={12} mb={10}>
-        <BookingCard />
-      </Grid.Col>
-      <Grid.Col span={12} mb={10}>
-        <BookingCard />
-      </Grid.Col>
-      <Grid.Col span={12} mb={10}>
-        <BookingCard />
-      </Grid.Col>
-      <Grid.Col span={12} mb={10}>
-        <BookingCard />
-      </Grid.Col>
-      <Grid.Col span={12} mb={10}>
-        <BookingCard />
-      </Grid.Col>
-      <Grid.Col span={12} mb={10}>
-        <BookingCard />
-      </Grid.Col>
-      <Grid.Col span={12} mb={10}>
-        <BookingCard />
-      </Grid.Col>
+      {listHotel.map((hotel) => (
+        <Grid.Col span={12} mb={10} key={hotel.id}>
+          <BookingCard hotel={hotel} breakfast discount roomLeft="Only 1 left"/>
+          <Divider />
+        </Grid.Col>
+      ))}
     </Grid>
   );
 };
-
-

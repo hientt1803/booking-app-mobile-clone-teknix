@@ -1,6 +1,7 @@
 "use client";
 
 import { GroupInputQuantity } from "@/components/input";
+import { FILTER_DATA, formatCurrency } from "@/utils";
 import {
   Box,
   Button,
@@ -15,15 +16,35 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { ListFilterIcon } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export const Filter = () => {
   const [opened, { open, close }] = useDisclosure(false);
-  const [quantity, setQuantity] = useState(0);
+  // Group People input state
+  const [bedroom, setBedroom] = useState(0);
+  const [bed, setBed] = useState(0);
+  const [bathroom, setbathroom] = useState(0);
+
+  const [priceRange, setPriceRange] = useState({
+    minRange: 0,
+    maxRange: 0,
+  });
 
   return (
     <Box>
-      <Drawer opened={opened} onClose={close} title="Filters" position="left">
+      <Drawer
+        opened={opened}
+        onClose={close}
+        title="Filters"
+        position="left"
+        size={"100%"}
+        styles={{
+          title: {
+            fontWeight: 700,
+            fontSize: "1.2rem",
+          },
+        }}
+      >
         <Box className="relative">
           <Box>
             <Stack>
@@ -36,108 +57,45 @@ export const Filter = () => {
           <Box>
             <Stack>
               <Title order={4}>Your Budget (per night)</Title>
-              <Text size="sm">VND 100,000 - VND 2,000,000+</Text>
+              <Text size="sm">
+                {formatCurrency(priceRange.minRange)} -{" "}
+                {formatCurrency(priceRange.maxRange)}
+              </Text>
               <RangeSlider
-                minRange={0.2}
+                minRange={0}
                 min={0}
-                max={1}
-                step={0.0005}
-                defaultValue={[0.1245, 0.5535]}
+                max={100000}
+                step={10}
+                onChange={(e) =>
+                  setPriceRange({
+                    minRange: e[0],
+                    maxRange: e[1],
+                  })
+                }
+                defaultValue={[0, 100000]}
               />
             </Stack>
           </Box>
           <Divider my={15} />
-          <Box>
-            <Stack>
-              <Title order={4}>Popular Filters</Title>
-              <Checkbox
-                label="Very good 8+ (120)"
-                description="Base on guest reviews"
-              />
-              <Checkbox label="Apartments (21)" />
-              <Checkbox label="Air conditioning (21)" />
-              <Checkbox label="Hotels (21)" />
-              <Checkbox label="Swimming Pool (21)" />
-              <Checkbox label="Breakfast Included (21)" />
-              <Checkbox label="4 stars (21)" />
-              <Checkbox label="Resorts (21)" />
-            </Stack>
-          </Box>
-          <Divider my={15} />
-          <Box>
-            <Stack>
-              <Title order={4}>Facilities</Title>
-              <Checkbox
-                label="Very good 8+ (120)"
-                description="Base on guest reviews"
-              />
-              <Checkbox label="Free Wifi (21)" />
-              <Checkbox label="Parking (21)" />
-              <Checkbox label="24-hour front desk (21)" />
-              <Checkbox label="Non-smoking room (21)" />
-              <Checkbox label="Family rooms (21)" />
-              <Checkbox label="Room service (21)" />
-              <Checkbox label="Airport shuttle (21)" />
-              <Checkbox label="Restaurant (21)" />
-              <Checkbox label="Pet friendly (21)" />
-              <Checkbox label="Swimming pool (21)" />
-              <Checkbox label="Wheelchair accessible (21)" />
-              <Checkbox label="Fitness center (21)" />
-              <Checkbox label="Spa (21)" />
-              <Checkbox label="ELectirc vehicle charging station (21)" />
-            </Stack>
-          </Box>
-          <Divider my={15} />
-          <Box>
-            <Stack>
-              <Title order={4}>Property Type</Title>
-              <Checkbox label="Hotels (120)" />
-              <Checkbox label="Apartments (21)" />
-              <Checkbox label="Homestays (21)" />
-              <Checkbox label="Hostels (21)" />
-              <Checkbox label="Guesthouses (21)" />
-              <Checkbox label="Bed and breakfasts (21)" />
-              <Checkbox label="Resorts (21)" />
-              <Checkbox label="Love Hotels (21)" />
-              <Checkbox label="Motels (21)" />
-              <Checkbox label="Villas (21)" />
-              <Checkbox label="Vacation Homes (21)" />
-              <Checkbox label="Lodges (21)" />
-              <Checkbox label="Country Houses (21)" />
-              <Checkbox label="Capsule Hotels (21)" />
-            </Stack>
-          </Box>
-          <Divider my={15} />
-          <Box>
-            <Stack>
-              <Title order={4}>Review score</Title>
-              <Checkbox label="Wonderful: 9+ (47)" />
-              <Checkbox label="Very good 8+(121)" />
-              <Checkbox label="Good: 7+(21)" />
-              <Checkbox label="Pleasant: 6+ (21)" />
-            </Stack>
-          </Box>
-          <Divider my={15} />
-          <Box>
-            <Stack>
-              <Title order={4}>Meals</Title>
-              <Checkbox label="Ketchen facilities (42)" />
-              <Checkbox label="Breakfast Included (121)" />
-              <Checkbox label="Breakfast & dinner included (21)" />
-            </Stack>
-          </Box>
-          <Divider my={15} />
-          <Box>
-            <Stack>
-              <Title order={4}>Property rating</Title>
-              <Checkbox label="1 star (42)" />
-              <Checkbox label="2 stars (121)" />
-              <Checkbox label="3 stars (21)" />
-              <Checkbox label="4 stars (21)" />
-              <Checkbox label="5 stars (21)" />
-            </Stack>
-          </Box>
-          <Divider my={15} />
+
+          {FILTER_DATA.map((filter, index) => (
+            <Box key={index}>
+              <Box>
+                <Stack>
+                  <Title order={4}>{filter.title}</Title>
+                  {filter.items.map((item) => (
+                    <Checkbox
+                      key={index}
+                      label={item.label}
+                      description={item.description}
+                    />
+                  ))}
+                </Stack>
+              </Box>
+              <Divider my={15} />
+            </Box>
+          ))}
+
           {/* Bla bla */}
           <Box>
             <Stack>
@@ -145,22 +103,19 @@ export const Filter = () => {
               <Flex justify={"space-between"} align={"center"}>
                 <Text size="sm">Bedrooms</Text>
                 <GroupInputQuantity
-                  quantity={quantity}
-                  setQuantity={setQuantity}
+                  quantity={bedroom}
+                  setQuantity={setBedroom}
                 />
               </Flex>
               <Flex justify={"space-between"} align={"center"}>
                 <Text size="sm">Beds</Text>
-                <GroupInputQuantity
-                  quantity={quantity}
-                  setQuantity={setQuantity}
-                />
+                <GroupInputQuantity quantity={bed} setQuantity={setBed} />
               </Flex>
               <Flex justify={"space-between"} align={"center"}>
                 <Text size="sm">Bathrooms</Text>
                 <GroupInputQuantity
-                  quantity={quantity}
-                  setQuantity={setQuantity}
+                  quantity={bathroom}
+                  setQuantity={setbathroom}
                 />
               </Flex>
             </Stack>

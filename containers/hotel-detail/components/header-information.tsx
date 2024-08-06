@@ -28,9 +28,9 @@ const ListService = dynamic(() =>
 export const HeaderInformation = () => {
   return (
     <React.Fragment>
-      <Box bg={"#fff"} pb={10}>
+      <Box bg={"#fff"} pb={10} pt={30}>
         <Container>
-          <Link href="/hotel">
+          {/* <Link href="/hotel">
             <Flex gap={8} align={"center"}>
               <Text size="xl" my={20}>
                 <ChevronLeft />
@@ -39,7 +39,7 @@ export const HeaderInformation = () => {
                 comeback
               </Text>
             </Flex>
-          </Link>
+          </Link> */}
           <Stack mb={20}>
             <Flex justify={"space-between"}>
               <Flex gap={5}>

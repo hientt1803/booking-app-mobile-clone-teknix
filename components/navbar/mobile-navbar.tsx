@@ -1,5 +1,6 @@
 "use client";
 
+import { NAVBAR_MENU } from "@/utils";
 import {
   Avatar,
   Box,
@@ -16,9 +17,15 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {
-  ArrowLeftRight,
+  BadgePercent,
+  Book,
+  BookUser,
   CarTaxiFrontIcon,
+  ChevronLeft,
+  CircleAlert,
+  Cookie,
   CreditCardIcon,
+  DockIcon,
   EarthIcon,
   GalleryHorizontal,
   Goal,
@@ -28,17 +35,21 @@ import {
   LogOutIcon,
   LucideCarTaxiFront,
   MenuIcon,
+  NotebookTabs,
   PlaneLandingIcon,
+  Scale,
+  ScrollText,
   ShieldQuestion,
-  TrashIcon,
   UserIcon,
   UserSquare,
   VaultIcon,
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export const MobileNavbar = () => {
   const [opened, { open, close }] = useDisclosure(false);
+  const pathname = usePathname();
 
   return (
     <Flex bg="#1e3a8a" gap="lg" direction={"column"} className="w-full py-5">
@@ -49,9 +60,17 @@ export const MobileNavbar = () => {
           className="w-full text-white"
           my={6}
         >
-          <Link href={"/"}>
-            <Title order={3}>Booking.com</Title>
-          </Link>
+          {pathname.includes("/hotel/") ? (
+            <Link href={"/hotel"}>
+              <Title order={3}>
+                <ChevronLeft className="w-8 h-8" />
+              </Title>
+            </Link>
+          ) : (
+            <Link href={"/"}>
+              <Title order={3}>Booking.com</Title>
+            </Link>
+          )}
           <Flex justify={"flex-end"} align={"center"} gap={10}>
             <Link href={"/auth/sign-in"}>
               <Button variant="light" color="gray">
@@ -65,7 +84,7 @@ export const MobileNavbar = () => {
             <MobileDrawer opened={opened} close={close} />
           </Flex>
         </Flex>
-        <SuggestList />
+        {(pathname == "/hotel" || pathname == "/") && <SuggestList />}
       </Container>
     </Flex>
   );
@@ -78,17 +97,19 @@ const MobileDrawer = ({
   opened: boolean;
   close: () => void;
 }) => {
+  const menuData = NAVBAR_MENU;
+
   return (
     <Drawer
       offset={8}
       radius="md"
       opened={opened}
       onClose={close}
+      size={"100%"}
       position="right"
-      title="BOOKING"
     >
       <Stack>
-        <Title order={2} mb={15}>
+        <Title order={3} mb={15}>
           More
         </Title>
         <p className="text-neutral-800">VND Vietnamese Dong</p>
@@ -129,117 +150,29 @@ const MobileDrawer = ({
           </Flex>
         </Stack>
 
-        <Stack mb={5}>
-          <Flex>
-            <Title order={6} className="font-bold text-black">
-              Help and support
-            </Title>
-          </Flex>
-          <Flex
-            gap={20}
-            justify={"start"}
-            align={"center"}
-            className="text-black"
-          >
-            <div>
-              <ShieldQuestion />
-            </div>
-            <div>Contact Customer service</div>
-          </Flex>
-          <Flex
-            gap={20}
-            justify={"start"}
-            align={"center"}
-            className="text-black"
-          >
-            <div>
-              <Handshake />
-            </div>
-            <div>Partner dispute</div>
-          </Flex>
-        </Stack>
-
-        <Stack mb={5}>
-          <Flex>
-            <Title order={6} className="font-bold text-black">
-              Inspration
-            </Title>
-          </Flex>
-          <Flex
-            gap={20}
-            justify={"start"}
-            align={"center"}
-            className="text-black"
-          >
-            <div>
-              <ShieldQuestion />
-            </div>
-            <div>Seasonal and holoday deals</div>
-          </Flex>
-          <Flex
-            gap={20}
-            justify={"start"}
-            align={"center"}
-            className="text-black"
-          >
-            <div>
-              <Handshake />
-            </div>
-            <div>Travel articles</div>
-          </Flex>
-        </Stack>
-
-        <Stack mb={5}>
-          <Flex>
-            <Title order={6} className="font-bold text-black">
-              Settings and legal
-            </Title>
-          </Flex>
-          <Flex
-            gap={20}
-            justify={"start"}
-            align={"center"}
-            className="text-black"
-          >
-            <div>
-              <ShieldQuestion />
-            </div>
-            <div>About Booking.com</div>
-          </Flex>
-          <Flex
-            gap={20}
-            justify={"start"}
-            align={"center"}
-            className="text-black"
-          >
-            <div>
-              <Handshake />
-            </div>
-            <div>Careers</div>
-          </Flex>
-          <Flex
-            gap={20}
-            justify={"start"}
-            align={"center"}
-            className="text-black"
-          >
-            <div>
-              <Handshake />
-            </div>
-            <div>Become an affiliate</div>
-          </Flex>
-          <Flex
-            gap={20}
-            justify={"start"}
-            align={"center"}
-            className="text-black"
-          >
-            <div>
-              <Handshake />
-            </div>
-            <div>Press center</div>
-          </Flex>
-        </Stack>
+        {menuData.map((section, sectionIndex) => (
+          <Stack mb={10} key={sectionIndex}>
+            <Flex>
+              <Title order={6} className="font-bold text-black">
+                {section.title}
+              </Title>
+            </Flex>
+            {section.items.map((item, itemIndex) => (
+              <Flex
+                gap={20}
+                justify={"start"}
+                align={"center"}
+                className="text-black"
+                key={itemIndex}
+              >
+                <div>
+                  <IconComponent icon={item.icon} />
+                </div>
+                <Link href={item.link}>{item.text}</Link>
+              </Flex>
+            ))}
+          </Stack>
+        ))}
       </Stack>
     </Drawer>
   );
@@ -250,15 +183,22 @@ const MobileDropdown = () => {
     <Menu shadow="md" width={200}>
       <Menu.Target>
         <Indicator color="red">
-          <Avatar radius="xl">MK</Avatar>
+          <Avatar radius="xl" className="cursor-pointer">MK</Avatar>
         </Indicator>
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Item className="text-blue-700 flex gap-2">
+        <Flex
+          gap={10}
+          justify={"flex-start"}
+          align={"center"}
+          my={10}
+          ml={10}
+          className="text-blue-700 flex gap-2"
+        >
           <Avatar radius="xl">MK</Avatar>
-          <span>Genius level 1</span>
-        </Menu.Item>
+          <span className="text-sm">Genius level 1</span>
+        </Flex>
         <Menu.Label>Account</Menu.Label>
         <Link href={"/account"}>
           <Menu.Item
@@ -369,4 +309,22 @@ const SuggestList = () => {
       </Box>
     </ScrollArea>
   );
+};
+
+const IconComponent = ({ icon }: { icon: string }) => {
+  const iconsMap: { [key: string]: JSX.Element } = {
+    ShieldQuestion: <ShieldQuestion />,
+    Handshake: <Handshake />,
+    BadgePercent: <BadgePercent />,
+    Book: <Book />,
+    CircleAlert: <CircleAlert />,
+    BookUser: <BookUser />,
+    NotebookTabs: <NotebookTabs />,
+    Cookie: <Cookie />,
+    ScrollText: <ScrollText />,
+    DockIcon: <DockIcon />,
+    Scale: <Scale />,
+  };
+
+  return iconsMap[icon] || null;
 };

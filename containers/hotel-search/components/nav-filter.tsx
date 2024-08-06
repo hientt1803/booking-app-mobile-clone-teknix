@@ -11,17 +11,10 @@ const MapFilter = dynamic(() =>
 
 export const NavFilter = () => {
   return (
-    <Box
-      pt={35}
-      pb={15}
-      px={30}
-      className="sticky top-0 left-0 right-0 bg-white"
-    >
-      <Flex justify={"space-between"} align={"center"}>
-        <SortFilter />
-        <Filter />
-        <MapFilter />
-      </Flex>
-    </Box>
+    <Flex justify={"space-between"} align={"center"}>
+      <SortFilter />
+      <Filter />
+      <MapFilter />
+    </Flex>
   );
 };

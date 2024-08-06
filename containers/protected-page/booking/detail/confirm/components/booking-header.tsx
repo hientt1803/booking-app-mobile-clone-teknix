@@ -277,7 +277,7 @@ export const BookingHeader = () => {
         </Container>
       </Box>
 
-      <Container>
+      <Container className="w-full">
         <BoxWrap className="rounded-md">
           <Box my={20}>
             <Text size="sm" fw={700}>
@@ -322,7 +322,7 @@ export const BookingHeader = () => {
                   <Text size="xs">Contact the property</Text>
                 </Accordion.Panel>
               </AccordionItem>
-              <AccordionItem value={`acordin-item-2`}>
+              <AccordionItem value={`acordin-item-3`}>
                 <Accordion.Control>
                   {`Who going to charge my credit card and when?`}
                 </Accordion.Control>

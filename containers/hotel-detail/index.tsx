@@ -1,26 +1,24 @@
 import {
-  Box,
-  Button,
   Container,
   Flex,
   Spoiler,
   Stack,
   Text,
-  Title,
+  Title
 } from "@mantine/core";
 
+import { BoxWrap } from "@/components/box-wrap";
+import { PrimaryButton } from "@/components/button";
 import { Activity, CarTaxiFront, WavesIcon, WifiHigh } from "lucide-react";
 import dynamic from "next/dynamic";
-import { HotelDetailCaroucel } from "./components/caroucel-image";
+import Link from "next/link";
+import React from "react";
 import { ReviewContainer } from "./components/comments";
 import { HeaderInformation } from "./components/header-information";
 import { ListBookingCard } from "./components/list-booking-card";
-import { PreSearchContainerr } from "./components/pre-search";
 import { Navigation } from "./components/navigation";
-import React from "react";
-import { PrimaryButton } from "@/components/button";
-import { BoxWrap } from "@/components/box-wrap";
-import Link from "next/link";
+import { PreSearchContainerr } from "./components/pre-search";
+import { HOTEL_DETAIL_MOCK_DATA } from "@/utils";
 
 const PropertiesPratices = dynamic(() =>
   import("./components/properties-pratices").then(
@@ -44,6 +42,8 @@ const BestOfBeyond = dynamic(() =>
 );
 
 export const HotelDetailContainer = () => {
+  const hotelDetail = HOTEL_DETAIL_MOCK_DATA;
+
   return (
     <React.Fragment>
       {/* main information */}

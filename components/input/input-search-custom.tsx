@@ -1,6 +1,6 @@
 "use client";
 
-import { DUMMY_ARRAY } from "@/utils";
+import { CITY_MOCKUP, DUMMY_ARRAY } from "@/utils";
 import {
   Box,
   CloseButton,
@@ -14,6 +14,7 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { MapPin, MousePointer2, SearchIcon } from "lucide-react";
 import { PrimaryButton } from "../button";
+import Link from "next/link";
 
 interface IInputSearch {
   inputSearchValue: string;
@@ -57,6 +58,7 @@ export const InputSearchCustom = ({
             fontWeight: 700,
           },
         }}
+        size={"100%"}
         radius={0}
         className="relative"
       >
@@ -94,13 +96,14 @@ export const InputSearchCustom = ({
         <Text size="xs" fw={700} mb={20}>
           Popular destinations nearby
         </Text>
-        {DUMMY_ARRAY.map((_, index) => (
-          <DestinationItem
-            key={index}
-            icon={<MapPin className="w-5 h-5" />}
-            country="Vietnam"
-            city="Can Tho"
-          />
+        {CITY_MOCKUP.map((city, index) => (
+          <Link key={index} href={city.link}>
+            <DestinationItem
+              icon={<MapPin className="w-5 h-5" />}
+              country={city.country}
+              city={city.name}
+            />
+          </Link>
         ))}
 
         <Box bg={"#fff"} className="sticky bottom-0 left-0 right-0 p-2">

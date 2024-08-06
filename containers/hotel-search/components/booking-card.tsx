@@ -1,6 +1,7 @@
 "use client";
 
 import { ThreeItemFlexRow } from "@/components/common";
+import { formatCurrency } from "@/utils";
 import {
   Badge,
   Box,
@@ -8,6 +9,7 @@ import {
   Flex,
   Grid,
   Image,
+  Rating,
   Stack,
   Text,
   Title,
@@ -18,6 +20,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 
 interface IBookingCard {
+  hotel?: any;
   isFeatured?: boolean;
   isGenius?: boolean;
   roomLeft?: string;
@@ -27,13 +30,13 @@ interface IBookingCard {
 
 export const BookingCard = (props: IBookingCard) => {
   const {
+    hotel,
     isFeatured = false,
     isGenius = false,
     roomLeft = "",
     discount = false,
     breakfast = false,
   } = props;
-
   const matches = useMediaQuery("(max-width: 330px)");
 
   return (
@@ -41,20 +44,27 @@ export const BookingCard = (props: IBookingCard) => {
       <Grid>
         {!matches && (
           <Grid.Col span={5}>
-            <Link href="/hotel/2">
+            <Link href={`/hotel/${hotel.id}`}>
               <Image
-                src="/assets/images/booking-banner-home.jpeg"
-                alt="booking card image"
-                h={300}
+                // src="/assets/images/booking-banner-home.jpeg"
+                src={
+                  hotel?.photoMainUrl ??
+                  "/assets/images/booking-banner-home.jpeg"
+                }
+                alt={hotel?.name ?? ""}
+                h={"100%"}
+                className="rounded-md"
               />
             </Link>
           </Grid.Col>
         )}
         <Grid.Col span={!matches ? 7 : 12}>
           <Stack gap={2}>
-            <Link href="/hotel/2">
+            <Rating value={hotel?.accuratePropertyClass} readOnly size={"xs"}/>
+
+            <Link href={`/hotel/${hotel.id}`}>
               <Title order={!matches ? 5 : 4} lineClamp={2}>
-                Asia Hotel Can Tho
+                {hotel?.name ?? ""}
               </Title>
             </Link>
             {isFeatured && (
@@ -63,47 +73,71 @@ export const BookingCard = (props: IBookingCard) => {
                   Featured
                 </Badge>
                 <Badge color="#fcc419" size="xs" p={7}>
-                  <ThumbsUp
-                    className="w-3 h-3"
-                  />
+                  <ThumbsUp className="w-3 h-3" />
                 </Badge>
               </Flex>
             )}
 
-            <ThreeItemFlexRow point="8.1" status="Very good" review={193} />
+            <ThreeItemFlexRow
+              point={hotel?.reviewScore}
+              status={hotel?.reviewScoreWord}
+              review={hotel.reviewCount}
+            />
 
-            <Flex gap={3} align={"center"} my={0} py={0}>
-              <CheckIcon className="h-2 w-2" />
-              <Text size="xs">wonderful location</Text>
+            <Box my={10}>
+              <Flex gap={3} align={"center"} py={0}>
+                <CheckIcon className="h-2 w-2" />
+                <Text size="xs">wonderful location</Text>
+              </Flex>
+
+              <Flex gap={5} align={"center"} wrap={"wrap"}>
+                <MapIcon className="w-4 h-4" />
+                <Text size="xs"> - Can Tho - </Text>
+                <Text size="xs">350m from center</Text>
+              </Flex>
+            </Box>
+
+            <Flex gap={5} wrap={"wrap"}>
+              <Text size="xs" fw={600}>
+                {hotel?.proposedAccommodation[0]}
+              </Text>
+              <Text size="xs">{hotel?.proposedAccommodation[1]}</Text>
             </Flex>
 
-            <Flex gap={5} align={"center"} wrap={"wrap"}>
-              <MapIcon className="w-6 h-6" />
-              <Text size="xs"> - Can Tho - </Text>
-              <Text size="xs">350m from center</Text>
-            </Flex>
-
-            <Badge color="green" size="sm" radius="sm" mt={10}>
-              Mobile-only price
-            </Badge>
+            <Box className="flex">
+              {hotel?.benefitBadges?.map((bd: any, i: number) => (
+                <Badge key={i} color="green" size="sm" radius="sm" mt={10}>
+                  {bd?.text}
+                </Badge>
+              ))}
+            </Box>
 
             <Stack ml={"auto"} my={5} justify="flex-end" gap={0}>
-              <Text size="xs" c="dimmed" ta={"end"}>
-                Price for <strong>15 nights:</strong>
+              <Text size="xs" ta={"end"}>
+                Price for <strong>{hotel?.priceDetails?.info}</strong>
               </Text>
               <Text c={"red"} fw={600} td={"line-through"} ta={"end"}>
-                VND 14,960,000
+                {formatCurrency(
+                  hotel?.priceBreakdown?.strikethroughPrice?.value
+                )}
               </Text>
-              <Link href="/hotel/2">
+              <Link href={`/hotel/${hotel.id}`}>
                 <Text fw={600} size="xl" ta={"end"}>
-                  VND 10,096,000
+                  {formatCurrency(hotel?.priceBreakdown?.grossPrice?.value)}
                 </Text>
               </Link>
               <Text size="xs" c="dimmed" ta={"end"}>
-                includes taxes and fees
+                {hotel?.priceDetails?.taxInfo}
               </Text>
               {roomLeft && (
-                <Text ml={"auto"} size="xs" fw={500} color="red" ta={"right"}>
+                <Text
+                  ml={"auto"}
+                  size="xs"
+                  fw={500}
+                  color="red"
+                  ta={"right"}
+                  className="underline"
+                >
                   {roomLeft}
                 </Text>
               )}

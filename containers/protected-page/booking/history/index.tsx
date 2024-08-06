@@ -11,14 +11,17 @@ import {
   Title,
 } from "@mantine/core";
 import {
+  AlertCircleIcon,
   CarTaxiFront,
   CarTaxiFrontIcon,
+  ChevronRight,
   ChevronRightIcon,
   ShipWheelIcon,
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { BookingDetailCardDrawer } from "./components/booking-card-drawer";
+import { BookingCardModal } from "./components/booking-card-modal";
 
 export const BookingHistoryContainer = () => {
   return (
@@ -77,26 +80,24 @@ export const BookingHistoryContainer = () => {
 
           <Box className="my-3 border-2 rounded-md shadow-md relative" p={15}>
             <Flex justify={"flex-start"} align={"center"} gap={20}>
-              <Link href="/booking/booking-success/detail">
-                <Image
-                  src={"/assets/images/can-tho-image.jpg"}
-                  alt="Image booking"
-                  w={80}
-                  h={60}
-                  fit="cover"
-                  className="rounded-sm"
-                />
-              </Link>
-              <Link href="/booking/booking-success/detail">
-                <Stack gap={1}>
-                  <Text size="sm" fw={700}>
-                    Dorm Can Tho
-                  </Text>
-                  <Text size="xs">Aug 14 - Aug 24</Text>
-                  <Text size="xs">Canceled</Text>
-                </Stack>
-              </Link>
+              <Image
+                src={"/assets/images/can-tho-image.jpg"}
+                alt="Image booking"
+                w={80}
+                h={60}
+                fit="cover"
+                className="rounded-sm"
+              />
+              <Stack gap={1}>
+                <Text size="sm" fw={700}>
+                  Dorm Can Tho
+                </Text>
+                <Text size="xs">Aug 14 - Aug 24</Text>
+                <Text size="xs">Canceled</Text>
+              </Stack>
             </Flex>
+            <Divider my={10} />
+            <BookingCardModal />
 
             <BookingDetailCardDrawer />
           </Box>
