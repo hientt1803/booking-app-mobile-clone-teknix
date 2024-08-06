@@ -36,7 +36,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 <!-- TODO -->
-Mockup data
+Mockup data => nhiều data quá mockup cực lâu 😭😭
 
 <!-- Header -->
 avatar user => lỗi responsive ✅✅✅
@@ -52,8 +52,8 @@ filter => 2 cái button matme cai responsive ✅✅✅
 
 
 <!-- detail page -->
-cho nó dynamic render
-bị lỗi giao diện khúc trên 
+cho nó dynamic render 
+bị lỗi giao diện khúc trên ✅✅✅
 
 
 

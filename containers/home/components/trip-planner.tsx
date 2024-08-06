@@ -1,7 +1,6 @@
 "use client";
 
 import { BoxWrap } from "@/components/box-wrap";
-import { DUMMY_ARRAY } from "@/utils";
 import { Box, ScrollArea, Tabs, Text, Title } from "@mantine/core";
 import {
   BikeIcon,
@@ -14,17 +13,17 @@ import { useState } from "react";
 import { SimpleCard } from "./simple-card";
 
 export const TripPlanner = () => {
-  const [activeTab, setActiveTab] = useState<string | null>("first");
+  const [activeTab, setActiveTab] = useState<string | null>("sandBeach");
 
   return (
     <BoxWrap>
-      <Title order={5}>Quick and easey trip planers</Title>
+      <Title order={5}>Quick and easy trip planers</Title>
       <Text size="md" c={"dimmed"}>
         Pick a vibe and explore the top distinations in VietNam
       </Text>
       <Tabs
-        color="gray"
-        variant="pills"
+        color="blue"
+        variant="default"
         value={activeTab}
         onChange={setActiveTab}
         defaultValue="sandBeach"
@@ -55,13 +54,15 @@ export const TripPlanner = () => {
         <Tabs.Panel value="sandBeach">
           <ScrollArea className="w-full" type="never">
             <Box display={"flex"} className="w-full gap-4">
-              {DUMMY_ARRAY.map((item, index) => (
-                <SimpleCard
-                  key={index}
-                  title="Ha Tien"
-                  description="77 km from Can Tho"
-                />
-              ))}
+              {Array(10)
+                .fill(1)
+                .map((_, index) => (
+                  <SimpleCard
+                    key={index}
+                    title="Ha Tien"
+                    description="77 km from Can Tho"
+                  />
+                ))}
             </Box>
           </ScrollArea>
         </Tabs.Panel>
