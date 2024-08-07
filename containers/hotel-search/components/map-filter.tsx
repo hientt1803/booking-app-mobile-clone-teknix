@@ -1,6 +1,6 @@
 "use client";
 
-import { toastError } from "@/utils/toast";
+import { toastError } from "@/utils/config/toast";
 import { Box, Button, Drawer, Select } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Map, MapPinnedIcon } from "lucide-react";

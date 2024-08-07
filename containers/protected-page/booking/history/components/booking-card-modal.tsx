@@ -69,7 +69,7 @@ export const BookingCardModal = () => {
         </Stack>
       </Modal>
 
-      <Box onClick={open}>
+      <Box onClick={open} className="cursor-pointer">
         <Flex justify={"space-between"} align={"center"} gap={10}>
           <AlertCircleIcon className="w-4 h-4" />
           <Text size="xs" className="flex-1">

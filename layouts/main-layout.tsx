@@ -1,12 +1,15 @@
+import { GlobalLoading } from "@/components/global";
 import { MainFooter, MainHeader } from "@/components/layout";
 import { IChildrenProps } from "@/types";
-import React from "react";
+import React, { Suspense } from "react";
 
 export const MainLayout = ({ children }: IChildrenProps) => {
   return (
     <React.Fragment>
       <MainHeader />
-      <div className="overflow-hidden">{children}</div>
+      <Suspense fallback={<GlobalLoading />}>
+        <div className="overflow-hidden">{children}</div>
+      </Suspense>
       <MainFooter />
     </React.Fragment>
   );

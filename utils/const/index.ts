@@ -1,4 +1,5 @@
 export const HOST_URL = process.env.NEXT_PUBLIC_HOST_URL;
+export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const CITY_MOCKUP = [
   {
@@ -148,122 +149,122 @@ export const FILTER_DATA = [
 export const ARRIVAL_TIME = [
   {
     id: 1,
-    label: "07:00 PM",
+    label: "07:00",
     value: "19",
   },
   {
     id: 2,
-    label: "08:00 PM",
+    label: "08:00",
     value: "20",
   },
   {
     id: 3,
-    label: "09:00 PM",
+    label: "09:00",
     value: "21",
   },
   {
     id: 4,
-    label: "10:00 PM",
+    label: "10:00",
     value: "22",
   },
   {
     id: 5,
-    label: "11:00 PM",
+    label: "11:00",
     value: "23",
   },
   {
     id: 6,
-    label: "12:00 AM",
+    label: "12:00",
     value: "0",
   },
   {
     id: 7,
-    label: "01:00 AM",
+    label: "01:00",
     value: "1",
   },
   {
     id: 8,
-    label: "02:00 AM",
+    label: "02:00",
     value: "2",
   },
   {
     id: 9,
-    label: "03:00 AM",
+    label: "03:00",
     value: "3",
   },
   {
     id: 10,
-    label: "04:00 AM",
+    label: "04:00",
     value: "4",
   },
   {
     id: 11,
-    label: "05:00 AM",
+    label: "05:00",
     value: "5",
   },
   {
     id: 12,
-    label: "06:00 AM",
+    label: "06:00",
     value: "6",
   },
   {
     id: 13,
-    label: "07:00 AM",
+    label: "07:00",
     value: "7",
   },
   {
     id: 14,
-    label: "08:00 AM",
+    label: "08:00",
     value: "8",
   },
   {
     id: 15,
-    label: "09:00 AM",
+    label: "09:00",
     value: "9",
   },
   {
     id: 16,
-    label: "10:00 AM",
+    label: "10:00",
     value: "10",
   },
   {
     id: 17,
-    label: "11:00 AM",
+    label: "11:00",
     value: "11",
   },
   {
     id: 18,
-    label: "12:00 PM",
+    label: "12:00",
     value: "12",
   },
   {
     id: 19,
-    label: "01:00 PM",
+    label: "01:00",
     value: "13",
   },
   {
     id: 20,
-    label: "02:00 PM",
+    label: "02:00",
     value: "14",
   },
   {
     id: 21,
-    label: "03:00 PM",
+    label: "03:00",
     value: "15",
   },
   {
     id: 22,
-    label: "04:00 PM",
+    label: "04:00",
     value: "16",
   },
   {
     id: 23,
-    label: "05:00 PM",
+    label: "05:00",
     value: "17",
   },
   {
     id: 24,
-    label: "06:00 PM",
+    label: "06:00",
     value: "18",
   },
 ];

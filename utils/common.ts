@@ -30,3 +30,10 @@ export const formatCurrency = (value: number = 0) => {
 };
 
 export const DUMMY_ARRAY = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+export function getAmOrPm(hour: number) {
+  if (hour < 0 || hour > 23) {
+    return "Invalid hour. Please enter a number between 0 and 23.";
+  }
+  return hour < 12 ? "AM" : "PM";
+}

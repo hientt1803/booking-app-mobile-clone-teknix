@@ -37,7 +37,7 @@ export const BookingDetailCardDrawer = () => {
             fontSize: "1.4rem",
           },
           content: {
-            borderRadius: "25px 25px 0 0",
+            borderRadius: "20px 20px 0 0",
           },
         }}
       >

@@ -13,24 +13,43 @@ import {
   Title,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
-const ModalChangeDate = () => {
+interface IModalChangeDate {
+  dateRange: {
+    startDate: Date;
+    endDate: Date;
+    key: string;
+  }[];
+  setDateRange: Dispatch<
+    SetStateAction<
+      {
+        startDate: Date;
+        endDate: Date;
+        key: string;
+      }[]
+    >
+  >;
+}
+
+const ModalChangeDate = ({ dateRange, setDateRange }: IModalChangeDate) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [isChangeDate, setIsChangeDate] = useState(false);
-  const [dateRange, setDateRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
 
   return (
     <div>
-      <Modal opened={opened} onClose={close} centered>
-        <Title order={5}>When would you like to stay?</Title>
-        <Text size="xs" mb={10}>
+      <Modal
+        opened={opened}
+        onClose={close}
+        centered
+        title="When would you like to stay?"
+        styles={{
+          title: {
+            fontWeight: 700,
+          },
+        }}
+      >
+        <Text size="xs" mb={30}>
           Choose your prefered dates and check if {`ther're`} available{" "}
         </Text>
         <Box bg={"yellow"}>
@@ -149,7 +168,7 @@ const ModalChangeDate = () => {
                 fullWidth
                 variant="outline"
                 color="blue"
-                onClick={close}
+                onClick={() => setIsChangeDate(false)}
               >
                 Select other dates
               </PrimaryButton>

@@ -21,7 +21,7 @@ import React, { useState } from "react";
 
 import { cn } from "@/lib";
 import { daysBetweenUTC, fortmateDate } from "@/utils";
-import { toastError } from "@/utils/toast";
+import { toastError } from "@/utils/config/toast";
 import { useDisclosure } from "@mantine/hooks";
 import { addDays } from "date-fns";
 import { Calendar, PlusIcon } from "lucide-react";

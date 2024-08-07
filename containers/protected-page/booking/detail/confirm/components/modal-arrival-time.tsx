@@ -1,18 +1,11 @@
 "use client";
 
 import { PrimaryButton } from "@/components/button";
-import { ARRIVAL_TIME } from "@/utils";
-import {
-  Alert,
-  Box,
-  Drawer,
-  Text,
-  TextInput,
-  Title
-} from "@mantine/core";
+import { ARRIVAL_TIME, getAmOrPm, toastError, toastSuccess } from "@/utils";
+import { Alert, Box, Drawer, Text, TextInput, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { AlertCircleIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface IArraivalTime {
   active: boolean;
@@ -22,11 +15,20 @@ interface IArraivalTime {
 }
 [];
 
-const ModalChangeArrivalTime = () => {
+interface IProps {
+  arrivalTimeProps: string;
+  setArrivalTimeProps: Dispatch<SetStateAction<string>>;
+}
+
+const ModalChangeArrivalTime = ({
+  arrivalTimeProps,
+  setArrivalTimeProps,
+}: IProps) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [anotherTime, setAnotherTime] = useState(false);
-  const [selectedArrivalTime, setSelectedArrivalTime] = useState("0");
+  const [selectedArrivalTime, setSelectedArrivalTime] = useState<string>("");
   const [arrivalTime, setArrivalTime] = useState<IArraivalTime[]>([]);
+  const [activeAnotherTime, setActiveAnotherTime] = useState(false);
 
   useEffect(() => {
     const newArrival = ARRIVAL_TIME.map((item) => {
@@ -57,6 +59,23 @@ const ModalChangeArrivalTime = () => {
     setArrivalTime(newArrival);
   };
 
+  const handleSetAnotherTimeAndReFotmat = () => {
+    setAnotherTime(true);
+    setActiveAnotherTime(true);
+    const newArrival = ARRIVAL_TIME.map((item) => {
+      return {
+        ...item,
+        active: false,
+      };
+    });
+
+    setArrivalTime(newArrival);
+  };
+
+  useEffect(() => {
+    setArrivalTimeProps(selectedArrivalTime);
+  }, [arrivalTime, selectedArrivalTime, setArrivalTimeProps]);
+
   return (
     <div>
       <Drawer opened={opened} onClose={close} size={"100%"} position="right">
@@ -85,16 +104,17 @@ const ModalChangeArrivalTime = () => {
                 setAnotherTime(false);
                 setSelectedArrivalTime(item.label);
                 handleSetSelectedArrivalTime(item.id);
+                setActiveAnotherTime(false);
               }}
             >
               {item.label}
             </PrimaryButton>
           ))}
           <PrimaryButton
-            variant="outline"
+            variant={activeAnotherTime ? "filled" : "outline"}
             color="dark"
             className="rounded-sm"
-            onClick={() => setAnotherTime(true)}
+            onClick={handleSetAnotherTimeAndReFotmat}
           >
             Another time
           </PrimaryButton>
@@ -105,14 +125,23 @@ const ModalChangeArrivalTime = () => {
             label="Choose the time you arrival"
             placeholder="1:00 PM"
             my={15}
-            onChange={(e) => setSelectedArrivalTime(e.target.value)}
+            onChange={(e) => {
+              if (Number(e.target.value) > 25) {
+                toastError("Please, filling correct time");
+                return;
+              }
+              setSelectedArrivalTime(e.target.value);
+            }}
           />
         )}
 
         <Text size="xs" mt={20}>
           Your selected time
         </Text>
-        <Title order={3}>Web, Aug 14, 2024, {selectedArrivalTime}</Title>
+        <Title order={3}>
+          Web, Aug 14, 2024, {selectedArrivalTime}{" "}
+          {getAmOrPm(Number(arrivalTime))}
+        </Title>
 
         <Alert
           variant="light"

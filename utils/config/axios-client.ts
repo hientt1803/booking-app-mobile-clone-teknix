@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getCookie } from "cookies-next";
 import queryString from "query-string";
-import { TLocalStore } from "./storage/localstorage";
+import { TLocalStore } from "../storage/localstorage";
 
 // Get access token
 const ISSERVER = typeof window === "undefined";

@@ -50,9 +50,7 @@ export const MobileSearchGroup = () => {
         {/* Button */}
         <Box p={6}>
           <Link href="/hotel">
-            <PrimaryButton fullWidth color="indigo">
-              Search
-            </PrimaryButton>
+            <PrimaryButton fullWidth>Search</PrimaryButton>
           </Link>
         </Box>
       </Stack>

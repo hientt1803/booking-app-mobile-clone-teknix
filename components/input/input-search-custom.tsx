@@ -1,6 +1,6 @@
 "use client";
 
-import { CITY_MOCKUP, DUMMY_ARRAY } from "@/utils";
+import { CITY_MOCKUP } from "@/utils";
 import {
   Box,
   CloseButton,
@@ -13,8 +13,8 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { MapPin, MousePointer2, SearchIcon } from "lucide-react";
-import { PrimaryButton } from "../button";
 import Link from "next/link";
+import { PrimaryButton } from "../button";
 
 interface IInputSearch {
   inputSearchValue: string;
@@ -102,6 +102,7 @@ export const InputSearchCustom = ({
               icon={<MapPin className="w-5 h-5" />}
               country={city.country}
               city={city.name}
+              onClick={setInputSearchValue}
             />
           </Link>
         ))}
@@ -120,13 +121,15 @@ export const DestinationItem = ({
   icon,
   city,
   country,
+  onClick,
 }: {
   icon: any;
   city: string;
   country: string;
+  onClick: (value: string) => void;
 }) => {
   return (
-    <Stack>
+    <Stack onClick={() => onClick(city)}>
       <Stack
         gap={5}
         className="transition hover:bg-neutral-200 py-1 cursor-pointer"

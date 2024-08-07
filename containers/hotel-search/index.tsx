@@ -17,6 +17,7 @@ import { NavFilter } from "./components/nav-filter";
 export const SearchPageContainer = () => {
   return (
     <React.Fragment>
+
       <Box className="relative">
         <Box bg="#fff">
           <Box bg="#1e3a8a" className=" relative z-10" py={20}>

@@ -4,6 +4,7 @@ import { BoxWrap } from "@/components/box-wrap";
 import {
   Accordion,
   AccordionItem,
+  Badge,
   Box,
   Container,
   Divider,
@@ -35,8 +36,19 @@ import Link from "next/link";
 import ModalChangeArrivalTime from "./modal-arrival-time";
 import ModalChangeDate from "./modal-change-date";
 import ModalChangeGuestDetail from "./modal-change-guest-detail";
+import { useState } from "react";
+import { fortmateDate, getAmOrPm } from "@/utils";
 
 export const BookingHeader = () => {
+  const [dateRange, setDateRange] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
+  const [arrivalTime, setArrivalTime] = useState<string>("");
+
   return (
     <Stack gap={5}>
       <Box bg="#fff" py={20}>
@@ -75,13 +87,17 @@ export const BookingHeader = () => {
               <Calendar />
               <Stack gap={2}>
                 <Text size="sm" fw={600}>
-                  Web, Aug 14, 2024 - Sat, Aug 24,2024
+                  {fortmateDate(dateRange[0].startDate)} -{" "}
+                  {fortmateDate(dateRange[0].endDate)}
                 </Text>
                 <Text size="sm">Check-in: 14:00 - 23:00</Text>
                 <Text size="sm" mb={10}>
                   Check-out: 14:00 - 23:00
                 </Text>
-                <ModalChangeDate />
+                <ModalChangeDate
+                  dateRange={dateRange}
+                  setDateRange={setDateRange}
+                />
               </Stack>
             </Flex>
             <Flex gap={15} mt={20}>
@@ -94,7 +110,15 @@ export const BookingHeader = () => {
                   Share your arrival time so the property can arrage a smooth
                   check-in for you
                 </Text>
-                <ModalChangeArrivalTime />
+                {arrivalTime && (
+                  <Badge variant="filled" color="indigo">
+                    {arrivalTime} {getAmOrPm(Number(arrivalTime))}
+                  </Badge>
+                )}
+                <ModalChangeArrivalTime
+                  arrivalTimeProps={arrivalTime}
+                  setArrivalTimeProps={setArrivalTime}
+                />
               </Stack>
             </Flex>
             <Flex gap={15} mt={20}>
