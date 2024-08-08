@@ -2,7 +2,7 @@
 
 import { Box, Stack } from "@mantine/core";
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
 import { PrimaryButton } from "../button";
 import { DateInputCustom, InputSearchCustom } from "../input";
 import { GroupPeopleInput } from "./group-input-select";
@@ -12,10 +12,12 @@ export const MobileSearchGroup = ({
   isShowInput = true,
   buttonText = "Search",
   buttonClassName = "",
+  childrenProps,
 }: {
   isShowInput?: boolean;
   buttonText?: string;
   buttonClassName?: string;
+  childrenProps?: React.ReactNode;
 }) => {
   // Search input state
   const [inputSearchValue, setinputSearchValue] = useState(
@@ -56,6 +58,8 @@ export const MobileSearchGroup = ({
           rooms={rooms}
           setRooms={setRooms}
         />
+
+        {childrenProps}
 
         {/* Button */}
         <Box p={6}>

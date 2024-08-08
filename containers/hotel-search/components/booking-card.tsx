@@ -105,6 +105,19 @@ export const BookingCard = (props: IBookingCard) => {
               </Flex>
             </Box>
 
+            {hotel?.priceBreakdown?.benefitBadges.map(
+              (item: any, index: string) => (
+                <Badge
+                  key={index}
+                  variant="filled"
+                  className="bg-green-700"
+                  radius={"sm"}
+                >
+                  {item.text}
+                </Badge>
+              )
+            )}
+
             <Flex gap={5} wrap={"wrap"}>
               <Text size="xs" fw={600}>
                 {hotel?.proposedAccommodation[0]}

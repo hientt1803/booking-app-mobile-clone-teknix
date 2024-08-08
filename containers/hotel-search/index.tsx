@@ -4,15 +4,15 @@ import {
   Container,
   Divider,
   Flex,
-  ScrollArea,
   Stack,
-  Text,
+  Text
 } from "@mantine/core";
 import { ChevronDown, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { ListProduct } from "./components/list-product";
 import { NavFilter } from "./components/nav-filter";
+import { ScrollTagList } from "./components/scroll-tag-list";
 
 export const SearchPageContainer = () => {
   return (
@@ -57,36 +57,7 @@ export const SearchPageContainer = () => {
         <Box bg="#fff">
           <Container>
             <Divider />
-            <ScrollArea
-              className="w-full"
-              type="always"
-              scrollbarSize={2}
-              py={6}
-            >
-              <Box display={"flex"} className="w-full gap-1">
-                <Button variant="default" radius="xl">
-                  Hotels (132)
-                </Button>
-                <Button variant="default" radius="xl">
-                  Double beb (199)
-                </Button>
-                <Button variant="default" radius="xl">
-                  Family rooms (154)
-                </Button>
-                <Button variant="default" radius="xl">
-                  Electric kettle (135)
-                </Button>
-                <Button variant="default" radius="xl">
-                  Electric kettle (135)
-                </Button>
-                <Button variant="default" radius="xl">
-                  Electric kettle (135)
-                </Button>
-                <Button variant="default" radius="xl">
-                  Electric kettle (135)
-                </Button>
-              </Box>
-            </ScrollArea>
+            <ScrollTagList />
           </Container>
         </Box>
 

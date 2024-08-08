@@ -13,6 +13,7 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { PrimaryButton } from "../button";
 import { GroupInputQuantity } from "../input";
+import { ChevronDown } from "lucide-react";
 
 interface IGroupPeopleInput {
   adults: number;
@@ -36,9 +37,12 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
             <Text size="xs" fw={550}>
               Adults
             </Text>
-            <Text size="xs" fw={550}>
-              {adults}
-            </Text>
+            <Flex justify={"space-between"} align={"center"}>
+              <Text size="xs" fw={550}>
+                {adults}
+              </Text>
+              <ChevronDown className="w-4 h-4" />
+            </Flex>
           </Stack>
         </Grid.Col>
         <Divider orientation="vertical" />
@@ -47,9 +51,12 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
             <Text size="xs" fw={550}>
               Children
             </Text>
-            <Text size="xs" fw={550}>
-              {childrenCount}
-            </Text>
+            <Flex justify={"space-between"} align={"center"}>
+              <Text size="xs" fw={550}>
+                {childrenCount}
+              </Text>
+              <ChevronDown className="w-4 h-4" />
+            </Flex>
           </Stack>
         </Grid.Col>
         <Divider orientation="vertical" />
@@ -58,9 +65,12 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
             <Text size="xs" fw={550}>
               Rooms
             </Text>
-            <Text size="xs" fw={550}>
-              {rooms}
-            </Text>
+            <Flex justify={"space-between"} align={"center"}>
+              <Text size="xs" fw={550}>
+                {rooms}
+              </Text>
+              <ChevronDown className="w-4 h-4" />
+            </Flex>
           </Stack>
         </Grid.Col>
       </Grid>
@@ -104,7 +114,7 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
             <Text size="xs" fw={600}>
               Traveling with pets?
             </Text>
-            <Switch mr={20}/>
+            <Switch mr={20} />
           </Flex>
         </Stack>
 
