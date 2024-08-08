@@ -5,13 +5,12 @@ import {
   Box,
   Button,
   Card,
-  CheckIcon,
   Divider,
   Flex,
   Image,
   Stack,
   Text,
-  Title,
+  Title
 } from "@mantine/core";
 import { CarIcon, CarTaxiFront, ChevronRight, Settings2 } from "lucide-react";
 import React from "react";

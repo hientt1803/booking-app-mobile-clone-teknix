@@ -13,7 +13,7 @@ export const StepperProgress = ({ activeValue }: { activeValue: number }) => {
   return (
     <Box bg={"#fff"} pt={30} pb={15}>
       <Container>
-        <Stepper size="xs" active={active} onStepClick={setActive}>
+        <Stepper size="xs" allowNextStepsSelect={false} active={active} onStepClick={setActive}>
           <Stepper.Step />
           <Stepper.Step />
           <Stepper.Step />

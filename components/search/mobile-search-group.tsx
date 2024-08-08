@@ -8,7 +8,15 @@ import { DateInputCustom, InputSearchCustom } from "../input";
 import { GroupPeopleInput } from "./group-input-select";
 import { addDays } from "date-fns";
 
-export const MobileSearchGroup = () => {
+export const MobileSearchGroup = ({
+  isShowInput = true,
+  buttonText = "Search",
+  buttonClassName = "",
+}: {
+  isShowInput?: boolean;
+  buttonText?: string;
+  buttonClassName?: string;
+}) => {
   // Search input state
   const [inputSearchValue, setinputSearchValue] = useState(
     "Around current location"
@@ -31,10 +39,12 @@ export const MobileSearchGroup = () => {
   return (
     <Box bg={"#f59f00"} p={6} mt={10}>
       <Stack gap={5}>
-        <InputSearchCustom
-          inputSearchValue={inputSearchValue}
-          setInputSearchValue={setinputSearchValue}
-        />
+        {isShowInput && (
+          <InputSearchCustom
+            inputSearchValue={inputSearchValue}
+            setInputSearchValue={setinputSearchValue}
+          />
+        )}
 
         <DateInputCustom dateRange={dateRange} setDateRange={setDateRange} />
 
@@ -50,7 +60,9 @@ export const MobileSearchGroup = () => {
         {/* Button */}
         <Box p={6}>
           <Link href="/hotel">
-            <PrimaryButton fullWidth>Search</PrimaryButton>
+            <PrimaryButton fullWidth className={buttonClassName}>
+              {buttonText}
+            </PrimaryButton>
           </Link>
         </Box>
       </Stack>

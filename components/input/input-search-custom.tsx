@@ -14,6 +14,7 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { MapPin, MousePointer2, SearchIcon } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { PrimaryButton } from "../button";
 
 interface IInputSearch {
@@ -21,18 +22,43 @@ interface IInputSearch {
   setInputSearchValue: (value: string) => void;
 }
 
+interface ICity {
+  id: number;
+  name: string;
+  link: string;
+  country: string;
+}
+
 export const InputSearchCustom = ({
   inputSearchValue,
   setInputSearchValue,
 }: IInputSearch) => {
   const [opened, { open, close }] = useDisclosure(false);
+  const [listLocation, setListLocation] = useState<ICity[]>(CITY_MOCKUP);
+  const [listLocationFiltered, setListLocationFiltered] = useState<ICity[]>([]);
+
+  useEffect(() => {
+    const newList = listLocation.filter((l) =>
+      l.name.toLocaleLowerCase().includes(inputSearchValue.toLocaleLowerCase())
+    );
+
+    console.log(newList);
+    setListLocationFiltered(newList);
+  }, [inputSearchValue]);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setInputSearchValue(value);
+  };
+
+  console.log(listLocationFiltered);
 
   return (
     <Box px={6} pt={5}>
       <Input
         placeholder="Search for your location"
         value={inputSearchValue}
-        onChange={(e) => setInputSearchValue(e.target.value)}
+        onChange={handleInputChange}
         leftSection={<SearchIcon size={16} />}
         onClick={open}
         rightSectionPointerEvents="all"
@@ -96,16 +122,33 @@ export const InputSearchCustom = ({
         <Text size="xs" fw={700} mb={20}>
           Popular destinations nearby
         </Text>
-        {CITY_MOCKUP.map((city, index) => (
-          <Link key={index} href={city.link}>
-            <DestinationItem
-              icon={<MapPin className="w-5 h-5" />}
-              country={city.country}
-              city={city.name}
-              onClick={setInputSearchValue}
-            />
-          </Link>
-        ))}
+        {listLocationFiltered.length === 0 ? (
+          <Text
+            size="sm"
+            fw={700}
+            ta={"center"}
+            c={"blue"}
+            maw={300}
+            my={30}
+            mx={"auto"}
+          >
+            Sorry we cannot find any result match your keyword! Try again
+            something else
+          </Text>
+        ) : (
+          <>
+            {listLocationFiltered.map((city, index) => (
+              <Link key={index} href={city.link}>
+                <DestinationItem
+                  icon={<MapPin className="w-5 h-5" />}
+                  country={city.country}
+                  city={city.name}
+                  onClick={setInputSearchValue}
+                />
+              </Link>
+            ))}
+          </>
+        )}
 
         <Box bg={"#fff"} className="sticky bottom-0 left-0 right-0 p-2">
           <PrimaryButton fullWidth onClick={close}>

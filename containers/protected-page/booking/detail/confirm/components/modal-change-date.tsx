@@ -2,6 +2,7 @@
 
 import { PrimaryButton } from "@/components/button";
 import { DateInputCustom } from "@/components/input";
+import { fortmateDate } from "@/utils";
 import {
   Box,
   Divider,
@@ -49,10 +50,10 @@ const ModalChangeDate = ({ dateRange, setDateRange }: IModalChangeDate) => {
           },
         }}
       >
-        <Text size="xs" mb={30}>
+        <Text size="xs" mb={15}>
           Choose your prefered dates and check if {`ther're`} available{" "}
         </Text>
-        <Box bg={"yellow"}>
+        <Box bg={"yellow"} mb={20}>
           <DateInputCustom
             dateRange={dateRange}
             setDateRange={setDateRange}
@@ -101,7 +102,7 @@ const ModalChangeDate = ({ dateRange, setDateRange }: IModalChangeDate) => {
                     Check in from
                   </Text>
                   <Text size="sm" fw={600}>
-                    Feb 7, 2024
+                    {fortmateDate(dateRange[0].startDate)}
                   </Text>
                   <Text size="xs" fw={600}>
                     Friday 10:00
@@ -113,7 +114,7 @@ const ModalChangeDate = ({ dateRange, setDateRange }: IModalChangeDate) => {
                     Check out
                   </Text>
                   <Text size="sm" fw={600}>
-                    Feb 9, 2024
+                    {fortmateDate(dateRange[0].endDate)}
                   </Text>
                   <Text size="xs" fw={600}>
                     Saturday 9:00

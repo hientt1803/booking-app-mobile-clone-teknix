@@ -17,7 +17,7 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { cn } from "@/lib";
 import { daysBetweenUTC, fortmateDate } from "@/utils";
@@ -27,6 +27,7 @@ import { addDays } from "date-fns";
 import { Calendar, PlusIcon } from "lucide-react";
 import { DateRangePicker } from "react-date-range";
 import { PrimaryButton } from "../button";
+import { useSearchParams } from "next/navigation";
 
 interface IDateInput {
   dateRange: any;
@@ -159,6 +160,7 @@ export const DateInputCustom = ({
   const [dateFlexiable, setDateFlexiable] = useState(MONTHS_DATA);
   const [selectedMonths, setSelectedMonths] = useState<number[]>([]);
   const [isOtherDayStaySelected, setIsOtherDayStaySelected] = useState(false);
+  const searchParams = useSearchParams();
 
   const handleResetData = () => {
     setDateFlexiable(MONTHS_DATA);
@@ -251,6 +253,15 @@ export const DateInputCustom = ({
       setIsChangeDate(true);
     }
   };
+
+  // LOGIC on select date from reserve page
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (params.toString().includes("change-date=true")) {
+      open();
+    }
+  }, [searchParams]);
 
   return (
     <React.Fragment>

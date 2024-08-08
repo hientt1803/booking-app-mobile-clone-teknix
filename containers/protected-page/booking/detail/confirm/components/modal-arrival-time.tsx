@@ -29,6 +29,7 @@ const ModalChangeArrivalTime = ({
   const [selectedArrivalTime, setSelectedArrivalTime] = useState<string>("");
   const [arrivalTime, setArrivalTime] = useState<IArraivalTime[]>([]);
   const [activeAnotherTime, setActiveAnotherTime] = useState(false);
+  const [isCorrectTimeArrival, setIsCorrectTimeArrival] = useState(true);
 
   useEffect(() => {
     const newArrival = ARRIVAL_TIME.map((item) => {
@@ -105,6 +106,7 @@ const ModalChangeArrivalTime = ({
                 setSelectedArrivalTime(item.label);
                 handleSetSelectedArrivalTime(item.id);
                 setActiveAnotherTime(false);
+                setIsCorrectTimeArrival(true);
               }}
             >
               {item.label}
@@ -126,10 +128,12 @@ const ModalChangeArrivalTime = ({
             placeholder="1:00 PM"
             my={15}
             onChange={(e) => {
-              if (Number(e.target.value) > 25) {
+              if (Number(e.target.value) > 24) {
                 toastError("Please, filling correct time");
+                setIsCorrectTimeArrival(false);
                 return;
               }
+              setIsCorrectTimeArrival(true);
               setSelectedArrivalTime(e.target.value);
             }}
           />
@@ -158,7 +162,12 @@ const ModalChangeArrivalTime = ({
           immediate answer.
         </Alert>
 
-        <PrimaryButton fullWidth className="mt-20" onClick={close}>
+        <PrimaryButton
+          fullWidth
+          className="mt-20"
+          onClick={close}
+          disable={!isCorrectTimeArrival}
+        >
           Submit request
         </PrimaryButton>
       </Drawer>

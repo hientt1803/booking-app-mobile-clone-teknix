@@ -3,15 +3,22 @@
 import "leaflet/dist/leaflet.css";
 
 import { Box } from "@mantine/core";
-import { LatLngExpression } from "leaflet";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { LatLngExpression, map } from "leaflet";
+import {
+  Suspense,
+  useCallback,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import {
   MapContainer,
   Marker,
   Popup,
   TileLayer,
-  useMapEvents
+  useMapEvents,
 } from "react-leaflet";
 
 interface ILeafletProps {
@@ -26,10 +33,10 @@ export const LeafletComponent = (props: ILeafletProps) => {
     longitude,
   ]);
 
-  // const handleMapClick = (e: any) => {
-  //   const { lat, lng } = e.latlng;
-  //   alert(`Clicked at: ${lat}, ${lng}`);
-  // };
+  const handleMapClick = (e: any) => {
+    const { lat, lng } = e.latlng;
+    alert(`Clicked at: ${lat}, ${lng}`);
+  };
 
   const MapPlaceholder = () => {
     return (
@@ -48,12 +55,17 @@ export const LeafletComponent = (props: ILeafletProps) => {
         className="min-h-[85vh]"
         placeholder={<MapPlaceholder />}
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {/* <MapEventsHandler handleMapClick={handleMapClick} /> */}
-        <DraggableMarker destination={destination} />
+        <Suspense>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {/* <MapEventsHandler handleMapClick={handleMapClick} /> */}
+          <DraggableMarker
+            destination={destination}
+            handleMapClick={handleMapClick}
+          />
+        </Suspense>
       </MapContainer>
     </Box>
   );
@@ -70,7 +82,13 @@ const MapEventsHandler = ({
   return null;
 };
 
-function DraggableMarker({ destination }: { destination: any }) {
+function DraggableMarker({
+  destination,
+  handleMapClick,
+}: {
+  destination: any;
+  handleMapClick: (e: any) => void;
+}) {
   const [draggable, setDraggable] = useState(false);
   const [position, setPosition] = useState(destination);
 
@@ -93,8 +111,9 @@ function DraggableMarker({ destination }: { destination: any }) {
 
   // Event click
   const map = useMapEvents({
-    click() {
+    click(e) {
       map.locate();
+      handleMapClick(e);
     },
     locationfound(e) {
       setPosition(e.latlng);

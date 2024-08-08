@@ -11,7 +11,6 @@ const LeafletComponent = dynamic(
   () => import("@/components/map").then((mob) => mob.LeafletComponent),
   { ssr: false }
 );
-
 export const MapFilter = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [getCurrentUserLocation, setGetCurrentUserLocation] = useState({
@@ -83,7 +82,7 @@ export const MapFilter = () => {
             "Tra Vinh",
             "Soc Trang",
             "Hau Giang",
-            "Tien Gian",
+            "Tien Giang",
             "Kien Giang",
           ]}
           leftSectionPointerEvents="none"

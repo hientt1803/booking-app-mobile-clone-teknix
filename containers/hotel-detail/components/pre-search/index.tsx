@@ -96,11 +96,22 @@ export const PreSearchModal = ({
       styles={{
         title: {
           fontWeight: 700,
+          fontSize: "1.3rem",
+        },
+        header: {
+          background: "#f59f00",
+        },
+        content: {
+          background: "#f59f00",
+          borderRadius: "10px",
+        },
+        body: {
+          padding: 0,
         },
       }}
       centered
     >
-      <MobileSearchGroup />
+      <MobileSearchGroup isShowInput={false} buttonText="Check availability" buttonClassName="text-lg"/>
     </Modal>
   );
 };

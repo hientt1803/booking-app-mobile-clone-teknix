@@ -13,3 +13,7 @@ export * from "./const/navbar";
 
 // toast
 export * from "./config/toast";
+
+// algorithm
+export * from "./algorithm/quick-sort";
+export * from "./algorithm/trie";

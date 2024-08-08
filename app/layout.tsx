@@ -8,11 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 
-import { GlobalLoading } from "@/components/global";
 import { GeniusModal } from "@/components/modal";
 import { HOST_URL } from "@/utils";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -55,30 +53,30 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/favicon/logo_nvb_light.png",
+        url: "/assets/favicon/logo_nvb_light.png",
         type: "image/png",
       },
       {
-        url: "/favicon/logo_nvb_dark.png",
+        url: "/assets/favicon/logo_nvb_dark.png",
         media: "(prefers-color-scheme: dark)",
         type: "image/png",
       },
       {
-        url: "/favicon/favicon-16x16.png",
+        url: "/assets/favicon/favicon-16x16.png",
         sizes: "16x16",
         type: "image/png",
       },
       {
-        url: "/favicon/favicon-32x32.png",
+        url: "/assets/favicon/favicon-32x32.png",
         sizes: "32x32",
         type: "image/png",
       },
     ],
-    shortcut: ["/favicon/apple-touch-icon.png"],
+    shortcut: ["/assets/favicon/apple-touch-icon.png"],
     apple: [
-      { url: "/favicon/apple-touch-icon.png" },
+      { url: "/assets/favicon/apple-touch-icon.png" },
       {
-        url: "/favicon/apple-touch-icon.png",
+        url: "/assets/favicon/apple-touch-icon.png",
         sizes: "180x180",
         type: "image/png",
       },
@@ -86,7 +84,7 @@ export const metadata: Metadata = {
     other: [
       {
         rel: "apple-touch-icon-precomposed",
-        url: "/favicon/apple-touch-icon.png",
+        url: "/assets/favicon/apple-touch-icon.png",
       },
     ],
   },
@@ -125,13 +123,11 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body className={inter.className}>
-        <Suspense fallback={<GlobalLoading />}>
-          <MantineProvider>
-            {children}
-            <GeniusModal />
-            <ToastContainer />
-          </MantineProvider>
-        </Suspense>
+        <MantineProvider>
+          {children}
+          <GeniusModal />
+          <ToastContainer />
+        </MantineProvider>
       </body>
     </html>
   );

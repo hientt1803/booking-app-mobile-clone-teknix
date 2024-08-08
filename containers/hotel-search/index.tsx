@@ -17,7 +17,6 @@ import { NavFilter } from "./components/nav-filter";
 export const SearchPageContainer = () => {
   return (
     <React.Fragment>
-
       <Box className="relative">
         <Box bg="#fff">
           <Box bg="#1e3a8a" className=" relative z-10" py={20}>
@@ -50,12 +49,7 @@ export const SearchPageContainer = () => {
         </Box>
 
         {/* Filter */}
-        <Box
-          pt={35}
-          pb={15}
-          px={30}
-          className="sticky top-50 left-0 right-0 bg-white"
-        >
+        <Box pt={35} pb={15} px={30} className="bg-white">
           <NavFilter />
         </Box>
 

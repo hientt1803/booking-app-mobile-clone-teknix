@@ -8,21 +8,13 @@ import {
   Divider,
   Flex,
   Grid,
-  List,
   Modal,
   Stack,
   Text,
-  ThemeIcon,
   Title,
-  rem,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import {
-  CheckIcon,
-  DollarSignIcon,
-  DotIcon,
-  DotSquareIcon,
-} from "lucide-react";
+import { CheckIcon, DollarSignIcon, DotIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -58,9 +50,12 @@ export const CheckInInformation = () => {
               <Text size="xs" fw={600}>
                 1 Night
               </Text>
-              <Link href={"/reserve"} className="text-xs text-blue-700">
+              {/* <Link
+                href={"/hotel/search-form?change-date=true"}
+                className="text-xs text-blue-700"
+              >
                 Change dates
-              </Link>
+              </Link> */}
             </Box>
 
             <Divider mt={5} />
@@ -73,7 +68,7 @@ export const CheckInInformation = () => {
                   </Text>
                 </Accordion.Control>
                 <Accordion.Panel>
-                  <Stack>
+                  <Stack gap={5}>
                     <Text fw={600} size="xs">
                       1 room for adult
                     </Text>
@@ -82,6 +77,12 @@ export const CheckInInformation = () => {
                 </Accordion.Panel>
               </Accordion.Item>
             </Accordion>
+            <Link
+              href={"/hotel/2?change-selection=true"}
+              className="text-xs text-blue-700"
+            >
+              Change your selection
+            </Link>
 
             {/* <Divider my={5} /> */}
 
@@ -188,7 +189,9 @@ export const BookingConditionModal = () => {
         }}
       >
         <Stack gap={5}>
-          <Title order={4} fw={400} mb={20}>1 X {`'Double Room'`}</Title>
+          <Title order={4} fw={400} mb={20}>
+            1 X {`'Double Room'`}
+          </Title>
 
           <Box>
             <Text fw={700} size="xs" mb={5} className="text-black">
@@ -277,7 +280,11 @@ export const BookingConditionModal = () => {
         </Stack>
       </Modal>
 
-      <Text mt={6} className="text-xs text-blue-700 cursor-pointer" onClick={open}>
+      <Text
+        mt={6}
+        className="text-xs text-blue-700 cursor-pointer"
+        onClick={open}
+      >
         More Details
       </Text>
     </>

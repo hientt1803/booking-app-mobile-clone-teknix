@@ -10,6 +10,7 @@ import {
   Group,
   Radio,
   Stack,
+  Text,
   TextInput,
   Title,
 } from "@mantine/core";
@@ -55,15 +56,16 @@ export const FormReserve = ({ form }: { form: UseFormReturnType<any> }) => {
       />
 
       <Flex justify={"space-between"} gap={5} align={"center"}>
-        <Autocomplete
+        {/* <Autocomplete
           data={["+84", "+1", "+2"]}
           rightSectionPointerEvents="none"
           withAsterisk
           rightSection={<ChevronsUpDown />}
           className="flex-1"
           label="Country"
-        />
+        /> */}
         <TextInput
+          type="number"
           withAsterisk
           label="Enter phone number"
           className="flex-[3]"
@@ -83,12 +85,10 @@ export const FormReserve = ({ form }: { form: UseFormReturnType<any> }) => {
       <Divider my={10} />
 
       <Stack gap={5}>
-        <Radio.Group
-          size="sm"
-          name="bookingFor"
-          label="Who are you booking for?"
-          description="Optional"
-        >
+        <Group>
+          <Text size="sm">
+            <strong>Who are you booking for?</strong>(Optional)
+          </Text>
           <Group mt="xs">
             <Radio
               value="guest"
@@ -103,13 +103,11 @@ export const FormReserve = ({ form }: { form: UseFormReturnType<any> }) => {
               {...form.getInputProps("bookingFor")}
             />
           </Group>
-        </Radio.Group>
-        <Radio.Group
-          size="sm"
-          name="traverlingFor"
-          label="Are you travalling for work?"
-          description="Optional"
-        >
+        </Group>
+        <Group mt={10}>
+          <Text size="sm">
+            <strong>Are you travalling for work?</strong>(Optional)
+          </Text>
           <Group mt="xs">
             <Radio
               value="0"
@@ -124,7 +122,7 @@ export const FormReserve = ({ form }: { form: UseFormReturnType<any> }) => {
               {...form.getInputProps("traverlingFor")}
             />
           </Group>
-        </Radio.Group>
+        </Group>
       </Stack>
     </BoxWrap>
   );
