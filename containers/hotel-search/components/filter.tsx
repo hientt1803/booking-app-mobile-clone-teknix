@@ -144,7 +144,10 @@ export const Filter = () => {
       </Drawer>
 
       <Button onClick={open} variant="subtle" size="xs">
-        <ListFilterIcon style={{ width: "20px", height: "20px" }} /> Filter
+        <Flex gap={8} align={"center"}>
+          <ListFilterIcon className="w-4 h-4" />
+          Filter
+        </Flex>
       </Button>
     </Box>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { toastError } from "@/utils/config/toast";
-import { Box, Button, Drawer, Select } from "@mantine/core";
+import { Box, Button, Drawer, Flex, Select } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Map, MapPinnedIcon } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -99,7 +99,10 @@ export const MapFilter = () => {
       </Drawer>
 
       <Button onClick={open} variant="subtle" size="xs">
-        <Map style={{ width: "20px", height: "20px" }} /> Map
+        <Flex gap={8} align={"center"}>
+          <Map className="w-4 h-4" />
+          Map
+        </Flex>
       </Button>
     </Box>
   );

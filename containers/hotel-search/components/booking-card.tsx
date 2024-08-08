@@ -15,7 +15,14 @@ import {
   Title,
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { CheckIcon, MapIcon, ThumbsUp } from "lucide-react";
+import {
+  CheckIcon,
+  DotIcon,
+  MapIcon,
+  MapPinCheckIcon,
+  MapPinIcon,
+  ThumbsUp,
+} from "lucide-react";
 import Link from "next/link";
 import { Fragment } from "react";
 
@@ -53,14 +60,14 @@ export const BookingCard = (props: IBookingCard) => {
                 }
                 alt={hotel?.name ?? ""}
                 h={"100%"}
-                className="rounded-md"
+                className="rounded-sm"
               />
             </Link>
           </Grid.Col>
         )}
         <Grid.Col span={!matches ? 6 : 12}>
           <Stack gap={2}>
-            <Rating value={hotel?.accuratePropertyClass} readOnly size={"xs"}/>
+            <Rating value={hotel?.accuratePropertyClass} readOnly size={"xs"} />
 
             <Link href={`/hotel/${hotel.id}`}>
               <Title order={!matches ? 5 : 4} lineClamp={2}>
@@ -90,9 +97,10 @@ export const BookingCard = (props: IBookingCard) => {
                 <Text size="xs">wonderful location</Text>
               </Flex>
 
-              <Flex gap={5} align={"center"} wrap={"wrap"}>
-                <MapIcon className="w-4 h-4" />
-                <Text size="xs"> - Can Tho - </Text>
+              <Flex gap={3} align={"center"} wrap={"wrap"}>
+                <MapPinIcon className="w-4 h-4" />
+                <Text size="xs">Can Tho</Text>
+                <DotIcon className="w-4 h-4" />
                 <Text size="xs">350m from center</Text>
               </Flex>
             </Box>

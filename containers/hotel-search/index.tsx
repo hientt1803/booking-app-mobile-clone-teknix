@@ -91,10 +91,9 @@ export const SearchPageContainer = () => {
         </Box>
 
         <Box bg="#fff" pb={30}>
+          {/* List product */}
+          <ListProduct />
           <Container>
-            {/* List product */}
-            <ListProduct />
-
             {/* Load more button */}
             <Button variant="outline" fullWidth py={6}>
               Load more results <ChevronDown />

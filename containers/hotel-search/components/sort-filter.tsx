@@ -1,6 +1,14 @@
 "use client";
 
-import { Box, Button, Drawer, Group, Radio, Stack, Title } from "@mantine/core";
+import {
+  Box,
+  Button,
+  Drawer,
+  Flex,
+  Group,
+  Radio,
+  Title
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { ArrowUpDown } from "lucide-react";
 
@@ -36,7 +44,10 @@ export const SortFilter = () => {
       </Drawer>
 
       <Button onClick={open} variant="subtle" size="xs">
-        <ArrowUpDown style={{ width: "20px", height: "20px" }} /> Sort
+        <Flex gap={8} align={"center"}>
+          <ArrowUpDown className="w-4 h-4" />
+          Sort
+        </Flex>
       </Button>
     </Box>
   );

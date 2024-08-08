@@ -36,6 +36,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import React, { useMemo, useState } from "react";
+import { RoomDetail } from "./room-detail";
 
 const data = [
   {
@@ -75,12 +76,7 @@ export const BookingCard = () => {
   return (
     <Card withBorder className={opened ? "border-green-600 border-2" : ""}>
       <Stack gap={2}>
-        <Flex justify={"space-between"} align={"center"} mb={10}>
-          <Text c="blue" fw={600} className="underline">
-            Deluxe Double Room
-          </Text>
-          <ImageIcon className="text-blue-600" />
-        </Flex>
+        <RoomDetail roomName="Deluxe Double Room" />
         <Flex gap={1} align={"center"}>
           <Text size="xs">Price for up to: </Text>
           <UserIcon className="w-4 h-4 font-bold" />

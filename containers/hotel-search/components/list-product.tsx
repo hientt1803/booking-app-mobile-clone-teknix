@@ -10,7 +10,7 @@ export const ListProduct = () => {
   return (
     <Grid>
       {listHotel.map((hotel) => (
-        <Grid.Col span={12} mb={10} key={hotel.id}>
+        <Grid.Col span={12} key={hotel.id}>
           <BookingCard hotel={hotel} breakfast discount roomLeft="Only 1 left"/>
           <Divider />
         </Grid.Col>

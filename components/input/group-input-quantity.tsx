@@ -41,9 +41,9 @@ export const GroupInputQuantity = ({
   return (
     <span className="flex">
       <Button
-        variant={"default"}
+        variant={"light"}
         color="dark"
-        className="border-none text-xl"
+        className="border-none mr-1 text-xl"
         onClick={() => handleOnChangeQuantity("descr")}
       >
         -
@@ -51,12 +51,20 @@ export const GroupInputQuantity = ({
       <Input
         value={quantity}
         onChange={handleOnChangeQuantityInput}
-        className="w-10 text-center border-none text-xl outline-none"
+        className={`${
+          quantity.toString().length > 1 ? "w-11" : "w-9"
+        } w-10 text-center text-xl`}
+        styles={{
+          input: {
+            outline: "none",
+            border: "none",
+          },
+        }}
       />
       <Button
-        variant={"default"}
+        variant={"light"}
         color="dark"
-        className="border-none text-xl"
+        className="border-none ml-1 text-xl"
         onClick={() => handleOnChangeQuantity("incr")}
       >
         +

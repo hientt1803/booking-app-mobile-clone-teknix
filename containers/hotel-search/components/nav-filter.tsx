@@ -17,7 +17,7 @@ export const NavFilter = () => {
     <Container
       className={`${
         scroll.y > 200
-          ? "fixed top-0 left-0 right-0 bg-white p-2 z-40 py-3"
+          ? "fixed top-0 left-0 right-0 bg-white p-2 z-40 py-3 px-20"
           : ""
       }`}
     >
