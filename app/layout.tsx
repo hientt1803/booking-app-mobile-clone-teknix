@@ -1,9 +1,9 @@
-import "@/styles/globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import "react-toastify/dist/ReactToastify.css";
+import "@/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";

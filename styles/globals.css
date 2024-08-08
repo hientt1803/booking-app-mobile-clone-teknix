@@ -17,14 +17,14 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  /* color: rgb(var(--foreground-rgb)); */
   /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-  background: #f1f1f1;
+  background: #f1f1f1 !important;
 }
 
 @layer utilities {

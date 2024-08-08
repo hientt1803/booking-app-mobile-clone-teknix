@@ -43,7 +43,7 @@ export const HeaderInformation = () => {
           <Stack mb={20}>
             <Flex justify={"space-between"}>
               <Flex gap={5}>
-                <Rating value={5} />
+                <Rating value={5} readOnly/>
                 <Badge color="#fcc419" size="xs" p={7}>
                   <ThumbsUpIcon
                     style={{
