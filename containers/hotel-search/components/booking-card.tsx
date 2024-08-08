@@ -43,7 +43,7 @@ export const BookingCard = (props: IBookingCard) => {
     <Card>
       <Grid>
         {!matches && (
-          <Grid.Col span={5}>
+          <Grid.Col span={6}>
             <Link href={`/hotel/${hotel.id}`}>
               <Image
                 // src="/assets/images/booking-banner-home.jpeg"
@@ -58,7 +58,7 @@ export const BookingCard = (props: IBookingCard) => {
             </Link>
           </Grid.Col>
         )}
-        <Grid.Col span={!matches ? 7 : 12}>
+        <Grid.Col span={!matches ? 6 : 12}>
           <Stack gap={2}>
             <Rating value={hotel?.accuratePropertyClass} readOnly size={"xs"}/>
 
