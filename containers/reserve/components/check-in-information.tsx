@@ -1,6 +1,8 @@
 "use client";
 
 import { BoxWrap } from "@/components/box-wrap";
+import { useAppSelector } from "@/stores";
+import { convertStringToDate, daysBetweenUTC, formatDateUTC } from "@/utils";
 import {
   Accordion,
   Box,
@@ -19,6 +21,10 @@ import Link from "next/link";
 import React from "react";
 
 export const CheckInInformation = () => {
+  const searchGlobal = useAppSelector(
+    (state) => state.globalSlice.searchGlobal
+  );
+
   return (
     <React.Fragment>
       <BoxWrap>
@@ -29,7 +35,9 @@ export const CheckInInformation = () => {
                 <Stack gap={0}>
                   <Text size="xs">Check-in</Text>
                   <Text size="xs" c={"indigo"} fw={600} mt={5}>
-                    Web, Jul 31
+                    {formatDateUTC(
+                      convertStringToDate(searchGlobal.dateRange.startDate)
+                    )}
                   </Text>
                   <Text size="xs">2:00 PM - 12:00 AM</Text>
                 </Stack>
@@ -39,7 +47,9 @@ export const CheckInInformation = () => {
                 <Stack gap={0}>
                   <Text size="xs">Check-out</Text>
                   <Text size="xs" c={"indigo"} fw={600} mt={5}>
-                    Thu, Aug 15
+                    {formatDateUTC(
+                      convertStringToDate(searchGlobal.dateRange.endDate)
+                    )}
                   </Text>
                   <Text size="xs">12:00 AM - 12:00 PM</Text>
                 </Stack>
@@ -48,7 +58,11 @@ export const CheckInInformation = () => {
             <Box mt={5}>
               <Text size="xs">Total length of stay:</Text>
               <Text size="xs" fw={600}>
-                1 Night
+                {daysBetweenUTC(
+                  convertStringToDate(searchGlobal.dateRange.startDate),
+                  convertStringToDate(searchGlobal.dateRange.endDate)
+                )}{" "}
+                Night
               </Text>
               {/* <Link
                 href={"/hotel/search-form?change-date=true"}

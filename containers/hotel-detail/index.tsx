@@ -18,7 +18,6 @@ import { HeaderInformation } from "./components/header-information";
 import { ListBookingCard } from "./components/list-booking-card";
 import { Navigation } from "./components/navigation";
 import { PreSearchContainerr } from "./components/pre-search";
-import { HOTEL_DETAIL_MOCK_DATA } from "@/utils";
 
 const PropertiesPratices = dynamic(() =>
   import("./components/properties-pratices").then(
@@ -42,7 +41,6 @@ const BestOfBeyond = dynamic(() =>
 );
 
 export const HotelDetailContainer = () => {
-  const hotelDetail = HOTEL_DETAIL_MOCK_DATA;
 
   return (
     <React.Fragment>

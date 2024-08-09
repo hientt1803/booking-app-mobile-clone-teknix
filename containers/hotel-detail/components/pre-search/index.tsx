@@ -1,6 +1,8 @@
 "use client";
 
 import { MobileSearchGroup } from "@/components/search";
+import { useAppSelector } from "@/stores";
+import { convertStringToDate, daysBetweenUTC, formatDateUTC } from "@/utils";
 import {
   Box,
   Checkbox,
@@ -17,6 +19,9 @@ import { useDisclosure } from "@mantine/hooks";
 import React from "react";
 
 export const PreSearchContainerr = () => {
+  const searchGlobal = useAppSelector(
+    (state) => state.globalSlice.searchGlobal
+  );
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -25,7 +30,18 @@ export const PreSearchContainerr = () => {
         <Stack>
           <Flex justify={"space-between"} align={"center"}>
             <Text size="xs" fw={500}>
-              Your Search: 2 adults, 15 nights
+              Your Search:{" "}
+              {searchGlobal.people.adults > 0 &&
+                `${searchGlobal.people.adults} adults,`}
+              {searchGlobal.people.childrens > 0 &&
+                `${searchGlobal.people.childrens} childrens,`}
+              {searchGlobal.people.rooms > 0 &&
+                `${searchGlobal.people.rooms} rooms,`}
+              {daysBetweenUTC(
+                convertStringToDate(searchGlobal.dateRange.startDate),
+                convertStringToDate(searchGlobal.dateRange.endDate)
+              )}{" "}
+              nights
             </Text>
             <Text
               size="xs"
@@ -42,7 +58,9 @@ export const PreSearchContainerr = () => {
               <Stack gap={0}>
                 <Text size="xs">Check-in</Text>
                 <Text size="xs" c={"indigo"} fw={600} mt={5}>
-                  Web, Jul 31
+                  {formatDateUTC(
+                    convertStringToDate(searchGlobal.dateRange.startDate)
+                  )}
                 </Text>
                 <Text size="xs">2:00 PM - 12:00 AM</Text>
               </Stack>
@@ -52,7 +70,9 @@ export const PreSearchContainerr = () => {
               <Stack gap={0}>
                 <Text size="xs">Check-out</Text>
                 <Text size="xs" c={"indigo"} fw={600} mt={5}>
-                  Thu, Aug 15
+                  {formatDateUTC(
+                    convertStringToDate(searchGlobal.dateRange.endDate)
+                  )}
                 </Text>
                 <Text size="xs">12:00 AM - 12:00 PM</Text>
               </Stack>
@@ -111,7 +131,11 @@ export const PreSearchModal = ({
       }}
       centered
     >
-      <MobileSearchGroup isShowInput={false} buttonText="Check availability" buttonClassName="text-lg"/>
+      <MobileSearchGroup
+        isShowInput={false}
+        buttonText="Check availability"
+        buttonClassName="text-lg"
+      />
     </Modal>
   );
 };

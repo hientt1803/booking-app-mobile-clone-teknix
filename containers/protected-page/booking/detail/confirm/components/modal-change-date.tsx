@@ -2,7 +2,7 @@
 
 import { PrimaryButton } from "@/components/button";
 import { DateInputCustom } from "@/components/input";
-import { fortmateDate } from "@/utils";
+import { formatDateUTC } from "@/utils";
 import {
   Box,
   Divider,
@@ -55,8 +55,6 @@ const ModalChangeDate = ({ dateRange, setDateRange }: IModalChangeDate) => {
         </Text>
         <Box bg={"yellow"} mb={20}>
           <DateInputCustom
-            dateRange={dateRange}
-            setDateRange={setDateRange}
             isChangeDate={isChangeDate}
             setIsChangeDate={setIsChangeDate}
           />
@@ -102,7 +100,7 @@ const ModalChangeDate = ({ dateRange, setDateRange }: IModalChangeDate) => {
                     Check in from
                   </Text>
                   <Text size="sm" fw={600}>
-                    {fortmateDate(dateRange[0].startDate)}
+                    {formatDateUTC(dateRange[0].startDate)}
                   </Text>
                   <Text size="xs" fw={600}>
                     Friday 10:00
@@ -114,7 +112,7 @@ const ModalChangeDate = ({ dateRange, setDateRange }: IModalChangeDate) => {
                     Check out
                   </Text>
                   <Text size="sm" fw={600}>
-                    {fortmateDate(dateRange[0].endDate)}
+                    {formatDateUTC(dateRange[0].endDate)}
                   </Text>
                   <Text size="xs" fw={600}>
                     Saturday 9:00

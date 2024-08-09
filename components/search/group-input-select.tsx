@@ -14,6 +14,9 @@ import { useDisclosure } from "@mantine/hooks";
 import { PrimaryButton } from "../button";
 import { GroupInputQuantity } from "../input";
 import { ChevronDown } from "lucide-react";
+import { useAppSelector } from "@/stores";
+import { useDispatch } from "react-redux";
+import { setSearchGlobalPeople } from "@/stores/features/global/global-slice";
 
 interface IGroupPeopleInput {
   adults: number;
@@ -27,6 +30,12 @@ interface IGroupPeopleInput {
 export const GroupPeopleInput = (props: IGroupPeopleInput) => {
   const { adults, setAdults, childrenCount, setChildren, rooms, setRooms } =
     props;
+
+  const searchGlobal = useAppSelector(
+    (state) => state.globalSlice.searchGlobal
+  );
+  const dispath = useDispatch();
+
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -114,7 +123,20 @@ export const GroupPeopleInput = (props: IGroupPeopleInput) => {
             <Text size="xs" fw={600}>
               Traveling with pets?
             </Text>
-            <Switch mr={20} />
+            <Switch
+              mr={20}
+              checked={searchGlobal.people.pet}
+              onChangeCapture={() => {
+                dispath(
+                  setSearchGlobalPeople({
+                    adults: searchGlobal.people.adults,
+                    childrens: searchGlobal.people.childrens,
+                    rooms: searchGlobal.people.rooms,
+                    pet: !searchGlobal.people.pet,
+                  })
+                );
+              }}
+            />
           </Flex>
         </Stack>
 

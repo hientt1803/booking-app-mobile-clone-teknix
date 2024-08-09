@@ -12,6 +12,7 @@ import { GeniusModal } from "@/components/modal";
 import { HOST_URL } from "@/utils";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { ToastContainer } from "react-toastify";
+import ReduxProvider from "@/stores/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -124,7 +125,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <MantineProvider>
-          {children}
+          <ReduxProvider>{children}</ReduxProvider>
           <GeniusModal />
           <ToastContainer />
         </MantineProvider>

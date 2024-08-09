@@ -19,7 +19,7 @@ export const GroupInputQuantity = ({
         break;
 
       case "descr":
-        if (quantity > 1) {
+        if (quantity > 0) {
           setQuantity(quantity - 1);
         }
         break;
@@ -52,7 +52,7 @@ export const GroupInputQuantity = ({
         value={quantity}
         onChange={handleOnChangeQuantityInput}
         className={`${
-          quantity.toString().length > 1 ? "w-11" : "w-9"
+          quantity ? quantity.toString().length : 0 > 1 ? "w-11" : "w-9"
         } w-10 text-center text-xl`}
         styles={{
           input: {

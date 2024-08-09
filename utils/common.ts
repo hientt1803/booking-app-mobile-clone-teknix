@@ -1,11 +1,21 @@
 import { format } from "date-fns";
+// import moment from "moment";
 
-export const fortmateDate = (date: any) => {
+export const formatDateUTC = (date: Date) => {
+  if (date == undefined || date == null) {
+    date = new Date();
+  }
   const newDate = format(date, "MMMM dd, yyyy");
   return newDate;
 };
 
 export const daysBetweenUTC = (startDate: Date, endDate: Date) => {
+  // if (startDate == undefined || startDate) {
+  //   startDate = new Date();
+  // }
+  // if (endDate == undefined || endDate) {
+  //   endDate = new Date();
+  // }
   const oneDay = 1000 * 60 * 60 * 24;
   const startUTC = Date.UTC(
     startDate.getFullYear(),
@@ -19,6 +29,9 @@ export const daysBetweenUTC = (startDate: Date, endDate: Date) => {
   );
   return Math.floor((endUTC - startUTC) / oneDay);
 };
+
+export const convertDateToString = (date: Date) => date.toDateString();
+export const convertStringToDate = (dateString: string) => new Date(dateString);
 
 export const formatCurrency = (value: number = 0) => {
   let USDollar = new Intl.NumberFormat("en-US", {

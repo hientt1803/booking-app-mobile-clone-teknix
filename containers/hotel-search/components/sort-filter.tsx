@@ -1,19 +1,52 @@
 "use client";
 
-import {
-  Box,
-  Button,
-  Drawer,
-  Flex,
-  Group,
-  Radio,
-  Title
-} from "@mantine/core";
+import { useAppSelector } from "@/stores";
+import { setHotelFiltered } from "@/stores/features/hotel";
+import { quickSort, SORT_HOTEL } from "@/utils";
+import { Box, Button, Drawer, Flex, Group, Radio } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { ArrowUpDown } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { setSearchGlobalFilterSortBy } from "@/stores/features/global/global-slice";
+import { useEffect } from "react";
 
 export const SortFilter = () => {
+  // redux
+  const listHotel = useAppSelector((state) => state.HotelSlice.hotels);
+  const sortByList = useAppSelector(
+    (state) => state.globalSlice.searchGlobal.filter.sortBy
+  );
+  const dispatch = useDispatch();
+
+  // state
   const [opened, { open, close }] = useDisclosure(false);
+
+  const handleSortHotel = (type: string, id: number) => {
+    const newArray = quickSort(listHotel, type);
+    handleSetActiveSortBy(id);
+    dispatch(setHotelFiltered(newArray));
+  };
+
+  const handleSetActiveSortBy = (id: number) => {
+    const newArr = sortByList.map((item) => {
+      if (item.id == id) {
+        return {
+          ...item,
+          active: true,
+        };
+      } else {
+        return {
+          ...item,
+          active: false,
+        };
+      }
+    });
+    dispatch(setSearchGlobalFilterSortBy(newArr));
+  };
+
+  useEffect(() => {
+    dispatch(setSearchGlobalFilterSortBy(SORT_HOTEL));
+  }, [dispatch]);
 
   return (
     <Box>
@@ -22,23 +55,25 @@ export const SortFilter = () => {
         onClose={close}
         position="bottom"
         radius={"25px 25px 0 0"}
+        title="Sort by"
         styles={{
           title: {
             fontWeight: 700,
+            fontSize: "1.8rem",
           },
         }}
       >
-        <Title order={2}>Sort by</Title>
-
         <Radio.Group name="sortby">
           <Group mt="xs" className="flex flex-col items-start gap-3">
-            <Radio value="best" label="Top picks for long stays" />
-            <Radio value="lowest-price" label="Price (lowest first)" />
-            <Radio value="rating" label="Property rating and price" />
-            <Radio value="review-price" label="Best review & lowest price" />
-            <Radio value="distance" label="Distance from downtown" />
-            <Radio value="review" label="Top reviewed" />
-            <Radio value="home" label="Homes & apartments first" />
+            {sortByList.map((option) => (
+              <Radio
+                key={option.id}
+                value={option.value}
+                label={option.label}
+                checked={option.active}
+                onClick={() => handleSortHotel(option.value, option.id)}
+              />
+            ))}
           </Group>
         </Radio.Group>
       </Drawer>

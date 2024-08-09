@@ -1,5 +1,8 @@
 "use client";
 
+import {
+  setSearchGlobalLocation
+} from "@/stores/features/global/global-slice";
 import { CITY_MOCKUP } from "@/utils";
 import {
   Box,
@@ -15,6 +18,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { MapPin, MousePointer2, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { PrimaryButton } from "../button";
 
 interface IInputSearch {
@@ -33,6 +37,10 @@ export const InputSearchCustom = ({
   inputSearchValue,
   setInputSearchValue,
 }: IInputSearch) => {
+  // redux
+  const dispath = useDispatch();
+
+  // state
   const [opened, { open, close }] = useDisclosure(false);
   const [listLocation, setListLocation] = useState<ICity[]>(CITY_MOCKUP);
   const [listLocationFiltered, setListLocationFiltered] = useState<ICity[]>([]);
@@ -41,8 +49,6 @@ export const InputSearchCustom = ({
     const newList = listLocation.filter((l) =>
       l.name.toLocaleLowerCase().includes(inputSearchValue.toLocaleLowerCase())
     );
-
-    console.log(newList);
     setListLocationFiltered(newList);
   }, [inputSearchValue]);
 
@@ -51,7 +57,15 @@ export const InputSearchCustom = ({
     setInputSearchValue(value);
   };
 
-  console.log(listLocationFiltered);
+  const handleChooseLocation = (location: ICity) => {
+    setInputSearchValue(location.name);
+    dispath(
+      setSearchGlobalLocation({
+        id: location.id,
+        name: location.name,
+      })
+    );
+  };
 
   return (
     <Box px={6} pt={5}>
@@ -143,7 +157,7 @@ export const InputSearchCustom = ({
                   icon={<MapPin className="w-5 h-5" />}
                   country={city.country}
                   city={city.name}
-                  onClick={setInputSearchValue}
+                  onClick={() => handleChooseLocation(city)}
                 />
               </Link>
             ))}

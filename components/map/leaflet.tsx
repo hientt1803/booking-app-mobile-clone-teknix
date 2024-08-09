@@ -3,14 +3,13 @@
 import "leaflet/dist/leaflet.css";
 
 import { Box } from "@mantine/core";
-import { LatLngExpression, map } from "leaflet";
+import { LatLngExpression } from "leaflet";
 import {
   Suspense,
   useCallback,
-  useLayoutEffect,
   useMemo,
   useRef,
-  useState,
+  useState
 } from "react";
 
 import {

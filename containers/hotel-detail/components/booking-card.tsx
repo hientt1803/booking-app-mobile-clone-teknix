@@ -3,6 +3,8 @@
 import { OutlineBadge } from "@/components/badge";
 import { PrimaryButton } from "@/components/button";
 import { GroupInputQuantity } from "@/components/input";
+import { useAppSelector } from "@/stores";
+import { convertStringToDate, daysBetweenUTC, formatDateUTC } from "@/utils";
 import {
   Badge,
   Box,
@@ -27,12 +29,11 @@ import {
   CreditCardIcon,
   DotIcon,
   House,
-  ImageIcon,
   MountainSnow,
   SnowflakeIcon,
   Tv2,
   UserIcon,
-  XCircleIcon,
+  XCircleIcon
 } from "lucide-react";
 import Link from "next/link";
 import React, { useMemo, useState } from "react";
@@ -48,12 +49,16 @@ const data = [
 ];
 
 export const BookingCard = () => {
+  // redux
+  const searchGlobal = useAppSelector(
+    (state) => state.globalSlice.searchGlobal
+  );
+
   const [opened, { toggle }] = useDisclosure(false);
 
   // state
   const [bedCount, setBedCount] = useState(0);
   const [value, setValue] = useState<string | null>(null);
-
   const totalPrice = useMemo(() => (bedCount * 900).toFixed(2), [bedCount]);
 
   // Logic
@@ -154,7 +159,7 @@ export const BookingCard = () => {
             "Reserve"
           ) : (
             <React.Fragment>
-              <XCircleIcon className="w-4 h-4" /> Remove
+              <XCircleIcon className="w-5 h-5 mr-1" /> Remove
             </React.Fragment>
           )}
         </Button>
@@ -164,7 +169,7 @@ export const BookingCard = () => {
               You selected the last one!
             </Text>
             <Flex justify={"flex-start"} align={"center"}>
-              <Text size="xs" fw={600}>
+              <Text size="xs" fw={600} mr={25}>
                 Bed quanity:
               </Text>
               <GroupInputQuantity
@@ -191,10 +196,25 @@ export const BookingCard = () => {
                 <strong>
                   {bedCount} bed selected: VND {totalPrice}
                 </strong>{" "}
+              </Text>
+              <Text size="xs" c={"dimmed"}>
                 includes taxes and fees
               </Text>
               <Text size="xs">
-                (10 nights, Web, Aug 14, 2024 - Sat, Aug 24,2024)
+                (
+                {daysBetweenUTC(
+                  convertStringToDate(searchGlobal.dateRange.startDate),
+                  convertStringToDate(searchGlobal.dateRange.endDate)
+                )}{" "}
+                nights,{" "}
+                {formatDateUTC(
+                  convertStringToDate(searchGlobal.dateRange.startDate)
+                )}{" "}
+                -{" "}
+                {formatDateUTC(
+                  convertStringToDate(searchGlobal.dateRange.endDate)
+                )}
+                )
               </Text>
             </Box>
 

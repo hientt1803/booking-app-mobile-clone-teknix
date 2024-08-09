@@ -2,14 +2,11 @@ import {
   Box,
   Button,
   Container,
-  Divider,
-  Flex,
-  Stack,
-  Text
+  Divider
 } from "@mantine/core";
-import { ChevronDown, SearchIcon } from "lucide-react";
-import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import React from "react";
+import { FloatingSearch } from "./components/floating-search";
 import { ListProduct } from "./components/list-product";
 import { NavFilter } from "./components/nav-filter";
 import { ScrollTagList } from "./components/scroll-tag-list";
@@ -18,35 +15,7 @@ export const SearchPageContainer = () => {
   return (
     <React.Fragment>
       <Box className="relative">
-        <Box bg="#fff">
-          <Box bg="#1e3a8a" className=" relative z-10" py={20}>
-            <Box
-              bg={"#fcc419"}
-              p={6}
-              mx={10}
-              style={{
-                position: "absolute",
-                bottom: "-30px",
-                left: 0,
-                right: 0,
-              }}
-            >
-              <Link href="/hotel/search-form">
-                <Stack bg={"#fff"} p={6}>
-                  <Flex gap={20} align="center">
-                    <SearchIcon className="w-5 h-5" />
-                    <Stack gap={3}>
-                      <Text size="xs" fw="600">
-                        Phu Quoc
-                      </Text>
-                      <Text size="xs">Aug 1 - Aug 2 (1 night) - 1z</Text>
-                    </Stack>
-                  </Flex>
-                </Stack>
-              </Link>
-            </Box>
-          </Box>
-        </Box>
+        <FloatingSearch />
 
         {/* Filter */}
         <Box pt={35} pb={15} px={30} className="bg-white">

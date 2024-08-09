@@ -1,122 +1,30 @@
 "use client";
 
+import useStorage from "@/hooks/useLocalStorage";
+import { useAppSelector } from "@/stores";
+import { setSearchGlobalFilterLisTag } from "@/stores/features/global/global-slice";
+import { TAG_SCROLL_DATA } from "@/utils";
 import { Box, Button, ScrollArea } from "@mantine/core";
 import { XIcon } from "lucide-react";
-import { useState } from "react";
-
-const TAG_DATA = [
-  {
-    id: 1,
-    title: "Hotels",
-    value: 235,
-    count: 253,
-    active: false,
-  },
-  {
-    id: 2,
-    title: "Double bed",
-    value: 199,
-    count: 132,
-    active: false,
-  },
-  {
-    id: 3,
-    title: "Family rooms",
-    value: 154,
-    count: 145,
-    active: false,
-  },
-  {
-    id: 4,
-    title: "Electric kettle",
-    value: 135,
-    count: 135,
-    active: false,
-  },
-  {
-    id: 5,
-    title: "Free Wi-Fi",
-    value: 215,
-    count: 189,
-    active: false,
-  },
-  {
-    id: 6,
-    title: "Breakfast included",
-    value: 250,
-    count: 178,
-    active: false,
-  },
-  {
-    id: 7,
-    title: "Parking available",
-    value: 123,
-    count: 200,
-    active: false,
-  },
-  {
-    id: 8,
-    title: "Pet-friendly",
-    value: 105,
-    count: 115,
-    active: false,
-  },
-  {
-    id: 9,
-    title: "Swimming pool",
-    value: 187,
-    count: 98,
-    active: false,
-  },
-  {
-    id: 10,
-    title: "Gym access",
-    value: 102,
-    count: 156,
-    active: false,
-  },
-  {
-    id: 11,
-    title: "Air conditioning",
-    value: 135,
-    count: 222,
-    active: false,
-  },
-  {
-    id: 12,
-    title: "Spa services",
-    value: 175,
-    count: 88,
-    active: false,
-  },
-  {
-    id: 13,
-    title: "Room service",
-    value: 145,
-    count: 140,
-    active: false,
-  },
-  {
-    id: 14,
-    title: "Conference rooms",
-    value: 180,
-    count: 75,
-    active: false,
-  },
-  {
-    id: 15,
-    title: "Balcony",
-    value: 155,
-    count: 190,
-    active: false,
-  },
-];
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 export const ScrollTagList = () => {
-  const [tags, setTags] = useState(TAG_DATA);
+  const tags = useAppSelector(
+    (state) => state.globalSlice.searchGlobal.filter.listTagFilter
+  );
+  const { getItem, setItem } = useStorage();
+  const dispatch = useDispatch();
 
+  /**
+   * The function `handleOnClickChangeActiveTag` toggles the `active` property of a tag with a specific
+   * `id` and sorts the tags based on their `active` status.
+   * @param {number} id - The `id` parameter in the `handleOnClickChangeActiveTag` function is a number
+   * representing the unique identifier of the tag that needs to be toggled between active and inactive
+   * states.
+   */
   const handleOnClickChangeActiveTag = (id: number) => {
-    const newTag = tags.map((item, index) => {
+    const newTag = tags.map((item) => {
       if (item.id === id) {
         return {
           ...item,
@@ -127,8 +35,22 @@ export const ScrollTagList = () => {
       }
     });
 
-    setTags(newTag);
+    newTag.sort((a: any, b: any) => {
+      return b.active - a.active;
+    });
+
+    dispatch(setSearchGlobalFilterLisTag(newTag));
+    setItem("listTags", JSON.stringify(newTag));
   };
+
+  useEffect(() => {
+    const item = getItem("listTags");
+    if (item) {
+      dispatch(setSearchGlobalFilterLisTag(JSON.parse(item)));
+    } else {
+      dispatch(setSearchGlobalFilterLisTag(TAG_SCROLL_DATA));
+    }
+  }, [dispatch]);
 
   return (
     <ScrollArea className="w-full" type="always" scrollbarSize={2} py={6}>

@@ -37,7 +37,7 @@ import ModalChangeArrivalTime from "./modal-arrival-time";
 import ModalChangeDate from "./modal-change-date";
 import ModalChangeGuestDetail from "./modal-change-guest-detail";
 import { useState } from "react";
-import { fortmateDate, getAmOrPm } from "@/utils";
+import { formatDateUTC, getAmOrPm } from "@/utils";
 
 export const BookingHeader = () => {
   const [dateRange, setDateRange] = useState([
@@ -87,8 +87,8 @@ export const BookingHeader = () => {
               <Calendar />
               <Stack gap={2}>
                 <Text size="sm" fw={600}>
-                  {fortmateDate(dateRange[0].startDate)} -{" "}
-                  {fortmateDate(dateRange[0].endDate)}
+                  {formatDateUTC(dateRange[0].startDate)} -{" "}
+                  {formatDateUTC(dateRange[0].endDate)}
                 </Text>
                 <Text size="sm">Check-in: 14:00 - 23:00</Text>
                 <Text size="sm" mb={10}>

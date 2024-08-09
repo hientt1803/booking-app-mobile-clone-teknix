@@ -11,6 +11,7 @@ const LeafletComponent = dynamic(
   () => import("@/components/map").then((mob) => mob.LeafletComponent),
   { ssr: false }
 );
+
 export const MapFilter = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [getCurrentUserLocation, setGetCurrentUserLocation] = useState({
@@ -87,7 +88,6 @@ export const MapFilter = () => {
           ]}
           leftSectionPointerEvents="none"
           leftSection={<MapPinnedIcon />}
-          // error="Error"
           placeholder="Please enter your hotel you want"
           mb={10}
         />

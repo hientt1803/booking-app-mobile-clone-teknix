@@ -13,7 +13,6 @@ export const ListBookingCard = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
-
     if (params.toString().includes("change-selection=true")) {
       scrollTo({ y: 1800 });
     }

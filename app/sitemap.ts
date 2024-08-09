@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: `${HOST_URL}/`,
-      lastModified: new Date(),
+      lastModified: new Date().toLocaleString(),
       changeFrequency: "daily",
       priority: 1,
     },

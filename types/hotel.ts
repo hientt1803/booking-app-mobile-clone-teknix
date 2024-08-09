@@ -11,8 +11,8 @@ export interface IHotel {
   longitude?: number;
   priceBreakdown?: PriceBreakdown;
   currency?: string;
-  checkin?: CheckTime;
-  checkout?: CheckTime;
+  checkin?: CheckInOutTime;
+  checkout?: CheckInOutTime;
   checkoutDate?: string;
   checkinDate?: string;
   reviewScore?: number;
@@ -29,7 +29,14 @@ export interface IHotel {
   propertyType?: string;
   proposedAccommodation?: string[];
   priceDetails?: PriceDetails;
-  additionalLabels?: any[];
+  additionalLabels?: AdditionalLabel[];
+}
+
+interface PriceDetails {
+  info?: string;
+  strikethrough?: string | null; // Adjusted to allow null
+  gross?: string;
+  taxInfo?: string;
 }
 
 interface PriceBreakdown {
@@ -51,7 +58,7 @@ interface BenefitBadge {
   variant?: string;
 }
 
-interface CheckTime {
+interface CheckInOutTime {
   fromTime?: string;
   untilTime?: string;
 }
@@ -62,9 +69,6 @@ interface WishlistToggle {
   propertyId?: number;
 }
 
-interface PriceDetails {
-  info?: string;
-  strikethrough?: string;
-  gross?: string;
-  taxInfo?: string;
+interface AdditionalLabel {
+  // Define specific properties if known
 }

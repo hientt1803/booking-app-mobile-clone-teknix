@@ -11,6 +11,8 @@ import {
   persistStore,
 } from "redux-persist";
 import storage from "./storage";
+import { GlobalSlice } from "./features/global/global-slice";
+import { HotelSlice } from "./features/hotel";
 
 // Configs
 const persistConfig = {
@@ -20,7 +22,7 @@ const persistConfig = {
   whitelist: [
     // collectionApi.reducerPath,
     // regionApi.reducerPath,
-    // "regionSlice",
+    "globalSlice",
     // "cartSlice",
     // "userSlice",
     // settingApi.reducerPath,
@@ -31,6 +33,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
   // [productApi.reducerPath]: productApi.reducer,
   // userSlice: userSlice.reducer,
+  globalSlice: GlobalSlice.reducer,
+  HotelSlice: HotelSlice.reducer,
 });
 
 // Middleware
@@ -45,6 +49,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        date: false,
       },
     }),
 });

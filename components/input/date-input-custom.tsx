@@ -18,9 +18,13 @@ import {
   Title,
 } from "@mantine/core";
 import React, { useEffect, useState } from "react";
-
 import { cn } from "@/lib";
-import { daysBetweenUTC, fortmateDate } from "@/utils";
+import {
+  convertDateToString,
+  convertStringToDate,
+  daysBetweenUTC,
+  formatDateUTC,
+} from "@/utils";
 import { toastError } from "@/utils/config/toast";
 import { useDisclosure } from "@mantine/hooks";
 import { addDays } from "date-fns";
@@ -28,10 +32,11 @@ import { Calendar, PlusIcon } from "lucide-react";
 import { DateRangePicker } from "react-date-range";
 import { PrimaryButton } from "../button";
 import { useSearchParams } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { setSearchGlobalDateRange } from "@/stores/features/global/global-slice";
+import { useAppSelector } from "@/stores";
 
 interface IDateInput {
-  dateRange: any;
-  setDateRange: any;
   isChangeDate?: boolean;
   setIsChangeDate?: any;
 }
@@ -150,11 +155,23 @@ const MONTHS_DATA = [
 ];
 
 export const DateInputCustom = ({
-  dateRange,
-  setDateRange,
   isChangeDate,
   setIsChangeDate,
 }: IDateInput) => {
+  // redux
+  const searchGlobal = useAppSelector(
+    (state) => state.globalSlice.searchGlobal.dateRange
+  );
+  const dispatch = useDispatch();
+
+  // state
+  const [dateRange, setDateRange] = useState<any>([
+    {
+      startDate: convertStringToDate(searchGlobal.startDate),
+      endDate: convertStringToDate(searchGlobal.endDate),
+      key: "selection",
+    },
+  ]);
   const [opened, { open, close }] = useDisclosure(false);
   const [datesCalendarChoosen, setDatesDalendarChoosen] = useState(MOCK_DATA);
   const [dateFlexiable, setDateFlexiable] = useState(MONTHS_DATA);
@@ -162,11 +179,26 @@ export const DateInputCustom = ({
   const [isOtherDayStaySelected, setIsOtherDayStaySelected] = useState(false);
   const searchParams = useSearchParams();
 
+  useEffect(() => {
+    dispatch(
+      setSearchGlobalDateRange({
+        startDate: convertDateToString(dateRange[0].startDate),
+        endDate: convertDateToString(dateRange[0].endDate),
+      })
+    );
+  }, [dateRange, dispatch]);
+
   const handleResetData = () => {
     setDateFlexiable(MONTHS_DATA);
     setDatesDalendarChoosen(MOCK_DATA);
     setSelectedMonths([]);
     setIsOtherDayStaySelected(false);
+    dispatch(
+      setSearchGlobalDateRange({
+        startDate: convertDateToString(new Date()),
+        endDate: convertDateToString(new Date()),
+      })
+    );
     setDateRange([
       {
         startDate: new Date(),
@@ -272,7 +304,7 @@ export const DateInputCustom = ({
               <Stack gap={0}>
                 <Text size="xs">Check-in date</Text>
                 <Text size="sm" fw={600}>
-                  {fortmateDate(dateRange[0].startDate)}
+                  {formatDateUTC(dateRange[0].startDate)}
                 </Text>
               </Stack>
             </Box>
@@ -283,7 +315,7 @@ export const DateInputCustom = ({
               <Stack gap={0}>
                 <Text size="xs">Check-out date</Text>
                 <Text size="sm" fw={600}>
-                  {fortmateDate(dateRange[0].endDate)}
+                  {formatDateUTC(dateRange[0].endDate)}
                 </Text>
               </Stack>
             </Box>
@@ -380,8 +412,8 @@ export const DateInputCustom = ({
                     </Box>
                   </ScrollArea>
                   <Text size="xs" ta={"center"} my={15}>
-                    {fortmateDate(dateRange[0].startDate)} -{" "}
-                    {fortmateDate(dateRange[0].endDate)}
+                    {formatDateUTC(dateRange[0].startDate)} -{" "}
+                    {formatDateUTC(dateRange[0].endDate)}
                     {`(${daysBetweenUTC(
                       dateRange[0].startDate,
                       dateRange[0].endDate
